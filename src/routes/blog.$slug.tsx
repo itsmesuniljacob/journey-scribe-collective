@@ -33,7 +33,8 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function PostPage() {
-  const { post } = Route.useLoaderData();
+  const data = Route.useLoaderData() as { post: import("@/content/types").Post };
+  const { post } = data;
   const related = posts.filter((p) => p.slug !== post.slug && p.region === post.region).slice(0, 3);
 
   const jsonLd = {
