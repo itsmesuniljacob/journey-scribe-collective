@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>/blog</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>/destinations</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>/tools/trip-calculator</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>/tools/itinerary-builder</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>/blog/4-days-in-singapore-family-itinerary</loc></url>
+  <url><loc>/blog/amsterdam-paris-switzerland-10-day-europe-trip</loc></url>
+  <url><loc>/blog/best-hidden-cafes-in-bangalore</loc></url>
+  <url><loc>/blog/switzerland-budget-breakdown-for-families</loc></url>
+  <url><loc>/blog/best-places-to-stay-near-disneyland-paris</loc></url>
+</urlset>
