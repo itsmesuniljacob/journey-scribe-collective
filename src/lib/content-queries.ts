@@ -40,13 +40,13 @@ const DEST_PROJECTION = `{
 }`;
 
 // --- Mappers ---
+type SanityImageSource = Parameters<typeof urlFor>[0];
 function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
   if (!src?.asset?._ref) return null;
   try {
     return urlFor(src as SanityImageSource).width(w).height(h).fit("crop").auto("format").url();
   } catch { return null; }
 }
-type SanityImageSource = Parameters<typeof urlFor>[0];
 
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   if (!pt) return [];
