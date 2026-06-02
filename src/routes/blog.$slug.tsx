@@ -35,8 +35,8 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function PostPage() {
-  const { post: initialPost, slug } = Route.useLoaderData();
-  const { data: post, isLoading } = useQuery({
+  const { post: initialPost, slug } = Route.useLoaderData() as { post: import("@/content/types").Post | null; slug: string };
+  const { data: post, isLoading } = useQuery<import("@/content/types").Post | undefined>({
     queryKey: contentKeys.post(slug),
     queryFn: () => fetchPostBySlug(slug),
     initialData: initialPost ?? undefined,
