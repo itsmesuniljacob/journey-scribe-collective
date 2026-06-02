@@ -1,17 +1,19 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { ReadingProgress } from "@/components/layout/ReadingProgress";
-import { getPostBySlug, posts } from "@/content/posts";
+import { getPostBySlug, posts as localPosts } from "@/content/posts";
 import type { PostBlock } from "@/content/types";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useQuery } from "@tanstack/react-query";
+import { contentKeys, fetchPostBySlug, fetchPosts } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = getPostBySlug(params.slug);
-    if (!post) throw notFound();
-    return { post };
+    // Don't throw notFound for local-misses — Sanity may have it
+    return { post: post ?? null, slug: params.slug };
   },
   head: ({ loaderData }) => {
     const p = loaderData?.post;
@@ -33,9 +35,22 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function PostPage() {
-  const data = Route.useLoaderData() as { post: import("@/content/types").Post };
-  const { post } = data;
-  const related = posts.filter((p) => p.slug !== post.slug && p.region === post.region).slice(0, 3);
+  const { post: initialPost, slug } = Route.useLoaderData() as { post: import("@/content/types").Post | null; slug: string };
+  const { data: post, isLoading } = useQuery<import("@/content/types").Post | undefined>({
+    queryKey: contentKeys.post(slug),
+    queryFn: () => fetchPostBySlug(slug),
+    initialData: initialPost ?? undefined,
+  });
+  const { data: allPosts = localPosts } = useQuery({
+    queryKey: contentKeys.posts,
+    queryFn: fetchPosts,
+    initialData: localPosts,
+  });
+  if (!post) {
+    if (isLoading) return <PageShell><div className="py-32 text-center text-muted-foreground">Loading…</div></PageShell>;
+    throw notFound();
+  }
+  const related = allPosts.filter((p) => p.slug !== post.slug && p.region === post.region).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",

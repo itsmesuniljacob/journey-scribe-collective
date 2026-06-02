@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
-import { destinations } from "@/content/destinations";
+import { destinations as localDestinations } from "@/content/destinations";
+import { useQuery } from "@tanstack/react-query";
+import { contentKeys, fetchDestinations } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/destinations")({
   component: DestinationsIndex,
@@ -13,6 +15,11 @@ export const Route = createFileRoute("/destinations")({
 });
 
 function DestinationsIndex() {
+  const { data: destinations = localDestinations } = useQuery({
+    queryKey: contentKeys.destinations,
+    queryFn: fetchDestinations,
+    initialData: localDestinations,
+  });
   const regions = Array.from(new Set(destinations.map((d) => d.region)));
   return (
     <PageShell>

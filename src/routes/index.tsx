@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero-landscape.jpg";
 import { PageShell } from "@/components/layout/PageShell";
-import { posts } from "@/content/posts";
-import { destinations } from "@/content/destinations";
+import { posts as localPosts } from "@/content/posts";
+import { destinations as localDestinations } from "@/content/destinations";
 import authorPortrait from "@/assets/author-portrait.jpg";
 import { toast } from "sonner";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { contentKeys, fetchPosts, fetchDestinations } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -50,6 +52,11 @@ function Hero() {
 }
 
 function LatestStories() {
+  const { data: posts = localPosts } = useQuery({
+    queryKey: contentKeys.posts,
+    queryFn: fetchPosts,
+    initialData: localPosts,
+  });
   const [feature, ...rest] = posts;
   const others = rest.slice(0, 4);
   return (
@@ -125,6 +132,11 @@ function LatestStories() {
 }
 
 function DestinationsStrip() {
+  const { data: destinations = localDestinations } = useQuery({
+    queryKey: contentKeys.destinations,
+    queryFn: fetchDestinations,
+    initialData: localDestinations,
+  });
   return (
     <section className="border-t hairline bg-background">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">

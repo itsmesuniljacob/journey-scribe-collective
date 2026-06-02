@@ -1,13 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { getDestinationBySlug } from "@/content/destinations";
-import { posts } from "@/content/posts";
+import { posts as localPosts } from "@/content/posts";
+import { useQuery } from "@tanstack/react-query";
+import { contentKeys, fetchDestinationBySlug, fetchPosts } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/destinations/$slug")({
   loader: ({ params }) => {
     const d = getDestinationBySlug(params.slug);
-    if (!d) throw notFound();
-    return { destination: d };
+    return { destination: d ?? null, slug: params.slug };
   },
   head: ({ loaderData }) => {
     const d = loaderData?.destination;
@@ -24,7 +25,21 @@ export const Route = createFileRoute("/destinations/$slug")({
 });
 
 function DestinationPage() {
-  const { destination: d } = Route.useLoaderData();
+  const { destination: initial, slug } = Route.useLoaderData();
+  const { data: d, isLoading } = useQuery({
+    queryKey: contentKeys.destination(slug),
+    queryFn: () => fetchDestinationBySlug(slug),
+    initialData: initial ?? undefined,
+  });
+  const { data: posts = localPosts } = useQuery({
+    queryKey: contentKeys.posts,
+    queryFn: fetchPosts,
+    initialData: localPosts,
+  });
+  if (!d) {
+    if (isLoading) return <PageShell><div className="py-32 text-center text-muted-foreground">Loading…</div></PageShell>;
+    throw notFound();
+  }
   const related = posts.filter((p) => p.destination.toLowerCase() === d.name.toLowerCase() || p.region === d.region);
   return (
     <PageShell overlay>

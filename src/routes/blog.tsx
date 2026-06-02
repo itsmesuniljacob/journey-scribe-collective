@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
-import { posts } from "@/content/posts";
+import { posts as localPosts } from "@/content/posts";
 import { useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { contentKeys, fetchPosts } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/blog")({
   component: BlogIndex,
@@ -17,9 +19,14 @@ const CATEGORIES = ["All", "Itineraries", "City Guides", "Budget", "Stays", "Foo
 
 function BlogIndex() {
   const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
+  const { data: posts = localPosts } = useQuery({
+    queryKey: contentKeys.posts,
+    queryFn: fetchPosts,
+    initialData: localPosts,
+  });
   const filtered = useMemo(
     () => (cat === "All" ? posts : posts.filter((p) => p.category === cat)),
-    [cat]
+    [cat, posts]
   );
   return (
     <PageShell>
