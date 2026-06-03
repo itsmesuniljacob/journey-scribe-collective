@@ -183,16 +183,16 @@ function AboutBlock() {
         <div className="max-w-2xl">
           <p className="text-[11px] tracked-sm uppercase text-muted-foreground">About the author</p>
           <h2 className="mt-4 font-serif italic text-4xl md:text-5xl leading-tight">
-            Hi, I'm Maya — I write the long version of the trip.
+            Hi, I'm Sunil — I write the long version of the trip.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            I've spent the last eight years working remotely while travelling slowly through 38 countries — mostly with kids in tow. This blog is the version of the guidebook I always wished existed: less ten-things-to-do, more here's-exactly-how-it-felt.
+            I've spent the last eight years working remotely while travelling slowly through 10 countries — mostly with family. This blog is the version of the guidebook I always wished existed: less ten-things-to-do, more here's-exactly-how-it-felt.
           </p>
           <div className="mt-8 flex items-center gap-6">
             <Link to="/about" className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust">
               Read my story →
             </Link>
-            <span className="text-[11px] tracked-sm uppercase text-muted-foreground">38 countries · 8 years</span>
+            <span className="text-[11px] tracked-sm uppercase text-muted-foreground">10 countries · 4 years</span>
           </div>
         </div>
       </div>

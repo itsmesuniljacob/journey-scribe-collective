@@ -19,9 +19,9 @@ function AboutPage() {
     <PageShell>
       <section className="border-b hairline">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-2 lg:px-10 lg:py-28">
-          <div className="border hairline">
+          {/* <div className="border hairline">
             <img src={authorPortrait} alt="Maya" width={1024} height={1280} className="aspect-[4/5] w-full object-cover grayscale" />
-          </div>
+          </div> */}
           <div className="flex flex-col justify-center">
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">About</p>
             <h1 className="mt-4 font-serif italic text-5xl md:text-6xl leading-[0.95]">I'm Sunil.</h1>
@@ -40,7 +40,7 @@ function AboutPage() {
           <p className="text-[11px] tracked-sm uppercase text-muted-foreground">By the numbers</p>
           <div className="mt-8 grid gap-10 md:grid-cols-3">
             <Stat n={String(visited)} label="Countries" />
-            <Stat n="8" label="Years on the road" />
+            <Stat n="4" label="Years on the road" />
             <Stat n={`${destinations.length}+`} label="Cities written about" />
           </div>
         </div>
