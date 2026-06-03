@@ -11,7 +11,7 @@ Mirror the anywhereweroam.com hero exactly in spirit:
 
 - Latest Stories — asymmetric magazine grid (1 large feature + 2 secondary)
 - Destinations strip — horizontal scroll of region cards with serif italic labels
-- About the author — split block, B&W portrait + short bio + "Read my story"
+- About the author — split block, short bio + "Read my story"
 - Newsletter band — rust-accent background, single email field
 - Footer — wordmark, socials, copyright
 

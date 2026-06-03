@@ -24,9 +24,9 @@ function AboutPage() {
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">About</p>
-            <h1 className="mt-4 font-serif italic text-5xl md:text-6xl leading-[0.95]">I'm Maya.</h1>
+            <h1 className="mt-4 font-serif italic text-5xl md:text-6xl leading-[0.95]">I'm Sunil.</h1>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Writer, slow-traveler, mother of two, and the person behind every word on this site. I've spent the last eight years working remotely from {visited} countries — not all at once, and rarely for less than a month at a time.
+              Writer, slow-traveler, and the person behind every word on this site. I've spent the last eight years working remotely from {visited} countries — not all at once, and rarely for less than a month at a time.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
               This blog is the version of the guidebook I always wished existed: long on context, honest about tradeoffs, and patient with the parts of travel that don't fit on a list.

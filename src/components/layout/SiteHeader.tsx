@@ -53,7 +53,7 @@ export function SiteHeader({ overlay = false }: Props) {
         </nav>
 
         <div className="hidden items-center gap-5 md:flex">
-          <a aria-label="Instagram" href="https://instagram.com" className="hover:text-rust transition-colors">
+          <a aria-label="Instagram" href="https://instagram.com/wanderinglens314" className="hover:text-rust transition-colors">
             <Instagram size={16} />
           </a>
           <Link aria-label="Search" to="/search" className="hover:text-rust transition-colors">
@@ -87,7 +87,7 @@ export function SiteHeader({ overlay = false }: Props) {
               </Link>
             ))}
             <div className="flex items-center gap-5 pt-5">
-              <a href="https://instagram.com" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href="https://instagram.com/wanderinglens314" aria-label="Instagram"><Instagram size={18} /></a>
               <Link to="/search" aria-label="Search"><Search size={18} /></Link>
               <button onClick={toggle} aria-label="Toggle theme">
                 {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}

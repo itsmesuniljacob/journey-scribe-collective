@@ -12,9 +12,9 @@ export function SiteFooter() {
               A travel diary and slow-guide for people who'd rather stay an extra day than tick a fifth city off the list.
             </p>
             <div className="mt-6 flex items-center gap-4">
-              <a aria-label="Instagram" href="https://instagram.com" className="hover:text-rust transition-colors"><Instagram size={18} /></a>
+              <a aria-label="Instagram" href="https://instagram.com/wanderinglens314" className="hover:text-rust transition-colors"><Instagram size={18} /></a>
               <a aria-label="Twitter" href="https://twitter.com" className="hover:text-rust transition-colors"><Twitter size={18} /></a>
-              <a aria-label="Email" href="mailto:hello@example.com" className="hover:text-rust transition-colors"><Mail size={18} /></a>
+              <a aria-label="Email" href="mailto:xenon.ivybridge@gmail.com" className="hover:text-rust transition-colors"><Mail size={18} /></a>
             </div>
           </div>
 

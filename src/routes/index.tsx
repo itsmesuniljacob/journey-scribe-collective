@@ -3,7 +3,6 @@ import heroImg from "@/assets/hero-landscape.jpg";
 import { PageShell } from "@/components/layout/PageShell";
 import { posts as localPosts } from "@/content/posts";
 import { destinations as localDestinations } from "@/content/destinations";
-import authorPortrait from "@/assets/author-portrait.jpg";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -180,11 +179,8 @@ function DestinationsStrip() {
 function AboutBlock() {
   return (
     <section className="border-t hairline bg-background">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-2 lg:gap-20 lg:px-10 lg:py-28">
-        <div className="border hairline">
-          <img src={authorPortrait} alt="Portrait of the author" loading="lazy" width={1024} height={1280} className="aspect-[4/5] w-full object-cover grayscale" />
-        </div>
-        <div className="flex flex-col justify-center">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="max-w-2xl">
           <p className="text-[11px] tracked-sm uppercase text-muted-foreground">About the author</p>
           <h2 className="mt-4 font-serif italic text-4xl md:text-5xl leading-tight">
             Hi, I'm Maya — I write the long version of the trip.
