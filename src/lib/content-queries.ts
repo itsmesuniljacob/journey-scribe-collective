@@ -68,8 +68,24 @@ function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
 
 // h3 titles that should turn the following paragraph into a callout box
 const CALLOUT_TITLES = /^(insider tip|tip|pro tip|note|heads? up|warning|watch out|important|good to know)\b/i;
+const DAY_HEADING = /^day\s+(\d+)\s*(?:[:\-–—.)]\s*|\s+)(.*)$/i;
+const PROS_TITLES = /^(worth it|pros|do this|highlights|the good)\b/i;
+const CONS_TITLES = /^(skip|cons|don'?t bother|avoid|the bad|what we'?d skip)\b/i;
+const BUDGET_TITLES = /^(budget|cost breakdown|costs?|what it cost|spend(ing)?)\b/i;
+const BUDGET_ROW = /^(.+?)\s*[—–\-:]\s*([^\s].*)$/;
+const FAQ_TITLES = /^(faq|frequently asked|questions?|q\s*&\s*a)\b/i;
 
 interface NormalBlock { _type: "block"; style?: string; listItem?: string; children?: { text?: string }[] }
+
+function readBullets(pt: SanityPortableBlock[], start: number): { items: string[]; next: number } {
+  const items: string[] = [];
+  let j = start;
+  while (j < pt.length && (pt[j] as NormalBlock).listItem === "bullet") {
+    items.push(((pt[j] as NormalBlock).children || []).map((c) => c.text || "").join(""));
+    j++;
+  }
+  return { items, next: j };
+}
 
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   if (!pt) return [];
@@ -85,12 +101,9 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       if (!text.trim()) { i++; continue; }
       // bullet list run
       if (nb.listItem === "bullet") {
-        const items: string[] = [];
-        while (i < pt.length && (pt[i] as NormalBlock).listItem === "bullet") {
-          items.push(((pt[i] as NormalBlock).children || []).map((c) => c.text || "").join(""));
-          i++;
-        }
+        const { items, next } = readBullets(pt, i);
         flushList(items);
+        i = next;
         continue;
       }
       // callout: h3 with known title + next normal paragraph
@@ -103,6 +116,78 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
             i += 2;
             continue;
           }
+        }
+      }
+      // itinerary: heading "Day N: title" followed by bullets
+      if ((nb.style === "h2" || nb.style === "h3") && DAY_HEADING.test(text.trim())) {
+        const m = text.trim().match(DAY_HEADING)!;
+        const after = pt[i + 1] as NormalBlock | undefined;
+        if (after && after._type === "block" && after.listItem === "bullet") {
+          const { items, next } = readBullets(pt, i + 1);
+          out.push({ type: "itinerary", day: Number(m[1]), title: m[2] || "", items });
+          i = next;
+          continue;
+        }
+      }
+      // proscons: h3 "Worth it/Pros" + bullets, then h3 "Skip/Cons" + bullets
+      if (nb.style === "h3" && PROS_TITLES.test(text.trim())) {
+        const prosBullets = pt[i + 1] as NormalBlock | undefined;
+        if (prosBullets && prosBullets._type === "block" && prosBullets.listItem === "bullet") {
+          const { items: pros, next: afterPros } = readBullets(pt, i + 1);
+          const consBlock = pt[afterPros] as NormalBlock | undefined;
+          if (consBlock && consBlock._type === "block" && consBlock.style === "h3") {
+            const consTitle = (consBlock.children || []).map((c) => c.text || "").join("").trim();
+            const consList = pt[afterPros + 1] as NormalBlock | undefined;
+            if (CONS_TITLES.test(consTitle) && consList && consList.listItem === "bullet") {
+              const { items: cons, next: afterCons } = readBullets(pt, afterPros + 1);
+              out.push({ type: "proscons", pros, cons });
+              i = afterCons;
+              continue;
+            }
+          }
+        }
+      }
+      // budget: heading "Budget…" followed by bullets like "Label — $123"
+      if ((nb.style === "h2" || nb.style === "h3") && BUDGET_TITLES.test(text.trim())) {
+        const after = pt[i + 1] as NormalBlock | undefined;
+        if (after && after.listItem === "bullet") {
+          const { items, next } = readBullets(pt, i + 1);
+          const rows: { label: string; amount: string }[] = [];
+          let total: string | undefined;
+          for (const it of items) {
+            const m = it.match(BUDGET_ROW);
+            if (!m) { rows.length = 0; break; }
+            const label = m[1].trim();
+            const amount = m[2].trim();
+            if (/^total\b/i.test(label)) total = amount;
+            else rows.push({ label, amount });
+          }
+          if (rows.length) {
+            out.push({ type: "budget", rows, total });
+            i = next;
+            continue;
+          }
+        }
+      }
+      // faq: heading "FAQ/Questions" followed by alternating h3 question + paragraph
+      if ((nb.style === "h2" || nb.style === "h3") && FAQ_TITLES.test(text.trim())) {
+        const items: { q: string; a: string }[] = [];
+        let j = i + 1;
+        while (j < pt.length) {
+          const qb = pt[j] as NormalBlock;
+          if (!qb || qb._type !== "block" || qb.style !== "h3") break;
+          const q = (qb.children || []).map((c) => c.text || "").join("").trim();
+          const ab = pt[j + 1] as NormalBlock | undefined;
+          if (!ab || ab._type !== "block" || ab.listItem || (ab.style && ab.style !== "normal")) break;
+          const a = (ab.children || []).map((c) => c.text || "").join("").trim();
+          if (!q || !a) break;
+          items.push({ q, a });
+          j += 2;
+        }
+        if (items.length) {
+          out.push({ type: "faq", items });
+          i = j;
+          continue;
         }
       }
       if (nb.style === "h2") out.push({ type: "h2", text });
