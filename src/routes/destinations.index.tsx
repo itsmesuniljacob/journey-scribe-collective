@@ -4,7 +4,7 @@ import { destinations as localDestinations } from "@/content/destinations";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchDestinations } from "@/lib/content-queries";
 
-export const Route = createFileRoute("/destinations")({
+export const Route = createFileRoute("/destinations/")({
   component: DestinationsIndex,
   head: () => ({
     meta: [
