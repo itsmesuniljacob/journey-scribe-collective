@@ -55,14 +55,14 @@ const ToolsItineraryBuilderRoute = ToolsItineraryBuilderRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
-  id: '/destinations/$slug',
-  path: '/destinations/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DestinationsRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -139,8 +139,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   SearchRoute: typeof SearchRoute
-  BlogSlugRoute: typeof BlogSlugRoute
-  DestinationsSlugRoute: typeof DestinationsSlugRoute
   ToolsItineraryBuilderRoute: typeof ToolsItineraryBuilderRoute
   ToolsTripCalculatorRoute: typeof ToolsTripCalculatorRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -200,17 +198,17 @@ declare module '@tanstack/react-router' {
     }
     '/destinations/$slug': {
       id: '/destinations/$slug'
-      path: '/destinations/$slug'
+      path: '/$slug'
       fullPath: '/destinations/$slug'
       preLoaderRoute: typeof DestinationsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DestinationsRoute
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/blog/$slug'
+      path: '/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof BlogRoute
     }
   }
 }
@@ -219,8 +217,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   SearchRoute: SearchRoute,
-  BlogSlugRoute: BlogSlugRoute,
-  DestinationsSlugRoute: DestinationsSlugRoute,
   ToolsItineraryBuilderRoute: ToolsItineraryBuilderRoute,
   ToolsTripCalculatorRoute: ToolsTripCalculatorRoute,
   BlogIndexRoute: BlogIndexRoute,
@@ -229,3 +225,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

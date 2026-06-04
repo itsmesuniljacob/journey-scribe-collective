@@ -5,7 +5,7 @@ import { destinations as localDestinations } from "@/content/destinations";
 
 // --- Sanity result types (loose) ---
 interface SanityImage { _type?: string; asset?: { _ref?: string } }
-interface SanityPortableBlock { _type: string; _key?: string; style?: string; listItem?: string; level?: number; children?: { text?: string; marks?: string[] }[]; caption?: string; asset?: SanityImage["asset"] }
+interface SanityPortableBlock { _type: string; _key?: string; style?: string; children?: { text?: string }[]; caption?: string; asset?: SanityImage["asset"] }
 interface SanityPost {
   _id: string;
   title: string;
@@ -51,33 +51,19 @@ function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   if (!pt) return [];
   const out: PostBlock[] = [];
-  let listBuf: string[] | null = null;
-  const flushList = () => {
-    if (listBuf && listBuf.length) out.push({ type: "list", items: listBuf });
-    listBuf = null;
-  };
   for (const b of pt) {
     if (b._type === "block") {
       const text = (b.children || []).map((c) => c.text || "").join("");
-      if (!text.trim()) { flushList(); continue; }
-      if (b.listItem) {
-        if (!listBuf) listBuf = [];
-        listBuf.push(text);
-        continue;
-      }
-      flushList();
-      const style = b.style || "normal";
-      if (style === "h1" || style === "h2") out.push({ type: "h2", text });
-      else if (style === "h3" || style === "h4" || style === "h5" || style === "h6") out.push({ type: "h3", text });
-      else if (style === "blockquote") out.push({ type: "quote", text });
+      if (!text.trim()) continue;
+      if (b.style === "h2") out.push({ type: "h2", text });
+      else if (b.style === "h3") out.push({ type: "h3", text });
+      else if (b.style === "blockquote") out.push({ type: "quote", text });
       else out.push({ type: "p", text });
     } else if (b._type === "image") {
-      flushList();
       const src = imgUrl(b as unknown as SanityImage, 1600, 1067);
       if (src) out.push({ type: "image", src, caption: b.caption });
     }
   }
-  flushList();
   return out;
 }
 
