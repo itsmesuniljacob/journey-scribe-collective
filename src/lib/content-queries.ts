@@ -68,8 +68,24 @@ function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
 
 // h3 titles that should turn the following paragraph into a callout box
 const CALLOUT_TITLES = /^(insider tip|tip|pro tip|note|heads? up|warning|watch out|important|good to know)\b/i;
+const DAY_HEADING = /^day\s+(\d+)\s*(?:[:\-–—.)]\s*|\s+)(.*)$/i;
+const PROS_TITLES = /^(worth it|pros|do this|highlights|the good)\b/i;
+const CONS_TITLES = /^(skip|cons|don'?t bother|avoid|the bad|what we'?d skip)\b/i;
+const BUDGET_TITLES = /^(budget|cost breakdown|costs?|what it cost|spend(ing)?)\b/i;
+const BUDGET_ROW = /^(.+?)\s*[—–\-:]\s*([^\s].*)$/;
+const FAQ_TITLES = /^(faq|frequently asked|questions?|q\s*&\s*a)\b/i;
 
 interface NormalBlock { _type: "block"; style?: string; listItem?: string; children?: { text?: string }[] }
+
+function readBullets(pt: SanityPortableBlock[], start: number): { items: string[]; next: number } {
+  const items: string[] = [];
+  let j = start;
+  while (j < pt.length && (pt[j] as NormalBlock).listItem === "bullet") {
+    items.push(((pt[j] as NormalBlock).children || []).map((c) => c.text || "").join(""));
+    j++;
+  }
+  return { items, next: j };
+}
 
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   if (!pt) return [];
