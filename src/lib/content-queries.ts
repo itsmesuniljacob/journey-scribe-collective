@@ -114,9 +114,30 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       const src = imgUrl(b as unknown as SanityImage, 1600, 1067);
       if (src) out.push({ type: "image", src, caption: b.caption });
       i++;
+    } else if (b._type === "callout") {
+      out.push({ type: "callout", tone: b.tone, title: b.title, text: b.text || "" });
+      i++;
+    } else if (b._type === "prosCons") {
+      out.push({ type: "proscons", pros: b.pros || [], cons: b.cons || [] });
+      i++;
+    } else if (b._type === "itineraryDay") {
+      out.push({ type: "itinerary", day: b.day || 1, title: b.title || "", items: (b.items as string[]) || [] });
+      i++;
+    } else if (b._type === "budget") {
+      out.push({
+        type: "budget",
+        rows: (b.rows || []).map((r) => ({ label: r.label || "", amount: r.amount || "" })),
+        total: b.total,
+      });
+      i++;
+    } else if (b._type === "faq") {
+      const items = ((b.items as { q?: string; a?: string }[]) || []).map((it) => ({ q: it.q || "", a: it.a || "" }));
+      out.push({ type: "faq", items });
+      i++;
     } else {
       i++;
     }
+
   }
   return out;
 }
