@@ -55,14 +55,14 @@ const ToolsItineraryBuilderRoute = ToolsItineraryBuilderRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => DestinationsRoute,
+  id: '/destinations/$slug',
+  path: '/destinations/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -139,6 +139,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   SearchRoute: typeof SearchRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  DestinationsSlugRoute: typeof DestinationsSlugRoute
   ToolsItineraryBuilderRoute: typeof ToolsItineraryBuilderRoute
   ToolsTripCalculatorRoute: typeof ToolsTripCalculatorRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -198,17 +200,17 @@ declare module '@tanstack/react-router' {
     }
     '/destinations/$slug': {
       id: '/destinations/$slug'
-      path: '/$slug'
+      path: '/destinations/$slug'
       fullPath: '/destinations/$slug'
       preLoaderRoute: typeof DestinationsSlugRouteImport
-      parentRoute: typeof DestinationsRoute
+      parentRoute: typeof rootRouteImport
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -217,6 +219,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   SearchRoute: SearchRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  DestinationsSlugRoute: DestinationsSlugRoute,
   ToolsItineraryBuilderRoute: ToolsItineraryBuilderRoute,
   ToolsTripCalculatorRoute: ToolsTripCalculatorRoute,
   BlogIndexRoute: BlogIndexRoute,
