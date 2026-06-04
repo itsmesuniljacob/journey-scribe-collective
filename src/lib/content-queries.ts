@@ -132,10 +132,6 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       // proscons: h3 "Worth it/Pros" + bullets, then h3 "Skip/Cons" + bullets
       if (nb.style === "h3" && PROS_TITLES.test(text.trim())) {
         const prosBullets = pt[i + 1] as NormalBlock | undefined;
-        const consHead = (prosBullets && prosBullets.listItem === "bullet") ? null : undefined;
-        if (prosBullets && prosBullets._type === "block" && prosBullets.listItem === "bullet" && consHead !== undefined) {
-          /* unreachable - placeholder for ts */
-        }
         if (prosBullets && prosBullets._type === "block" && prosBullets.listItem === "bullet") {
           const { items: pros, next: afterPros } = readBullets(pt, i + 1);
           const consBlock = pt[afterPros] as NormalBlock | undefined;
