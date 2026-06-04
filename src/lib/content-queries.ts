@@ -48,20 +48,56 @@ function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
   } catch { return null; }
 }
 
+// h3 titles that should turn the following paragraph into a callout box
+const CALLOUT_TITLES = /^(insider tip|tip|pro tip|note|heads? up|warning|watch out|important|good to know)\b/i;
+
+interface NormalBlock { _type: "block"; style?: string; listItem?: string; children?: { text?: string }[] }
+
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   if (!pt) return [];
   const out: PostBlock[] = [];
-  for (const b of pt) {
+  let i = 0;
+  // collect adjacent bullet items into a single list
+  const flushList = (items: string[]) => { if (items.length) out.push({ type: "list", items }); };
+  while (i < pt.length) {
+    const b = pt[i];
     if (b._type === "block") {
-      const text = (b.children || []).map((c) => c.text || "").join("");
-      if (!text.trim()) continue;
-      if (b.style === "h2") out.push({ type: "h2", text });
-      else if (b.style === "h3") out.push({ type: "h3", text });
-      else if (b.style === "blockquote") out.push({ type: "quote", text });
+      const nb = b as NormalBlock;
+      const text = (nb.children || []).map((c) => c.text || "").join("");
+      if (!text.trim()) { i++; continue; }
+      // bullet list run
+      if (nb.listItem === "bullet") {
+        const items: string[] = [];
+        while (i < pt.length && (pt[i] as NormalBlock).listItem === "bullet") {
+          items.push(((pt[i] as NormalBlock).children || []).map((c) => c.text || "").join(""));
+          i++;
+        }
+        flushList(items);
+        continue;
+      }
+      // callout: h3 with known title + next normal paragraph
+      if (nb.style === "h3" && CALLOUT_TITLES.test(text.trim())) {
+        const next = pt[i + 1] as NormalBlock | undefined;
+        if (next && next._type === "block" && (!next.style || next.style === "normal") && !next.listItem) {
+          const body = (next.children || []).map((c) => c.text || "").join("");
+          if (body.trim()) {
+            out.push({ type: "callout", title: text.trim(), text: body });
+            i += 2;
+            continue;
+          }
+        }
+      }
+      if (nb.style === "h2") out.push({ type: "h2", text });
+      else if (nb.style === "h3") out.push({ type: "h3", text });
+      else if (nb.style === "blockquote") out.push({ type: "quote", text });
       else out.push({ type: "p", text });
+      i++;
     } else if (b._type === "image") {
       const src = imgUrl(b as unknown as SanityImage, 1600, 1067);
       if (src) out.push({ type: "image", src, caption: b.caption });
+      i++;
+    } else {
+      i++;
     }
   }
   return out;
