@@ -5,7 +5,25 @@ import { destinations as localDestinations } from "@/content/destinations";
 
 // --- Sanity result types (loose) ---
 interface SanityImage { _type?: string; asset?: { _ref?: string } }
-interface SanityPortableBlock { _type: string; _key?: string; style?: string; children?: { text?: string }[]; caption?: string; asset?: SanityImage["asset"] }
+interface SanityPortableBlock {
+  _type: string;
+  _key?: string;
+  style?: string;
+  listItem?: string;
+  children?: { text?: string }[];
+  caption?: string;
+  asset?: SanityImage["asset"];
+  // custom block fields
+  tone?: "tip" | "warn" | "note";
+  title?: string;
+  text?: string;
+  pros?: string[];
+  cons?: string[];
+  day?: number;
+  items?: (string | { q?: string; a?: string })[];
+  rows?: { label?: string; amount?: string }[];
+  total?: string;
+}
 interface SanityPost {
   _id: string;
   title: string;
