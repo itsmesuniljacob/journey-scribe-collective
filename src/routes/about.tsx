@@ -30,8 +30,9 @@ function AboutPage() {
               at once, and rarely for less than a month at a time.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-              This blog is the version of the guidebook I always wished existed: long on context, honest about
-              tradeoffs, and patient with the parts of travel that don't fit on a list.
+              Whether it's wandering through the charming streets of a European city, discovering hidden cafés in
+              Southeast Asia, chasing waterfalls in the Western Ghats, or riding my motorcycle across winding mountain
+              roads, I'm always looking for experiences that go beyond the typical tourist trail.
             </p>
           </div>
         </div>
