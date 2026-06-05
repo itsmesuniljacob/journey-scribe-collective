@@ -34,6 +34,13 @@ function AboutPage() {
               Southeast Asia, chasing waterfalls in the Western Ghats, or riding my motorcycle across winding mountain
               roads, I'm always looking for experiences that go beyond the typical tourist trail.
             </p>
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              Through this blog, I share detailed travel guides, itineraries, road trip stories, motorcycle adventures,
+              practical travel tips, and honest experiences from the places I visit. My goal is simple: to help fellow
+              travelers explore more confidently, travel more meaningfully, and create unforgettable memories along the
+              way. When I'm not planning my next journey, you'll probably find me researching destinations, mapping out
+              scenic riding routes, or capturing moments that inspire the next story you'll read here.
+            </p>
           </div>
         </div>
       </section>
