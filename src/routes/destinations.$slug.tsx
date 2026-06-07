@@ -69,9 +69,33 @@ function DestinationPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <h2 className="font-serif italic text-3xl md:text-4xl">Guides from {d.name}{related.length === 0 && d.region}</h2>
+        <h2 className="font-serif italic text-3xl md:text-4xl">Guides from {d.name}</h2>
         {related.length === 0 ? (
-          <p className="mt-6 text-muted-foreground">No guides yet — coming soon.</p>
+          <div className="mt-6 max-w-2xl space-y-4 text-muted-foreground">
+            <p>
+              I haven't published a full guide for {d.name} yet — but it's on the list. In the meantime, here's the short version:
+            </p>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <span className="text-foreground font-medium">Best time to visit:</span> {d.bestTime || "year-round, depending on what you're after"}.
+              </li>
+              <li>
+                <span className="text-foreground font-medium">Region:</span> {d.region}{d.country && ` · ${d.country}`}.
+              </li>
+              {d.currency && (
+                <li>
+                  <span className="text-foreground font-medium">Currency:</span> {d.currency}.
+                </li>
+              )}
+              <li>
+                <span className="text-foreground font-medium">Why it's worth it:</span> {d.tagline}.
+              </li>
+            </ul>
+            <p className="text-sm">
+              Long-form itineraries, costs, and on-the-ground notes are coming soon. Want me to prioritise {d.name}?{" "}
+              <Link to="/about" className="underline hover:text-rust">Get in touch</Link>.
+            </p>
+          </div>
         ) : (
           <div className="mt-10 grid gap-10 md:grid-cols-3">
             {related.map((p) => (
