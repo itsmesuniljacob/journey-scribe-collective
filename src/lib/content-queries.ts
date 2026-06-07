@@ -259,6 +259,7 @@ function mapDestination(s: SanityDestination): Destination {
     bestTime: s.bestTime || "",
     currency: "",
     visited: true,
+    guidesNote: s.guidesNote || undefined,
   };
 }
 
