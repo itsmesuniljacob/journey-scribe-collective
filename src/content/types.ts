@@ -44,4 +44,5 @@ export interface Destination {
   bestTime: string;
   currency: string;
   visited: boolean;
+  guidesNote?: string;
 }
