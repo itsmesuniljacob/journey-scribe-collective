@@ -45,6 +45,7 @@ interface SanityDestination {
   summary?: string;
   bestTime?: string;
   heroImage?: SanityImage;
+  guidesNote?: string;
 }
 
 const POST_PROJECTION = `{
@@ -54,7 +55,7 @@ const POST_PROJECTION = `{
 }`;
 
 const DEST_PROJECTION = `{
-  _id, name, slug, country, region, summary, bestTime, heroImage
+  _id, name, slug, country, region, summary, bestTime, heroImage, guidesNote
 }`;
 
 // --- Mappers ---
