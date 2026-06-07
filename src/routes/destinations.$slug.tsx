@@ -73,7 +73,7 @@ function DestinationPage() {
         {related.length === 0 ? (
           <div className="mt-6 max-w-2xl space-y-4 text-muted-foreground">
             {d.guidesNote ? (
-              d.guidesNote.split(/\n{2,}/).map((para, i) => (
+              d.guidesNote.split(/\n{2,}/).map((para: string, i: number) => (
                 <p key={i} className="whitespace-pre-line">{para}</p>
               ))
             ) : (
