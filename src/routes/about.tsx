@@ -26,8 +26,8 @@ function AboutPage() {
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">About</p>
             <h1 className="mt-4 font-serif italic text-5xl md:text-6xl leading-[0.95]">I'm Sunil.</h1>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Writer, slow-traveler, and the person behind every word on this site. I've {visited} countries — not all
-              at once, and rarely for less than a month at a time.
+              Writer, slow-traveler, and the person behind every word on this site. I've visited {visited} countries —
+              not all at once, and rarely for less than a month at a time.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
               Whether it's wandering through the charming streets of a European city, discovering hidden cafés in
