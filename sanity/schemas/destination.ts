@@ -28,7 +28,7 @@ export default defineType({
     defineField({ name: "bestTime", title: "Best Time", type: "string" }),
     defineField({ name: "currency", title: "Currency", type: "string" }),
     defineField({ name: "heroImage", title: "Hero Image", type: "image" }),
-    defineField({ name: "body", title: "Body", type: "array", of: [{ type: "block" },{ type: "image" }] }),
+    defineField({ name: "visited", title: "Visited", type: "boolean", initialValue: true, description: "If false, shows as 'On the list' with no guides yet." }),
 
   ],
 });
