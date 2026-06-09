@@ -31,4 +31,4 @@ dist-ssr
 *.sln
 *.s
 sanity/schemas/destination.ts
-sanity/*
+sanity
