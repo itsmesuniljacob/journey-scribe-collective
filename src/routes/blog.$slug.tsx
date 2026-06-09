@@ -81,10 +81,8 @@ function PostPage() {
               <BookmarkButton slug={post.slug} />
             </div>
           </div>
-          <div className="mx-auto max-w-6xl px-6">
-            <img src={post.image} alt={post.title} width={1600} height={1067}
-              className="aspect-[3/2] w-full object-cover border hairline" />
-          </div>
+          <img src={post.image} alt={post.title} width={1600} height={1067}
+            className="aspect-[3/2] w-full object-cover border-y hairline" />
         </header>
 
         {/* Body */}
