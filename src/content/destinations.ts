@@ -51,6 +51,27 @@ export const destinations: Destination[] = [
     currency: "INR",
     visited: true,
   },
+  {
+    slug: "almaty",
+    name: "Almaty",
+    country: "Kazakhstan",
+    region: "Central Asia",
+    tagline: "Mountains at the city edge",
+    description: "A Soviet-modern grid pressed against the Tian Shan range — apple orchards, cable-car sunsets, and the most unexpected Central Asian intro.",
+    image: almaty,
+    bestTime: "June – September / December – February for snow",
+    currency: "KZT",
+    visited: false,
+    guidesNote:
+      "I haven't made it to Almaty yet, but it's high on the list. Here's what I've gathered so far:\n\n" +
+      "• Start at Kok-Tobe for a panoramic sunset over the city and the mountains beyond.\n" +
+      "• Medeu + Shymbulak are the go-to day trips — skating in winter, hiking in summer.\n" +
+      "• The Green Bazaar is the best introduction to Central Asian produce and street snacks.\n" +
+      "• Try beshbarmak (boiled horse meat with noodles) and manti at a local canteen.\n" +
+      "• Day-trip to Big Almaty Lake — turquoise alpine water about an hour south.\n" +
+      "• Stay near Panfilov Park or Abay Avenue for walkable café and museum access.\n\n" +
+      "Visa: visa-free for many nationalities up to 30 days. Language: Russian and Kazakh; English is spotty outside hotels.",
+  },
 ];
 
 export const getDestinationBySlug = (slug: string) => destinations.find((d) => d.slug === slug);
