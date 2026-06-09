@@ -20,8 +20,7 @@ export default defineType({
       rows: 4,
     }),
 
-    // defineField({ name: "name", title: "Name", type: "text" }),
-    // defineField({ name: "slug", title: "Slug", type: "slug" }),
+    defineField({ name: "visited", title: "Visited", type: "boolean", initialValue: true, description: "If false, shows as 'On the list' with no guides yet." }),
     defineField({ name: "country", title: "Country", type: "string" }),
     defineField({ name: "region", title: "Region", type: "string" }),
     defineField({ name: "summary", title: "Summary", type: "text" }),
