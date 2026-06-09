@@ -57,7 +57,7 @@ const POST_PROJECTION = `{
 }`;
 
 const DEST_PROJECTION = `{
-  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote
+  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote, visited
 }`;
 
 // --- Mappers ---
