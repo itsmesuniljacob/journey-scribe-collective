@@ -7,6 +7,7 @@ import switzerland from "@/assets/post-switzerland.jpg";
 import singapore from "@/assets/post-singapore.jpg";
 import paris from "@/assets/post-paris.jpg";
 import bangalore from "@/assets/post-bangalore.jpg";
+import almaty from "@/assets/dest-almaty.jpg";
 
 export const destinations: Destination[] = [
   // { slug: "bali", name: "Bali", country: "Indonesia", region: "Southeast Asia", tagline: "Rice terraces & ritual mornings", description: "Slow Ubud mornings, salt-air evenings in Canggu, and ceremonies you stumble into without planning.", image: bali, bestTime: "April – October", currency: "IDR", visited: true },
