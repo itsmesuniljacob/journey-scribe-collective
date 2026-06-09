@@ -47,6 +47,7 @@ interface SanityDestination {
   currency?: string;
   heroImage?: SanityImage;
   guidesNote?: string;
+  visited?: boolean;
 }
 
 const POST_PROJECTION = `{
@@ -56,7 +57,7 @@ const POST_PROJECTION = `{
 }`;
 
 const DEST_PROJECTION = `{
-  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote
+  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote, visited
 }`;
 
 // --- Mappers ---
@@ -259,7 +260,7 @@ function mapDestination(s: SanityDestination): Destination {
     image: hero || localDestinations[0].image,
     bestTime: s.bestTime || "",
     currency: s.currency || "",
-    visited: true,
+    visited: s.visited ?? true,
     guidesNote: s.guidesNote || undefined,
   };
 }
