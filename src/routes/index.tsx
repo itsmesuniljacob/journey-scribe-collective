@@ -99,10 +99,10 @@ function LatestStories() {
           </Link>
 
           {/* Secondary */}
-          <div className="grid gap-10 lg:col-span-5">
+          <div className="grid content-start gap-10 lg:col-span-5">
             {others.map((p) => (
               <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group grid grid-cols-5 gap-5">
-                <div className="col-span-2 overflow-hidden border hairline">
+                <div className="col-span-2 self-start overflow-hidden border hairline">
                   <img
                     src={p.image}
                     alt={p.title}
