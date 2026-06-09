@@ -47,6 +47,7 @@ interface SanityDestination {
   currency?: string;
   heroImage?: SanityImage;
   guidesNote?: string;
+  visited?: boolean;
 }
 
 const POST_PROJECTION = `{
