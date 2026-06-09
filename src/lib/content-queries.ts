@@ -260,7 +260,7 @@ function mapDestination(s: SanityDestination): Destination {
     image: hero || localDestinations[0].image,
     bestTime: s.bestTime || "",
     currency: s.currency || "",
-    visited: true,
+    visited: s.visited ?? true,
     guidesNote: s.guidesNote || undefined,
   };
 }
