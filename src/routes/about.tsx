@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { PageShell } from "@/components/layout/PageShell";
 import authorPortrait from "@/assets/author-portrait.jpg";
-import { destinations } from "@/content/destinations";
+import { fetchDestinations, contentKeys } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -14,6 +15,10 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const { data: destinations = [] } = useQuery({
+    queryKey: contentKeys.destinations,
+    queryFn: fetchDestinations,
+  });
   const visited = destinations.filter((d) => d.visited).length;
   return (
     <PageShell>
