@@ -66,7 +66,10 @@ function LatestStories() {
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">Latest stories</p>
             <h2 className="mt-3 font-serif italic text-4xl md:text-5xl">From the road</h2>
           </div>
-          <Link to="/blog" className="hidden md:inline-block border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust">
+          <Link
+            to="/blog"
+            className="hidden md:inline-block border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust"
+          >
             All guides →
           </Link>
         </div>
@@ -85,13 +88,13 @@ function LatestStories() {
               />
             </div>
             <div className="mt-6">
-              <p className="text-[11px] tracked-sm uppercase text-rust">{feature.category} · {feature.destination}</p>
+              <p className="text-[11px] tracked-sm uppercase text-rust">
+                {feature.category} · {feature.destination}
+              </p>
               <h3 className="mt-3 font-serif text-3xl md:text-4xl leading-tight group-hover:text-rust transition-colors">
                 {feature.title}
               </h3>
-              <p className="mt-4 max-w-xl text-base text-muted-foreground leading-relaxed">
-                {feature.excerpt}
-              </p>
+              <p className="mt-4 max-w-xl text-base text-muted-foreground leading-relaxed">{feature.excerpt}</p>
               <p className="mt-4 text-[11px] tracked-sm uppercase text-muted-foreground">
                 {feature.readMinutes} min read
               </p>
@@ -114,7 +117,9 @@ function LatestStories() {
                 </div>
                 <div className="col-span-3">
                   <p className="text-[10px] tracked-sm uppercase text-rust">{p.category}</p>
-                  <h4 className="mt-2 font-serif text-lg leading-snug group-hover:text-rust transition-colors">{p.title}</h4>
+                  <h4 className="mt-2 font-serif text-lg leading-snug group-hover:text-rust transition-colors">
+                    {p.title}
+                  </h4>
                   <p className="mt-2 text-[11px] tracked-sm uppercase text-muted-foreground">{p.readMinutes} min</p>
                 </div>
               </Link>
@@ -123,7 +128,9 @@ function LatestStories() {
         </div>
 
         <div className="mt-12 md:hidden">
-          <Link to="/blog" className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase">All guides →</Link>
+          <Link to="/blog" className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase">
+            All guides →
+          </Link>
         </div>
       </div>
     </section>
@@ -144,14 +151,22 @@ function DestinationsStrip() {
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">Destinations</p>
             <h2 className="mt-3 font-serif italic text-4xl md:text-5xl">Places I keep returning to</h2>
           </div>
-          <Link to="/destinations" className="hidden md:inline-block border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust">
+          <Link
+            to="/destinations"
+            className="hidden md:inline-block border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust"
+          >
             See all →
           </Link>
         </div>
         <div className="-mx-6 overflow-x-auto px-6 lg:-mx-10 lg:px-10">
           <div className="flex min-w-max gap-6">
             {destinations.slice(0, 6).map((d) => (
-              <Link key={d.slug} to="/destinations/$slug" params={{ slug: d.slug }} className="group block w-[260px] shrink-0">
+              <Link
+                key={d.slug}
+                to="/destinations/$slug"
+                params={{ slug: d.slug }}
+                className="group block w-[260px] shrink-0"
+              >
                 <div className="overflow-hidden border hairline">
                   <img
                     src={d.image}
@@ -186,10 +201,14 @@ function AboutBlock() {
             Hi, I'm Sunil — I write the long version of the trip.
           </h2>
           <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-            I've spent the last eight years working remotely while travelling slowly through 10 countries — mostly with family. This blog is the version of the guidebook I always wished existed: less ten-things-to-do, more here's-exactly-how-it-felt.
+            I've love travelling slowly through different countries — mostly with family. This blog is the version of
+            the guidebook I always wished existed: less ten-things-to-do, more here's-exactly-how-it-felt.
           </p>
           <div className="mt-8 flex items-center gap-6">
-            <Link to="/about" className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust">
+            <Link
+              to="/about"
+              className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust"
+            >
               Read my story →
             </Link>
             <span className="text-[11px] tracked-sm uppercase text-muted-foreground">10 countries · 4 years</span>
