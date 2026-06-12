@@ -210,7 +210,7 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       else out.push({ type: "p", text });
       i++;
     } else if (b._type === "image") {
-      const src = imgUrl(b as unknown as SanityImage, 1600, 1067);
+      const src = imgUrlMax(b as unknown as SanityImage, 1600);
       if (src) out.push({ type: "image", src, caption: b.caption });
       i++;
     } else if (b._type === "callout") {
