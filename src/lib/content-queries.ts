@@ -62,10 +62,21 @@ const DEST_PROJECTION = `{
 
 // --- Mappers ---
 type SanityImageSource = Parameters<typeof urlFor>[0];
+// Hotspot-aware crop. fit("crop") respects the hotspot set in Sanity Studio
+// so the focal subject (e.g. Notre-Dame's facade) survives the crop.
 function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
   if (!src?.asset?._ref) return null;
   try {
-    return urlFor(src as SanityImageSource).width(w).height(h).fit("crop").auto("format").url();
+    return urlFor(src as SanityImageSource)
+      .width(w).height(h).fit("crop").auto("format").quality(85).url();
+  } catch { return null; }
+}
+// Uncropped variant — preserves natural ratio. Use for in-body images.
+function imgUrlMax(src?: SanityImage, w = 1600): string | null {
+  if (!src?.asset?._ref) return null;
+  try {
+    return urlFor(src as SanityImageSource)
+      .width(w).fit("max").auto("format").quality(85).url();
   } catch { return null; }
 }
 
@@ -199,7 +210,7 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       else out.push({ type: "p", text });
       i++;
     } else if (b._type === "image") {
-      const src = imgUrl(b as unknown as SanityImage, 1600, 1067);
+      const src = imgUrlMax(b as unknown as SanityImage, 1600);
       if (src) out.push({ type: "image", src, caption: b.caption });
       i++;
     } else if (b._type === "callout") {
