@@ -23,7 +23,7 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
     );
 
     const { data: result, error } = await supabase.rpc("subscribe_newsletter", {
-      _email: data.email,
+      p_email: data.email,
     });
 
     if (error) {

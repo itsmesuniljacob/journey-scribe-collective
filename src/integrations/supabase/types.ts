@@ -37,7 +37,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      subscribe_newsletter: { Args: { _email: string }; Returns: Json }
+      subscribe_newsletter: { Args: { p_email: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
