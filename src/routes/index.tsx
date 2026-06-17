@@ -7,6 +7,9 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchPosts, fetchDestinations } from "@/lib/content-queries";
+import { subscribeNewsletter } from "@/lib/newsletter.functions";
+import { useServerFn } from "@tanstack/react-start";
+
 
 export const Route = createFileRoute("/")({
   component: Home,
