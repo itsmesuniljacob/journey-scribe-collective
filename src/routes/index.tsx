@@ -224,6 +224,9 @@ function AboutBlock() {
 
 function Newsletter() {
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const subscribe = useServerFn(subscribeNewsletter);
+
   return (
     <section className="border-t hairline bg-rust text-cream">
       <div className="mx-auto max-w-3xl px-6 py-20 text-center lg:px-10">
@@ -233,11 +236,19 @@ function Newsletter() {
           A short note from wherever I am, plus the one guide worth reading this month. No spam, no affiliate noise.
         </p>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            if (!email) return;
-            toast.success("You're in. Watch for the next letter.");
-            setEmail("");
+            if (!email || submitting) return;
+            setSubmitting(true);
+            try {
+              const result = await subscribe({ data: { email } });
+              toast.success(result.message || "You're in. Watch for the next letter.");
+              setEmail("");
+            } catch (err: any) {
+              toast.error(err?.message || "Something went wrong. Please try again.");
+            } finally {
+              setSubmitting(false);
+            }
           }}
           className="mx-auto mt-8 flex max-w-lg items-center border-b border-cream/60 focus-within:border-cream"
         >
@@ -247,10 +258,15 @@ function Newsletter() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="flex-1 bg-transparent py-3 text-sm placeholder:text-cream/60 focus:outline-none"
+            disabled={submitting}
+            className="flex-1 bg-transparent py-3 text-sm placeholder:text-cream/60 focus:outline-none disabled:opacity-60"
           />
-          <button type="submit" className="ml-4 text-[11px] tracked-sm uppercase hover:opacity-80">
-            Subscribe →
+          <button
+            type="submit"
+            disabled={submitting}
+            className="ml-4 text-[11px] tracked-sm uppercase hover:opacity-80 disabled:opacity-50"
+          >
+            {submitting ? "Subscribing…" : "Subscribe →"}
           </button>
         </form>
       </div>
