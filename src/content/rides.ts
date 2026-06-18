@@ -22,7 +22,6 @@ export const rides: Ride[] = [
     bestMonths: "Late June – Early September",
     publishedAt: "2025-09-12",
     image: lehManali,
-    tags: undefined as never,
     body: [
       { type: "p", text: "I'd been thinking about this ride for three years before I actually did it. Every motorcycling friend in India has an opinion on Leh-Manali — and almost none of them line up. Here's what mine looks like now that I've done it." },
       { type: "h2", text: "The route, day by day" },
@@ -57,7 +56,6 @@ export const rides: Ride[] = [
     bestMonths: "June – September (for mist) / November – February (for grip)",
     publishedAt: "2025-10-21",
     image: coorg,
-    tags: undefined as never,
     body: [
       { type: "p", text: "If someone has a weekend and a bike, this is the ride I send them on. It's the right amount of distance, the right kind of corners, and the kind of coffee at the end that justifies the soreness." },
       { type: "h2", text: "Saturday: Bangalore → Madikeri (260 km)" },
@@ -94,7 +92,6 @@ export const rides: Ride[] = [
     bestMonths: "Year-round",
     publishedAt: "2025-11-04",
     image: gearImg,
-    tags: undefined as never,
     body: [
       { type: "p", text: "Every rider I know over-packs the first long trip and under-packs the second. Here's where I've landed after a few thousand kilometres of trial and (mostly) error." },
       { type: "h2", text: "On the body" },

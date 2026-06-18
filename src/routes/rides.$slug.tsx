@@ -68,7 +68,7 @@ function RidePage() {
       <article className="mx-auto max-w-2xl px-6 py-20 lg:py-28">
         <p className="font-serif italic text-2xl leading-snug text-muted-foreground">{r.excerpt}</p>
         <div className="mt-10 space-y-6">
-          {r.body.map((block, i) => (
+          {r.body.map((block: PostBlock, i: number) => (
             <Block key={i} block={block} />
           ))}
         </div>
@@ -77,7 +77,7 @@ function RidePage() {
           <div className="mt-12 border hairline p-6">
             <p className="text-[11px] tracked-sm uppercase text-rust">Gear list</p>
             <ul className="mt-4 space-y-2 text-sm">
-              {r.gear.map((g, i) => <li key={i}>· {g}</li>)}
+              {r.gear.map((g: string, i: number) => <li key={i}>· {g}</li>)}
             </ul>
           </div>
         )}
@@ -86,7 +86,7 @@ function RidePage() {
           <div className="mt-8 border-l-2 border-rust pl-5">
             <p className="text-[11px] tracked-sm uppercase text-rust">What I'd do differently</p>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-              {r.lessons.map((l, i) => <li key={i}>{l}</li>)}
+              {r.lessons.map((l: string, i: number) => <li key={i}>{l}</li>)}
             </ul>
           </div>
         )}
