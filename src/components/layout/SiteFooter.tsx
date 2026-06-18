@@ -25,6 +25,7 @@ export function SiteFooter() {
               <li><Link to="/destinations" className="hover:text-rust">Destinations</Link></li>
               <li><Link to="/about" className="hover:text-rust">About</Link></li>
               <li><Link to="/search" className="hover:text-rust">Search</Link></li>
+              <li><Link to="/trust" className="hover:text-rust">Trust & privacy</Link></li>
             </ul>
           </div>
 
