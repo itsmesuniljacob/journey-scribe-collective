@@ -25,6 +25,7 @@ export const rides: Ride[] = [
     body: [
       { type: "p", text: "I'd been thinking about this ride for three years before I actually did it. Every motorcycling friend in India has an opinion on Leh-Ladakh — and almost none of them line up. Here's what mine looks like now that I've done it." },
       { type: "h2", text: "The route, day by day" },
+      { type: "itinerary", day: 0, title: "Arrival in Leh", items: ["Bangalore to Delhi", "Delhi to Leh", "Tired, but excited"] },
       { type: "itinerary", day: 1, title: "Acclimatisation", items: ["Easy warm-up: ~60 km", "Arrival in Leh, In and around Leh", "Sleep low to acclimatise"] },
       { type: "itinerary", day: 2, title: "Leh → Nubra Valley", items: ["Ride along the Leh-Ladakh Highway", "Route via Khardung La", "Different Terrains"] },
 //      { type: "callout", tone: "warn", title: "Don't skip the rest day", text: "I tried to do Sarchu → Leh in one shot. Bad call. Add a day at Pang or Tso Kar — your body will thank you and you'll actually see the Morey Plains instead of fighting through them." },
