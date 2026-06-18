@@ -25,6 +25,7 @@ export const rides: Ride[] = [
     body: [
       { type: "p", text: "I'd been thinking about this ride for three years before I actually did it. Every motorcycling friend in India has an opinion on Leh-Ladakh — and almost none of them line up. Here's what mine looks like now that I've done it." },
       { type: "h2", text: "The route, day by day" },
+      { type: "itinerary", day: 0, title: "Arrival in Leh", items: ["Arrive in Leh by afternoon, rest and acclimatise", "Explore the town, eat thukpa and momos, sleep early"] },
       { type: "itinerary", day: 1, title: "Acclimatisation", items: ["Easy warm-up: ~60 km", "Arrival in Leh, In and around Leh", "Sleep low to acclimatise"] },
       { type: "itinerary", day: 2, title: "Leh → Nubra Valley", items: ["Ride along the Leh-Ladakh Highway", "Route via Khardung La", "Different Terrains"] },
 //      { type: "callout", tone: "warn", title: "Don't skip the rest day", text: "I tried to do Sarchu → Leh in one shot. Bad call. Add a day at Pang or Tso Kar — your body will thank you and you'll actually see the Morey Plains instead of fighting through them." },
@@ -32,7 +33,8 @@ export const rides: Ride[] = [
       { type: "itinerary", day: 5, title: "Pangong → Hanle", items: ["Chang La (5,360 m) — the most scenic pass", "The descent into Sarchu is a gravel riverbed. Take it easy.", "Sarchu has tents and a few homestays. Book ahead."] },
       { type: "itinerary", day: 6, title: "Hanle → Umingla → Hanle", items: ["Gata Loops — 21 hairpins that climb 470 m in just 9 km", "Climb Umingla and soak in the summit views before descending back to Hanle", "Arrive in Leh by evening, celebrate with thukpa and momos"] },
       { type: "itinerary", day: 7, title: "Hanle → Leh", items: ["Tso Kar is a salt lake at 4,580 m. Stunning in the morning light.", "The road is gravel and can be rough. Take it slow.", "Return to Leh by evening, rest and enjoy the town."] },
-      { type: "itinerary", day: 8, title: "Return to Bangalore", items: ["A long day, but the views of Pangong Lake are worth it.", "The road is tarmac but can be busy. Start early.", "Return to Leh by evening, rest and enjoy the town."] },
+      { type: "itinerary", day: 8, title: "At Leh", items: ["Rest and recuperate in Leh", "Explore the town and its attractions", "Prepare for the journey back"] },
+      { type: "itinerary", day: 9, title: "Return to Bangalore", items: ["Leh to Delhi", "Explore Delhi and return to Bangalore", "Carry lot of memories"] },
       { type: "h2", text: "What surprised me" },
       { type: "p", text: "The hardest part wasn't the passes. It was Gata Loops — 21 hairpins that climb 470 m and somehow feel like 4,700. The easiest part was Tanglang La, the highest pass, because by then I'd stopped fighting the altitude and started breathing with it." },
     ],
