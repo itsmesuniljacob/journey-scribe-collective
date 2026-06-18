@@ -3,6 +3,7 @@ import heroImg from "@/assets/hero-landscape.jpg";
 import { PageShell } from "@/components/layout/PageShell";
 import { posts as localPosts } from "@/content/posts";
 import { destinations as localDestinations } from "@/content/destinations";
+import { rides } from "@/content/rides";
 import { toast } from "sonner";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -21,9 +22,56 @@ function Home() {
       <Hero />
       <LatestStories />
       <DestinationsStrip />
+      <RidesStrip />
       <AboutBlock />
       <Newsletter />
     </PageShell>
+  );
+}
+
+function RidesStrip() {
+  const top = rides.slice(0, 3);
+  return (
+    <section className="border-t hairline bg-background">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mb-10 flex items-end justify-between">
+          <div>
+            <p className="text-[11px] tracked-sm uppercase text-muted-foreground">On two wheels</p>
+            <h2 className="mt-3 font-serif italic text-4xl md:text-5xl">Rides worth the soreness</h2>
+          </div>
+          <Link
+            to="/rides"
+            className="hidden md:inline-block border-b border-foreground pb-1 text-[11px] tracked-sm uppercase hover:text-rust hover:border-rust"
+          >
+            All rides →
+          </Link>
+        </div>
+        <div className="grid gap-10 md:grid-cols-3">
+          {top.map((r) => (
+            <Link key={r.slug} to="/rides/$slug" params={{ slug: r.slug }} className="group block">
+              <div className="overflow-hidden border hairline">
+                <img
+                  src={r.image}
+                  alt={r.title}
+                  loading="lazy"
+                  width={800}
+                  height={534}
+                  className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+              <p className="mt-4 text-[10px] tracked-sm uppercase text-rust">{r.category} · {r.region}</p>
+              <h3 className="mt-2 font-serif italic text-2xl group-hover:text-rust transition-colors">{r.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{r.tagline}</p>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-10 md:hidden">
+          <Link to="/rides" className="border-b border-foreground pb-1 text-[11px] tracked-sm uppercase">
+            All rides →
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 

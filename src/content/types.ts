@@ -46,3 +46,27 @@ export interface Destination {
   visited: boolean;
   guidesNote?: string;
 }
+
+export type RideCategory = "Story" | "Route" | "Gear";
+
+export interface Ride {
+  slug: string;
+  title: string;
+  tagline: string;
+  excerpt: string;
+  category: RideCategory;
+  region: string;
+  startPoint: string;
+  endPoint: string;
+  distanceKm: number;
+  days: number;
+  elevationM?: number;
+  difficulty: "Easy" | "Moderate" | "Hard" | "Expert";
+  terrain: string;
+  bestMonths: string;
+  publishedAt: string;
+  image: string;
+  body: PostBlock[];
+  gear?: string[];
+  lessons?: string[];
+}

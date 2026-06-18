@@ -12,10 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RidesIndexRouteImport } from './routes/rides.index'
 import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as ToolsTripCalculatorRouteImport } from './routes/tools.trip-calculator'
 import { Route as ToolsItineraryBuilderRouteImport } from './routes/tools.itinerary-builder'
+import { Route as RidesSlugRouteImport } from './routes/rides.$slug'
 import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
@@ -32,6 +34,11 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RidesIndexRoute = RidesIndexRouteImport.update({
+  id: '/rides/',
+  path: '/rides/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
@@ -54,6 +61,11 @@ const ToolsItineraryBuilderRoute = ToolsItineraryBuilderRouteImport.update({
   path: '/tools/itinerary-builder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RidesSlugRoute = RidesSlugRouteImport.update({
+  id: '/rides/$slug',
+  path: '/rides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
   id: '/destinations/$slug',
   path: '/destinations/$slug',
@@ -71,10 +83,12 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
+  '/rides/': typeof RidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -82,10 +96,12 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
   '/blog': typeof BlogIndexRoute
   '/destinations': typeof DestinationsIndexRoute
+  '/rides': typeof RidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +110,12 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
+  '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
+  '/rides/': typeof RidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +125,12 @@ export interface FileRouteTypes {
     | '/search'
     | '/blog/$slug'
     | '/destinations/$slug'
+    | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
     | '/blog/'
     | '/destinations/'
+    | '/rides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -118,10 +138,12 @@ export interface FileRouteTypes {
     | '/search'
     | '/blog/$slug'
     | '/destinations/$slug'
+    | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
     | '/blog'
     | '/destinations'
+    | '/rides'
   id:
     | '__root__'
     | '/'
@@ -129,10 +151,12 @@ export interface FileRouteTypes {
     | '/search'
     | '/blog/$slug'
     | '/destinations/$slug'
+    | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
     | '/blog/'
     | '/destinations/'
+    | '/rides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,10 +165,12 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   BlogSlugRoute: typeof BlogSlugRoute
   DestinationsSlugRoute: typeof DestinationsSlugRoute
+  RidesSlugRoute: typeof RidesSlugRoute
   ToolsItineraryBuilderRoute: typeof ToolsItineraryBuilderRoute
   ToolsTripCalculatorRoute: typeof ToolsTripCalculatorRoute
   BlogIndexRoute: typeof BlogIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
+  RidesIndexRoute: typeof RidesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -168,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rides/': {
+      id: '/rides/'
+      path: '/rides'
+      fullPath: '/rides/'
+      preLoaderRoute: typeof RidesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/destinations/': {
@@ -198,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsItineraryBuilderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rides/$slug': {
+      id: '/rides/$slug'
+      path: '/rides/$slug'
+      fullPath: '/rides/$slug'
+      preLoaderRoute: typeof RidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/destinations/$slug': {
       id: '/destinations/$slug'
       path: '/destinations/$slug'
@@ -221,10 +261,12 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   BlogSlugRoute: BlogSlugRoute,
   DestinationsSlugRoute: DestinationsSlugRoute,
+  RidesSlugRoute: RidesSlugRoute,
   ToolsItineraryBuilderRoute: ToolsItineraryBuilderRoute,
   ToolsTripCalculatorRoute: ToolsTripCalculatorRoute,
   BlogIndexRoute: BlogIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
+  RidesIndexRoute: RidesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
