@@ -3,23 +3,70 @@ import { PageShell } from "@/components/layout/PageShell";
 import { getRideBySlug, rides } from "@/content/rides";
 import type { PostBlock } from "@/content/types";
 
+const SITE_URL = "https://wanderinglens.in";
+
 export const Route = createFileRoute("/rides/$slug")({
   loader: ({ params }) => {
     const ride = getRideBySlug(params.slug);
     if (!ride) throw notFound();
     return { ride };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     const r = loaderData?.ride;
     if (!r) return {};
+    const url = `${SITE_URL}/rides/${params.slug}`;
+    const image = r.image.startsWith("http") ? r.image : `${SITE_URL}${r.image}`;
+    const articleType = r.category === "Gear" ? "Article" : "BlogPosting";
+
+    const articleLd = {
+      "@context": "https://schema.org",
+      "@type": articleType,
+      headline: r.title,
+      description: r.excerpt,
+      image: [image],
+      datePublished: r.publishedAt,
+      dateModified: r.publishedAt,
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      author: { "@type": "Person", name: "Wandering Lens" },
+      publisher: {
+        "@type": "Organization",
+        name: "Wandering Lens",
+        logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.ico` },
+      },
+      articleSection: r.category,
+      keywords: [r.category, r.region, r.terrain, "motorcycle", "ride"].filter(Boolean).join(", "),
+    };
+
+    const breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Rides", item: `${SITE_URL}/rides` },
+        { "@type": "ListItem", position: 3, name: r.title, item: url },
+      ],
+    };
+
     return {
       meta: [
         { title: `${r.title} — Rides` },
         { name: "description", content: r.excerpt },
         { property: "og:title", content: r.title },
         { property: "og:description", content: r.excerpt },
-        { property: "og:image", content: r.image },
-        { property: "twitter:image", content: r.image },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "article:published_time", content: r.publishedAt },
+        { property: "article:section", content: r.category },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: r.title },
+        { name: "twitter:description", content: r.excerpt },
+        { name: "twitter:image", content: image },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(articleLd) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
       ],
     };
   },

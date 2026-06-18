@@ -4,16 +4,48 @@ import { PageShell } from "@/components/layout/PageShell";
 import { rides } from "@/content/rides";
 import type { RideCategory } from "@/content/types";
 
+const SITE_URL = "https://wanderinglens.in";
+
 export const Route = createFileRoute("/rides/")({
   component: RidesIndex,
-  head: () => ({
-    meta: [
-      { title: "Rides — Motorcycle Trips & Routes" },
-      { name: "description", content: "Multi-day motorcycle trips, route guides, and the gear I actually use — from the Himalayas to the Western Ghats." },
-      { property: "og:title", content: "Rides — Motorcycle Trips & Routes" },
-      { property: "og:description", content: "Trip stories, route guides, and honest gear notes from years on two wheels." },
-    ],
-  }),
+  head: () => {
+    const url = `${SITE_URL}/rides`;
+    const itemListLd = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Rides",
+      itemListElement: rides.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/rides/${r.slug}`,
+        name: r.title,
+      })),
+    };
+    const breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+        { "@type": "ListItem", position: 2, name: "Rides", item: url },
+      ],
+    };
+    return {
+      meta: [
+        { title: "Rides — Motorcycle Trips & Routes" },
+        { name: "description", content: "Multi-day motorcycle trips, route guides, and the gear I actually use — from the Himalayas to the Western Ghats." },
+        { property: "og:title", content: "Rides — Motorcycle Trips & Routes" },
+        { property: "og:description", content: "Trip stories, route guides, and honest gear notes from years on two wheels." },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: url },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(itemListLd) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
+      ],
+    };
+  },
 });
 
 const FILTERS: ("All" | RideCategory)[] = ["All", "Story", "Route", "Gear"];
