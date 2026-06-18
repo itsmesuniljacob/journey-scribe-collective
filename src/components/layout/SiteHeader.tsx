@@ -103,6 +103,7 @@ export function SiteHeader({ overlay = false }: Props) {
 const NAV = [
   { to: "/about", label: "About" },
   { to: "/destinations", label: "Destinations" },
+  { to: "/rides", label: "Rides" },
   { to: "/blog", label: "Guides" },
   { to: "/tools/trip-calculator", label: "Tools" },
 ] as const;
