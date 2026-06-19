@@ -26,9 +26,24 @@ export const rides: Ride[] = [
       { type: "p", text: "I'd been thinking about this ride for three years before I actually did it. Every motorcycling friend in India has an opinion on Leh-Ladakh — and almost none of them line up. Here's what mine looks like now that I've done it." },
       { type: "h2", text: "The route, day by day" },
       { type: "itinerary", day: 0, title: "Arrival in Leh", items: ["Arrive in Leh by afternoon, rest and acclimatise", "Explore the town, eat thukpa and momos, sleep early"] },
-      { type: "itinerary", day: 1, title: "Acclimatisation", items: ["Easy warm-up: ~60 km", "Arrival in Leh, In and around Leh", "Sleep low to acclimatise"] },
+      { type: "p", 
+        text: `Reaching Leh from Bangalore is a journey that begins long before you arrive in Ladakh. 
+        We choose a connecting flight through a major city such as Delhi, while road trippers take on one of India’s most dramatic routes, crossing hundreds of kilometers of plains, valleys, and high mountain passes before finally entering the stark beauty of Leh. 
+        It is not just a transfer from one city to another; it is a gradual shift from Bengaluru’s familiar pace to the thin air, wide skies, and rugged landscapes of the Himalayas. 
+        The first two days are all about acclimatisation. Don't skip them. The rest of the ride is a mix of tarmac, gravel, and river crossings. Take it slow, take breaks, and enjoy the scenery.` 
+      },
+      { type: "image", src: "https://images.pexels.com/photos/38087449/pexels-photo-38087449.jpeg", caption: "View from the basecamp" },
+      { type: "itinerary", day: 1, title: "Acclimatisation", items: [
+        "Easy warm-up: ~60 km",
+        "Arrival in Leh, In and around Leh",
+        "Sleep low to acclimatise",
+      ] },
       { type: "itinerary", day: 2, title: "Leh → Nubra Valley", items: ["Ride along the Leh-Ladakh Highway", "Route via Khardung La", "Different Terrains"] },
 //      { type: "callout", tone: "warn", title: "Don't skip the rest day", text: "I tried to do Sarchu → Leh in one shot. Bad call. Add a day at Pang or Tso Kar — your body will thank you and you'll actually see the Morey Plains instead of fighting through them." },
+      { type: "p", 
+        text: `Before we headed to Nubra Valley, we had already ridden out from Leh towards the Indus–Zanskar Sangam, ticking off the classic Leh–Srinagar highway sights like Magnetic Hill and Sangam point. The next morning, our plan shifted north: we packed up the Himalayan 411 and rode over Khardung La towards Nubra, trading river confluences and wide highways for high passes and raw mountain roads.` 
+      },
+      { type: "image", src: "https://images.unsplash.com/photo-1631441676111-c82a9d111417", caption: "Confluence of Indus(right)and Zanskar(left)" },
       { type: "itinerary", day: 4, title: "Nubra Valley → Pangong", items: ["Khardung La (5,359 m) — highest motorable pass in the world", "Don't be a hero. Take it slow, take breaks, and don't forget to breathe.", "Pang is a tiny village with a few homestays. Book ahead."] },
       { type: "itinerary", day: 5, title: "Pangong → Hanle", items: ["Chang La (5,360 m) — the most scenic pass", "The descent into Sarchu is a gravel riverbed. Take it easy.", "Sarchu has tents and a few homestays. Book ahead."] },
       { type: "itinerary", day: 6, title: "Hanle → Umingla → Hanle", items: ["Gata Loops — 21 hairpins that climb 470 m in just 9 km", "Climb Umingla and soak in the summit views before descending back to Hanle", "Arrive in Leh by evening, celebrate with thukpa and momos"] },
