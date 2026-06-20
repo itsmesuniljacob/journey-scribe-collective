@@ -21,7 +21,7 @@ export const rides: Ride[] = [
     elevationM: 5328,
     difficulty: "Expert",
     terrain: "High-altitude tarmac, gravel, river crossings",
-    bestMonths: "Late June – Early September",
+    bestMonths: "May to October",
     publishedAt: "2025-09-12",
     image: lehManali,
     body: [
@@ -62,6 +62,16 @@ export const rides: Ride[] = [
       { type: "callout", tone: "tip", title: "The Magnetic Hill", text: "A curious phenomenon where vehicles appear to roll uphill. It's a fun stop, but don't expect to defy gravity." },
       { type: "itinerary", day: 3, title: "LEH → Nubra Valley", items: ["Khardung La (5,359 m) — highest motorable pass in the world", "Don't be a hero. Take it slow, take breaks, and don't forget to breathe.", "Experience the ride on the highest motorable road in the world.", "Visit the white sand dunes in Hunder"] },
       { type: "image", src: kla, caption: "Khardung La" },
+      { type: "p", text: `Day 3 was our move from Leh into Nubra Valley, with the Himalayan 411 loaded up and pointed towards Khardung La. 
+        The climb began almost immediately after leaving town, the tarmac snaking above the familiar Leh skyline and slowly trading buildings for bare rock 
+        and snow‑streaked ridges. Khardung La itself was cold, windy, and unforgettable – we stopped just long enough for a cup of tea, a few photos, 
+        and that quiet moment of realizing we’d ridden our way to one of the world’s highest passes. From there the road dropped sharply towards the Shyok river, 
+        the colours softening from harsh browns and whites to greener slopes, villages, and finally the wide open stretches near Hunder. 
+        
+        By the time we reached our stay close to the famous sand dunes, it felt less like we had changed hotels and more like we had crossed into a 
+        different Ladakh altogether.` },
+      { type: "callout", tone: "note", title: "Key route facts", text: "Leh → South Pullu → Khardung La → North Pullu → Khardung village → Khalsar → Diskit / Hunder (Nubra Valley)" },
+
       { type: "image", src: "https://images.pexels.com/photos/24713335/pexels-photo-24713335.jpeg", caption: "Diskit Gompa, overlooking Nubra Valley" },
       { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via Shayok river route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
       { type: "image", src: "https://images.pexels.com/photos/12094542/pexels-photo-12094542.jpeg", caption: "Pangong Lake" },
@@ -78,7 +88,7 @@ export const rides: Ride[] = [
     lessons: [
       "Acclimatise in Leh for 2 nights before starting.",
       "Carry a Diamox prescription. Use it on day 2, not day 4.",
-      "Cash > UPI. Signal dies after Keylong.",
+      "Carry water, sunglasses, sunscreen, a light jacket, and keep an eye on winds – weather can change quickly even though the distance is small.",
     ],
   },
   {
