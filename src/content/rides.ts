@@ -4,6 +4,8 @@ import coorg from "@/assets/ride-coorg.jpg";
 import gearImg from "@/assets/ride-gear.jpg";
 import umingla from "@/assets/umling-la.jpg";
 import kla from "@/assets/kla.jpg";
+import pangog from "@/assets/lake-pang.jpg";
+import hallOfFame from "@/assets/hall-of-fame.jpg";
 
 export const rides: Ride[] = [
   {
@@ -71,13 +73,28 @@ export const rides: Ride[] = [
         By the time we reached our stay close to the famous sand dunes, it felt less like we had changed hotels and more like we had crossed into a 
         different Ladakh altogether.` },
       { type: "callout", tone: "note", title: "Key route facts", text: "Leh → South Pullu → Khardung La → North Pullu → Khardung village → Khalsar → Diskit / Hunder (Nubra Valley)" },
-
       { type: "image", src: "https://images.pexels.com/photos/24713335/pexels-photo-24713335.jpeg", caption: "Diskit Gompa, overlooking Nubra Valley" },
       { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via Shayok river route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
+      { type: "image", src: pangog, caption: "Solo at Pangong Lake" },
+      { type: "p", text: `On Day 4, we rolled out of Hunder, leaving Nubra Valley behind and riding towards Pangong via the Shyok route instead of looping back to Leh.
+         We started from Hunder soon after breakfast, fuelled up both the Himalayan 411 and ourselves, and followed the road back to Khalsar before turning off 
+         towards Agham. From there the character of the ride changed completely: long, lonely stretches along the Shyok river, sections of smooth tarmac broken 
+         by rough gravel, and the occasional water crossing that reminded us we were still in real Himalayan country. Villages grew smaller and farther apart as
+          we rode on towards Durbuk and Tangtse, and then, without much warning, the landscape opened up to that first surreal glimpse of Pangong’s blue. 
+          It had been a demanding day in the saddle, but rolling into Pangong by evening, with the lake glowing under the high‑altitude light, 
+          felt like the perfect reward`},
       { type: "image", src: "https://images.pexels.com/photos/12094542/pexels-photo-12094542.jpeg", caption: "Pangong Lake" },
       { type: "image", src: "https://images.pexels.com/photos/33792550/pexels-photo-33792550.jpeg", caption: "3 idiots" },
       { type: "itinerary", day: 5, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
       { type: "image", src: umingla, caption: "Umling La" },
+      { type: "p", text: `Our next stretch out of Hanle was the most extreme day of the entire trip – a loop to Umling La and back. We left before sunrise, 
+        the Himalayan 411’s headlight cutting through the cold, empty roads of Changthang as the sky slowly turned from black to blue.
+         The tarmac soon gave way to rougher tracks, patches of sand, and long, rolling plains where it felt like we were riding on the roof of the world
+          with almost no one else around. The final climb to Umling La was slow and deliberate, every throttle input careful in the thin air, until the road 
+          finally spat us out at a signboard announcing the world’s highest motorable pass. We didn’t linger too long at the top – just enough for a few photos, 
+          a quiet congratulations to each other, and a moment to let the altitude sink in – before turning back towards Hanle, chasing the same lonely roads 
+          home as the light faded.` },
+      { type: "callout", tone: "note", title: "Altitude Discipline", text: "We kept our stops short, drank water even when we didn’t feel thirsty, and avoided running or sudden movements at the top." },
       { type: "itinerary", day: 7, title: "Hanle → Leh", items: ["Tso Kar is a salt lake at 4,580 m. Stunning in the morning light.", "The road is gravel and can be rough. Take it slow.", "Return to Leh by evening, rest and enjoy the town."] },
       { type: "itinerary", day: 8, title: "At Leh", items: ["Rest and recuperate in Leh", "Explore the town and its attractions", "Prepare for the journey back"] },
       { type: "itinerary", day: 9, title: "Return to Bangalore", items: ["Leh to Delhi", "Explore Delhi and return to Bangalore", "Carry lot of memories"] },
