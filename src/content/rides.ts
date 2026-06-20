@@ -63,7 +63,7 @@ export const rides: Ride[] = [
       { type: "itinerary", day: 3, title: "LEH → Nubra Valley", items: ["Khardung La (5,359 m) — highest motorable pass in the world", "Don't be a hero. Take it slow, take breaks, and don't forget to breathe.", "Experience the ride on the highest motorable road in the world.", "Visit the white sand dunes in Hunder"] },
       { type: "image", src: kla, caption: "Khardung La" },
       { type: "image", src: "https://images.pexels.com/photos/24713335/pexels-photo-24713335.jpeg", caption: "Diskit Gompa, overlooking Nubra Valley" },
-      { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via shayok River route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
+      { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via Shayok river route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
       { type: "image", src: "https://images.pexels.com/photos/12094542/pexels-photo-12094542.jpeg", caption: "Pangong Lake" },
       { type: "image", src: "https://images.pexels.com/photos/33792550/pexels-photo-33792550.jpeg", caption: "3 idiots" },
       { type: "itinerary", day: 5 & 6, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
