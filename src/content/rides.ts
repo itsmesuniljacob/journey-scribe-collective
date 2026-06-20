@@ -2,12 +2,14 @@ import type { Ride } from "./types";
 import lehManali from "@/assets/ride-leh-manali.jpg";
 import coorg from "@/assets/ride-coorg.jpg";
 import gearImg from "@/assets/ride-gear.jpg";
+import umingla from "@/assets/umling-la.jpg";
+import kla from "@/assets/kla.jpg";
 
 export const rides: Ride[] = [
   {
     slug: "leh-ladakh-highway-the-long-version",
     title: "Leh-Ladakh Highway — The Long Version",
-    tagline: "Eleven days, five passes, one slow-burn obsession",
+    tagline: "Ten days, five passes, one slow-burn obsession",
     excerpt:
       "The honest account of riding the Leh-Ladakh Highway end to end — the altitude headaches, the rest days I didn't plan for, and the stretches that genuinely changed how I think about riding.",
     category: "Story",
@@ -15,7 +17,7 @@ export const rides: Ride[] = [
     startPoint: "Leh",
     endPoint: "Leh",
     distanceKm: 1100,
-    days: 11,
+    days: 10,
     elevationM: 5328,
     difficulty: "Expert",
     terrain: "High-altitude tarmac, gravel, river crossings",
@@ -25,31 +27,51 @@ export const rides: Ride[] = [
     body: [
       { type: "p", text: "I'd been thinking about this ride for three years before I actually did it. Every motorcycling friend in India has an opinion on Leh-Ladakh — and almost none of them line up. Here's what mine looks like now that I've done it." },
       { type: "h2", text: "The route, day by day" },
-      { type: "itinerary", day: 0, title: "Arrival in Leh", items: ["Arrive in Leh by afternoon, rest and acclimatise", "Explore the town, eat thukpa and momos, sleep early"] },
+      { type: "itinerary", day: 1, title: "Arrival in Leh", items: ["Arrive in Leh by afternoon, rest and acclimatise", 
+        "Visit the local market and try some street food",
+        "Tour briefing by road captain", "Getting introduced to the bikes",
+        "Visting Shanti Stupa"] },
+      { type: "image", src: "https://i.pinimg.com/736x/c8/46/6a/c8466a3523aa440bf5d9edd9722ebe8b.jpg", caption: "LEH market" },  
       { type: "p", 
         text: `Reaching Leh from Bangalore is a journey that begins long before you arrive in Ladakh. 
-        We choose a connecting flight through a major city such as Delhi, while road trippers take on one of India’s most dramatic routes, crossing hundreds of kilometers of plains, valleys, and high mountain passes before finally entering the stark beauty of Leh. 
-        It is not just a transfer from one city to another; it is a gradual shift from Bengaluru’s familiar pace to the thin air, wide skies, and rugged landscapes of the Himalayas. 
+        We choose a connecting flight through Delhi, it is a gradual shift from Bengaluru’s familiar pace to the thin air, wide skies, and rugged landscapes of the Himalayas. 
         The first two days are all about acclimatisation. Don't skip them. The rest of the ride is a mix of tarmac, gravel, and river crossings. Take it slow, take breaks, and enjoy the scenery.` 
-      },
+      }, 
+      { type: "image", src: "https://i.pinimg.com/736x/fc/3d/fc/fc3dfc752682eea89b3de6a19e796174.jpg", caption: "LEH" },  
+      { type: "p", 
+        text: `The first day of riding is a gentle warm-up, with a loop around Leh and some light riding to get used to the altitude. 
+        The next few days are where the real adventure begins — crossing high passes, navigating gravel roads, and soaking in the stunning landscapes. 
+        Each day brings its own challenges and rewards, from the adrenaline rush of riding over Khardung La to the serene beauty of Pangong Lake.` 
+      },      
       { type: "image", src: "https://images.pexels.com/photos/38087449/pexels-photo-38087449.jpeg", caption: "View from the basecamp" },
-      { type: "itinerary", day: 1, title: "Acclimatisation", items: [
-        "Easy warm-up: ~60 km",
-        "Arrival in Leh, In and around Leh",
-        "Sleep low to acclimatise",
-      ] },
-      { type: "itinerary", day: 2, title: "Leh → Nubra Valley", items: ["Ride along the Leh-Ladakh Highway", "Route via Khardung La", "Different Terrains"] },
+      { type: "itinerary", day: 2, title: "Leh Ladakh Bike Tour", items: ["Visit Sangam", "Visit the Magnetic Hill", "Enjoy River rafting at World's Highest River rafting point"] },
 //      { type: "callout", tone: "warn", title: "Don't skip the rest day", text: "I tried to do Sarchu → Leh in one shot. Bad call. Add a day at Pang or Tso Kar — your body will thank you and you'll actually see the Morey Plains instead of fighting through them." },
       { type: "p", 
-        text: `Before we headed to Nubra Valley, we had already ridden out from Leh towards the Indus–Zanskar Sangam, ticking off the classic Leh–Srinagar highway sights like Magnetic Hill and Sangam point. The next morning, our plan shifted north: we packed up the Himalayan 411 and rode over Khardung La towards Nubra, trading river confluences and wide highways for high passes and raw mountain roads.` 
+        text: `On Day 2, from Leh, we took a relaxed ride out to Sangam, the point where the Indus and Zanskar rivers meet. 
+        It is barely an hour away on the Leh–Srinagar highway, but the scenery changes quickly – the town fades, the road opens up, and suddenly you are looking down at two different rivers folding into one another. 
+        We parked the Himalayan 411 near the viewpoint and just stood there for a while, watching rafts drift in and the colours of the water shift in the afternoon light. 
+        It was an easy ride, but the kind of stop that quietly becomes one of the highlights of the trip` 
       },
       { type: "image", src: "https://images.unsplash.com/photo-1631441676111-c82a9d111417", caption: "Confluence of Indus(right)and Zanskar(left)" },
-      { type: "itinerary", day: 4, title: "Nubra Valley → Pangong", items: ["Khardung La (5,359 m) — highest motorable pass in the world", "Don't be a hero. Take it slow, take breaks, and don't forget to breathe.", "Pang is a tiny village with a few homestays. Book ahead."] },
-      { type: "itinerary", day: 5, title: "Pangong → Hanle", items: ["Chang La (5,360 m) — the most scenic pass", "The descent into Sarchu is a gravel riverbed. Take it easy.", "Sarchu has tents and a few homestays. Book ahead."] },
-      { type: "itinerary", day: 6, title: "Hanle → Umingla → Hanle", items: ["Gata Loops — 21 hairpins that climb 470 m in just 9 km", "Climb Umingla and soak in the summit views before descending back to Hanle", "Arrive in Leh by evening, celebrate with thukpa and momos"] },
+      { type: "list", items: [
+        "Stand at the viewpoint and clearly see the two rivers meeting, often in different shades (Zanskar muddier, Indus clearer, depending on season).",
+        "The confluence of the Indus and Zanskar rivers is a serene spot to pause and take in the landscape.",
+        "Try river rafting (Zanskar side, usually Chilling–Sangam route), which takes a few hours and is popular in summer..",
+      ] },
+      { type: "image", src: "https://i.pinimg.com/736x/c6/13/22/c613228e55a0bcfde9e2411b8e43ea21.jpg", caption: "Magnetic Hill" },
+      { type: "callout", tone: "tip", title: "The Magnetic Hill", text: "A curious phenomenon where vehicles appear to roll uphill. It's a fun stop, but don't expect to defy gravity." },
+      { type: "itinerary", day: 3, title: "LEH → Nubra Valley", items: ["Khardung La (5,359 m) — highest motorable pass in the world", "Don't be a hero. Take it slow, take breaks, and don't forget to breathe.", "Experience the ride on the highest motorable road in the world.", "Visit the white sand dunes in Hunder"] },
+      { type: "image", src: kla, caption: "Khardung La" },
+      { type: "image", src: "https://images.pexels.com/photos/24713335/pexels-photo-24713335.jpeg", caption: "Diskit Gompa, overlooking Nubra Valley" },
+      { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via shayok River route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
+      { type: "image", src: "https://images.pexels.com/photos/12094542/pexels-photo-12094542.jpeg", caption: "Pangong Lake" },
+      { type: "image", src: "https://images.pexels.com/photos/33792550/pexels-photo-33792550.jpeg", caption: "3 idiots" },
+      { type: "itinerary", day: 5 & 6, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
+      { type: "image", src: umingla, caption: "Umling La" },
       { type: "itinerary", day: 7, title: "Hanle → Leh", items: ["Tso Kar is a salt lake at 4,580 m. Stunning in the morning light.", "The road is gravel and can be rough. Take it slow.", "Return to Leh by evening, rest and enjoy the town."] },
       { type: "itinerary", day: 8, title: "At Leh", items: ["Rest and recuperate in Leh", "Explore the town and its attractions", "Prepare for the journey back"] },
       { type: "itinerary", day: 9, title: "Return to Bangalore", items: ["Leh to Delhi", "Explore Delhi and return to Bangalore", "Carry lot of memories"] },
+      { type: "image", src: "https://images.pexels.com/photos/37839586/pexels-photo-37839586.jpeg", caption: "The beast who took me to places" },
       { type: "h2", text: "What surprised me" },
       { type: "p", text: "The hardest part wasn't the passes. It was Gata Loops — 21 hairpins that climb 470 m and somehow feel like 4,700. The easiest part was Tanglang La, the highest pass, because by then I'd stopped fighting the altitude and started breathing with it." },
     ],
