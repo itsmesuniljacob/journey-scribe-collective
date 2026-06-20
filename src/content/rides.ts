@@ -66,7 +66,7 @@ export const rides: Ride[] = [
       { type: "itinerary", day: 4, title: "Nubra Valley → Pangong via Shyok", items: ["Drive to Pangong Lake passing through the Indo-China border", "Rides via Shayok river route", "Dinner and overnight stay at camps. At midnight enjoy the Galaxy views from your camp"] },
       { type: "image", src: "https://images.pexels.com/photos/12094542/pexels-photo-12094542.jpeg", caption: "Pangong Lake" },
       { type: "image", src: "https://images.pexels.com/photos/33792550/pexels-photo-33792550.jpeg", caption: "3 idiots" },
-      { type: "itinerary", day: 5 & 6, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
+      { type: "itinerary", day: 5, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
       { type: "image", src: umingla, caption: "Umling La" },
       { type: "itinerary", day: 7, title: "Hanle → Leh", items: ["Tso Kar is a salt lake at 4,580 m. Stunning in the morning light.", "The road is gravel and can be rough. Take it slow.", "Return to Leh by evening, rest and enjoy the town."] },
       { type: "itinerary", day: 8, title: "At Leh", items: ["Rest and recuperate in Leh", "Explore the town and its attractions", "Prepare for the journey back"] },
