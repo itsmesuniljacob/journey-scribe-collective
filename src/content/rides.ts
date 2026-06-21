@@ -5,7 +5,8 @@ import gearImg from "@/assets/ride-gear.jpg";
 import umingla from "@/assets/umling-la.jpg";
 import kla from "@/assets/kla.jpg";
 import pangog from "@/assets/lake-pang.jpg";
-import hallOfFame from "@/assets/hall-of-fame.jpg";
+import bridgeOne from "@/assets/bridge-one.jpg";
+import sceneryOne from "@/assets/scenery-one.jpg";
 
 export const rides: Ride[] = [
   {
@@ -87,7 +88,7 @@ export const rides: Ride[] = [
       { type: "image", src: "https://images.pexels.com/photos/33792550/pexels-photo-33792550.jpeg", caption: "3 idiots" },
       { type: "itinerary", day: 5, title: "Hanle → Umingla → Hanle", items: ["Visit Umling-La, the world's highest motorable road", "Climb Umingla and soak in the summit views before descending back to Hanle", "The last village of India-China Border"] },
       { type: "image", src: umingla, caption: "Umling La" },
-      { type: "p", text: `Our next stretch out of Hanle was the most extreme day of the entire trip – a loop to Umling La and back. We left before sunrise, 
+      { type: "p", text: `(Day 5 & 6): Our next stretch out of Hanle was the most extreme day of the entire trip – a loop to Umling La and back. We left before sunrise, 
         the Himalayan 411’s headlight cutting through the cold, empty roads of Changthang as the sky slowly turned from black to blue.
          The tarmac soon gave way to rougher tracks, patches of sand, and long, rolling plains where it felt like we were riding on the roof of the world
           with almost no one else around. The final climb to Umling La was slow and deliberate, every throttle input careful in the thin air, until the road 
@@ -96,17 +97,44 @@ export const rides: Ride[] = [
           home as the light faded.` },
       { type: "callout", tone: "note", title: "Altitude Discipline", text: "We kept our stops short, drank water even when we didn’t feel thirsty, and avoided running or sudden movements at the top." },
       { type: "itinerary", day: 7, title: "Hanle → Leh", items: ["Tso Kar is a salt lake at 4,580 m. Stunning in the morning light.", "The road is gravel and can be rough. Take it slow.", "Return to Leh by evening, rest and enjoy the town."] },
+      { type: "p", text: `Our final day on the road was the long ride back from Hanle to Leh, a quiet reset after the raw high of Umling La. 
+        We left Hanle with the first light, following the narrow road out past Loma and Nyoma, where the landscape slowly softened from stark Changthang plains 
+        to the more familiar curves of the Indus valley. The Himalayan 411 settled into an easy cruise on the smoother stretches, 
+        broken up only by tea stops at small dhabas near Chumathang and the occasional pause to just stand and take in the silence. 
+        By the time we crossed Upshi and rolled past Karu towards Leh, the chaos of the first day in town felt very far away; 
+        we were returning to the same place, but with completely different eyes. Parking the bike in Leh that evening, dusty and tired, 
+        it felt less like the end of a trip and more like we had just finished reading a book we’d wanted to live inside for years.` },
       { type: "itinerary", day: 8, title: "At Leh", items: ["Rest and recuperate in Leh", "Explore the town and its attractions", "Prepare for the journey back"] },
+      { type: "p", text: `The loop was complete: Nubra, Pangong, Hanle, Umling La, and finally back to Leh – not just lines on a map, but a ride that stitched together 
+        some of the wildest corners of Ladakh. Yes, we were tired, exhausted, and a little worse for wear by the end of it. But we were also richer for the experience – the kind of ride that changes 
+        how you think about what’s possible on two wheels, and leaves you with stories that will last a lifetime. It was a great achievement for all of us. ` },
       { type: "itinerary", day: 9, title: "Return to Bangalore", items: ["Leh to Delhi", "Explore Delhi and return to Bangalore", "Carry lot of memories"] },
       { type: "image", src: "https://images.pexels.com/photos/37839586/pexels-photo-37839586.jpeg", caption: "The beast who took me to places" },
+      { type: "quote", text: "If this Ladakh circuit sparks even a small urge to ride north, save this itinerary, tweak it to your pace, and go meet these roads yourself. No blog, including this one, can fully explain how it feels when the wind, the silence, and the altitude all hit you at once on a Ladakh pass – that part you’ll have to discover on your own."}, 
+      { type: "image", src: bridgeOne, caption: "A bridge over the river" },
       { type: "h2", text: "What surprised me" },
-      { type: "p", text: "The hardest part wasn't the passes. It was Gata Loops — 21 hairpins that climb 470 m and somehow feel like 4,700. The easiest part was Tanglang La, the highest pass, because by then I'd stopped fighting the altitude and started breathing with it." },
-    ],
-    lessons: [
-      "Acclimatise in Leh for 2 nights before starting.",
-      "Carry a Diamox prescription. Use it on day 2, not day 4.",
-      "Carry water, sunglasses, sunscreen, a light jacket, and keep an eye on winds – weather can change quickly even though the distance is small.",
-    ],
+      { type: "p", text: "Going into this trip, I thought I had a fair idea of what Ladakh would be like – high passes, difficult roads, and a few “bucket list” names to tick off. What I didn’t expect was how different the region feels once you’re actually there on a motorcycle, living out of a couple of bags and watching the landscape change one bend at a time. These are a few things that genuinely surprised me along the way." },
+      { type: "list", items: [
+        "The silence between places: There are long stretches where it’s just the bike, the wind, and the sound of your own breath in the helmet, and that kind of silence is rare if you’re used to city life",
+        "How quickly altitude reminds you who’s in charge:  You learn fast that Ladakh is not a place to show off; it’s a place to respect your limits, drink water, and take it slow.",
+        "Roads that switch moods in minutes: On some days, the road was smoother than I expected – perfect blacktop, sweeping curves, and the kind of surface that makes you forget how far from home you are. Then, within a few kilometres, it would change to loose gravel, broken patches, or a surprise water crossing that demanded your full attention. ",
+      ] },
+      { type: "image", src: sceneryOne, caption: "A scenic view from the ride" },
+      { type: "p", text: "If you’re planning your own Ladakh ride, keep some space in your itinerary – and in your head – for these small surprises. The big passes and famous lakes will impress you, but it’s these quieter details that will stay with you long after the dust has washed off your riding gear."},
+      { type: "faq", 
+        items: [
+          {
+            q: "What is the best route to take for the Leh-Ladakh Highway ride?", 
+            a: "The most common route is to start from Leh, head to Nubra Valley via Khardung La, then proceed to Pangong Lake, and finally return to Leh. This route allows you to experience the key highlights of the region while managing altitude acclimatization effectively."
+          }
+        ]
+      }  
+      ],
+      // lessons: [
+      //   "Acclimatise in Leh for 2 nights before starting.",
+      //   "Carry a Diamox prescription. Use it on day 2, not day 4.",
+      //   "Carry water, sunglasses, sunscreen, a light jacket, and keep an eye on winds – weather can change quickly even though the distance is small.",
+      // ],
   },
   {
     slug: "coorg-weekend-loop-from-bangalore",
