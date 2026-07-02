@@ -276,7 +276,7 @@ function mapPost(s: SanityPost): Post {
 }
 
 function mapDestination(s: SanityDestination): Destination {
-  const hero = imgUrl(s.heroImage, 1200, 1500);
+  const hero = imgUrl(s.heroImage, 1200, 1500) || s.heroImageUrl;
   return {
     slug: s.slug?.current || s._id,
     name: s.name,
