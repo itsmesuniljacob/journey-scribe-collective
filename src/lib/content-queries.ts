@@ -257,7 +257,7 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
 }
 
 function mapPost(s: SanityPost): Post {
-  const cover = imgUrl(s.coverImage, 1600, 1067);
+  const cover = imgUrl(s.coverImage, 1600, 1067) || s.coverImageUrl;
   return {
     slug: s.slug?.current || s._id,
     title: s.title,
@@ -269,6 +269,7 @@ function mapPost(s: SanityPost): Post {
     readMinutes: s.readingMinutes || 6,
     publishedAt: s.publishedAt || new Date().toISOString(),
     image: cover || localPosts[0].image,
+
     tags: s.tags || [],
     body: portableToBlocks(s.body),
   };
