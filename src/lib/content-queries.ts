@@ -221,7 +221,14 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       const src = imgUrlMax(b as unknown as SanityImage, 1600);
       if (src) out.push({ type: "image", src, caption: b.caption });
       i++;
+    } else if (b._type === "externalImage") {
+      if (b.url) {
+        const caption = [b.caption, b.credit].filter(Boolean).join(" — ") || undefined;
+        out.push({ type: "image", src: b.url, caption });
+      }
+      i++;
     } else if (b._type === "callout") {
+
       out.push({ type: "callout", tone: b.tone, title: b.title, text: b.text || "" });
       i++;
     } else if (b._type === "prosCons") {
