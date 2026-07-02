@@ -13,6 +13,10 @@ interface SanityPortableBlock {
   children?: { text?: string }[];
   caption?: string;
   asset?: SanityImage["asset"];
+  // externalImage fields
+  url?: string;
+  credit?: string;
+  sourceUrl?: string;
   // custom block fields
   tone?: "tip" | "warn" | "note";
   title?: string;
@@ -24,6 +28,7 @@ interface SanityPortableBlock {
   rows?: { label?: string; amount?: string }[];
   total?: string;
 }
+
 interface SanityPost {
   _id: string;
   title: string;
