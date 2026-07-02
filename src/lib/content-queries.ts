@@ -35,6 +35,7 @@ interface SanityPost {
   slug?: { current?: string };
   excerpt?: string;
   coverImage?: SanityImage;
+  coverImageUrl?: string;
   publishedAt?: string;
   readingMinutes?: number;
   tags?: string[];
@@ -51,19 +52,21 @@ interface SanityDestination {
   bestTime?: string;
   currency?: string;
   heroImage?: SanityImage;
+  heroImageUrl?: string;
   guidesNote?: string;
   visited?: boolean;
 }
 
 const POST_PROJECTION = `{
-  _id, title, slug, excerpt, coverImage, publishedAt, readingMinutes, tags,
+  _id, title, slug, excerpt, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
   "destination": destination->{name, region},
   body
 }`;
 
 const DEST_PROJECTION = `{
-  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote, visited
+  _id, name, slug, country, region, summary, bestTime, currency, heroImage, heroImageUrl, guidesNote, visited
 }`;
+
 
 // --- Mappers ---
 type SanityImageSource = Parameters<typeof urlFor>[0];
