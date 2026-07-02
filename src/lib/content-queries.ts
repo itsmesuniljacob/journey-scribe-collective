@@ -13,6 +13,10 @@ interface SanityPortableBlock {
   children?: { text?: string }[];
   caption?: string;
   asset?: SanityImage["asset"];
+  // externalImage fields
+  url?: string;
+  credit?: string;
+  sourceUrl?: string;
   // custom block fields
   tone?: "tip" | "warn" | "note";
   title?: string;
@@ -24,12 +28,14 @@ interface SanityPortableBlock {
   rows?: { label?: string; amount?: string }[];
   total?: string;
 }
+
 interface SanityPost {
   _id: string;
   title: string;
   slug?: { current?: string };
   excerpt?: string;
   coverImage?: SanityImage;
+  coverImageUrl?: string;
   publishedAt?: string;
   readingMinutes?: number;
   tags?: string[];
@@ -46,19 +52,21 @@ interface SanityDestination {
   bestTime?: string;
   currency?: string;
   heroImage?: SanityImage;
+  heroImageUrl?: string;
   guidesNote?: string;
   visited?: boolean;
 }
 
 const POST_PROJECTION = `{
-  _id, title, slug, excerpt, coverImage, publishedAt, readingMinutes, tags,
+  _id, title, slug, excerpt, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
   "destination": destination->{name, region},
   body
 }`;
 
 const DEST_PROJECTION = `{
-  _id, name, slug, country, region, summary, bestTime, currency, heroImage, guidesNote, visited
+  _id, name, slug, country, region, summary, bestTime, currency, heroImage, heroImageUrl, guidesNote, visited
 }`;
+
 
 // --- Mappers ---
 type SanityImageSource = Parameters<typeof urlFor>[0];
@@ -213,7 +221,14 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       const src = imgUrlMax(b as unknown as SanityImage, 1600);
       if (src) out.push({ type: "image", src, caption: b.caption });
       i++;
+    } else if (b._type === "externalImage") {
+      if (b.url) {
+        const caption = [b.caption, b.credit].filter(Boolean).join(" — ") || undefined;
+        out.push({ type: "image", src: b.url, caption });
+      }
+      i++;
     } else if (b._type === "callout") {
+
       out.push({ type: "callout", tone: b.tone, title: b.title, text: b.text || "" });
       i++;
     } else if (b._type === "prosCons") {
@@ -242,7 +257,7 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
 }
 
 function mapPost(s: SanityPost): Post {
-  const cover = imgUrl(s.coverImage, 1600, 1067);
+  const cover = imgUrl(s.coverImage, 1600, 1067) || s.coverImageUrl;
   return {
     slug: s.slug?.current || s._id,
     title: s.title,
@@ -254,13 +269,14 @@ function mapPost(s: SanityPost): Post {
     readMinutes: s.readingMinutes || 6,
     publishedAt: s.publishedAt || new Date().toISOString(),
     image: cover || localPosts[0].image,
+
     tags: s.tags || [],
     body: portableToBlocks(s.body),
   };
 }
 
 function mapDestination(s: SanityDestination): Destination {
-  const hero = imgUrl(s.heroImage, 1200, 1500);
+  const hero = imgUrl(s.heroImage, 1200, 1500) || s.heroImageUrl;
   return {
     slug: s.slug?.current || s._id,
     name: s.name,
