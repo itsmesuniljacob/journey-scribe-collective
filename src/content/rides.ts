@@ -1,6 +1,6 @@
 import type { Ride } from "./types";
 import lehManali from "@/assets/ride-leh-manali.jpg";
-import coorg from "@/assets/ride-coorg.jpg";
+import sakleshpur from "@/assets/sakleshpur.jpg";
 import gearImg from "@/assets/ride-gear.jpg";
 import umingla from "@/assets/umling-la.jpg";
 import kla from "@/assets/kla.jpg";
@@ -137,23 +137,23 @@ export const rides: Ride[] = [
       // ],
   },
   {
-    slug: "coorg-weekend-loop-from-bangalore",
-    title: "The Coorg Weekend Loop — A 2-Day Route from Bangalore",
-    tagline: "260 km of monsoon greens, coffee stops, and one perfect ghat",
+    slug: "sakleshpur-weekend-loop-from-bangalore",
+    title: "The Sakleshpur Weekend Loop — A 2-Day Route from Bangalore",
+    tagline: "250 km of monsoon greens, coffee stops, and one perfect ghat",
     excerpt:
-      "A short, repeatable loop I do 3-4 times a year. Bangalore → Madikeri → Bhagamandala → back, with the exact fuel stops, breakfast joints, and the one stretch worth waking up at 4am for.",
+      "A refreshing mix of misty hills, lush coffee estates, and historic landmarks.  Bangalore → Kunigal → Channarayapatna → Hassan → Sakleshpur, with the exact fuel stops, breakfast joints, and the one stretch worth waking up at 4am for.",
     category: "Route",
     region: "Western Ghats, India",
     startPoint: "Bangalore",
     endPoint: "Bangalore",
-    distanceKm: 520,
+    distanceKm: 250,
     days: 2,
     elevationM: 1525,
     difficulty: "Moderate",
-    terrain: "Highway + twisty ghat sections, wet during monsoon",
+    terrain: "Highway, wet during monsoon",
     bestMonths: "June – September (for mist) / November – February (for grip)",
     publishedAt: "2025-10-21",
-    image: coorg,
+    image: sakleshpur,
     body: [
       { type: "p", text: "If someone has a weekend and a bike, this is the ride I send them on. It's the right amount of distance, the right kind of corners, and the kind of coffee at the end that justifies the soreness." },
       { type: "h2", text: "Saturday: Bangalore → Madikeri (260 km)" },
