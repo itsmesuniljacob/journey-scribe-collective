@@ -163,25 +163,25 @@ export const rides: Ride[] = [
         "Pick the Kunigal - Hassan - Sakleshpur route. Quieter, twistier, better surface."
       ] },
       { type: "h2", text: "Sunday: Hassan → Nelamangala → Bangalore" },
-      { type: "p", text: "Most of the route is on the Hassan → Nelamangala → Bangalore highway. You may feel sleepy after the first few hours, but the scenery makes up for it. Take adequate breaks." },
       { type: "callout", tone: "tip", title: "The one stretch", text: "The stretch between Nelamangala and Bangalore will be moderate to heavy traffic, on Sunday's" },
       { type: "p", 
-        text: `Sometimes, all you need is two days away from the city to recharge. That's exactly what Sakleshpur offered—a perfect blend of winding mountain roads, endless coffee plantations, misty hills, and peaceful moments in nature
-        Started around 5 AM from Bangalore, reached our breakfast spot by 8 AM, DVG Benne Dosa. Their Benne Masala Dosa was wonderful.
-        Do remember to check your fuel levels and plan your stops accordingly, as some stretches can be quite remote.` 
-      },
+        text: `Sometimes, all you need is two days away from the city to recharge. That's exactly what Sakleshpur offered—a perfect blend of winding mountain roads, endless coffee plantations, misty hills, and peaceful moments in nature.`      },
       { type: "h2", text: "The Journey Begins" },
       { type: "p", text: `Our trip started early in the morning from Bangalore. As the city slowly disappeared in the rearview mirror, highways gave way to lush greenery and rolling hills. The drive itself became part of the adventure.
         Started around 5 AM from Bangalore, reached our breakfast spot by 8 AM, DVG Benne Dosa. Their Benne Masala Dosa was wonderful.
         Without any competition or rush to reach our destination at a specific time, we took our time to enjoy the ride, the scenery, and the company. The route through Kunigal, Channarayapatna, and Hassan was smooth and enjoyable, with plenty of opportunities to stop and take in the views.
         Riding through Karnataka's coffee country is an experience every biker should have at least once. Long sweeping curves, towering trees, endless plantations, and the occasional mist rolling across the road make every kilometre worth it.
-        By noon, we reached SasyaKachi Homestay.`
+        By noon, we reached SasyaKashi Homestay.`
       },
-      { type: "image", src: "https://images.pexels.com/photos/38087449/pexels-photo-38087449.jpeg", caption: "Sakleshpur" },
+      { type: "image", src: "https://sasyakashi.com/gallery/Sasya-Kashi-HomeStay-01.jpg", caption: "SasyaKashi Homestay" },
       { type: "p", text: `The weather couldn't have been more perfect. Cold winds greeted us, thick clouds covered the sky, and it looked like rain could start at any moment. 
         Thankfully, we had come prepared with our riding rain gear.After parking the bikes and settling in, we decided not to rush anywhere.
         Instead, we spent the rest of the day relaxing, enjoying the peaceful surroundings, and letting our bodies recover from the morning ride. Sitting with a hot cup of coffee while watching the clouds drift over the hills was exactly the kind of break we had hoped for.
         Sometimes, the best riding days end not with more kilometres but with complete silence.` },
+      { type: "h2", text: "Day 2 – Roads Worth Riding" },
+      { type: "p", text: `A good breakfast, cool mountain air, and motorcycles waiting outside—the perfect way to begin the second day.`},
+      { type: "p", text: `Our first destination was the iconic Shettihalli Rosary Church. The abandoned church stood gracefully against the backdrop of the reservoir, its weathered stone walls telling stories from another era. Whether surrounded by water or standing on dry land, 
+        Shettihalli has a charm that's impossible to ignore.`},
     ],
     lessons: [
       "Carry rain gear June–September. Non-negotiable.",
