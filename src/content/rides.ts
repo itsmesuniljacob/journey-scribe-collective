@@ -156,16 +156,32 @@ export const rides: Ride[] = [
     image: sakleshpur,
     body: [
       { type: "p", text: "If someone has a weekend and a bike, this is the ride I send them on. It's the right amount of distance, the right kind of corners, and the kind of coffee at the end that justifies the soreness." },
-      { type: "h2", text: "Saturday: Bangalore → Madikeri (260 km)" },
+      { type: "h2", text: "Saturday: Bangalore → Sakleshpur (250 km)" },
       { type: "list", items: [
-        "Leave by 5:30am. Mysore Road is a different animal after 8am.",
-        "Breakfast at Maddur Tiffanys — Maddur vada, no debate.",
-        "Fuel at Hunsur. Last reliable HP before the ghat.",
-        "Pick the Hunsur–Madikeri ghat over Mysore–Madikeri. Quieter, twistier, better surface."
+        "Leave by 5:00am. Mysore Road is a different animal after 8am.",
+        "Breakfast at DVG Benne Dosa ( Hassan Highway ), no debate.",
+        "Pick the Kunigal - Hassan - Sakleshpur route. Quieter, twistier, better surface."
       ] },
-      { type: "h2", text: "Sunday: Madikeri → Bhagamandala → Bangalore" },
-      { type: "p", text: "Bhagamandala is 36 km of pure ghat from Madikeri. Do it before 9am — empty road, full mist, and the kind of grip wet basalt gives you when no one's pushing past." },
-      { type: "callout", tone: "tip", title: "The one stretch", text: "Km 18-26 on the Bhagamandala road. Eight kilometres of third-gear sweepers under a tunnel of trees. Worth the entire weekend." },
+      { type: "h2", text: "Sunday: Hassan → Nelamangala → Bangalore" },
+      { type: "p", text: "Most of the route is on the Hassan → Nelamangala → Bangalore highway. You may feel sleepy after the first few hours, but the scenery makes up for it. Take adequate breaks." },
+      { type: "callout", tone: "tip", title: "The one stretch", text: "The stretch between Nelamangala and Bangalore will be moderate to heavy traffic, on Sunday's" },
+      { type: "p", 
+        text: `Sometimes, all you need is two days away from the city to recharge. That's exactly what Sakleshpur offered—a perfect blend of winding mountain roads, endless coffee plantations, misty hills, and peaceful moments in nature
+        Started around 5 AM from Bangalore, reached our breakfast spot by 8 AM, DVG Benne Dosa. Their Benne Masala Dosa was wonderful.
+        Do remember to check your fuel levels and plan your stops accordingly, as some stretches can be quite remote.` 
+      },
+      { type: "h2", text: "The Journey Begins" },
+      { type: "p", text: `Our trip started early in the morning from Bangalore. As the city slowly disappeared in the rearview mirror, highways gave way to lush greenery and rolling hills. The drive itself became part of the adventure.
+        Started around 5 AM from Bangalore, reached our breakfast spot by 8 AM, DVG Benne Dosa. Their Benne Masala Dosa was wonderful.
+        Without any competition or rush to reach our destination at a specific time, we took our time to enjoy the ride, the scenery, and the company. The route through Kunigal, Channarayapatna, and Hassan was smooth and enjoyable, with plenty of opportunities to stop and take in the views.
+        Riding through Karnataka's coffee country is an experience every biker should have at least once. Long sweeping curves, towering trees, endless plantations, and the occasional mist rolling across the road make every kilometre worth it.
+        By noon, we reached SasyaKachi Homestay.`
+      },
+      { type: "image", src: "https://images.pexels.com/photos/38087449/pexels-photo-38087449.jpeg", caption: "Sakleshpur" },
+      { type: "p", text: `The weather couldn't have been more perfect. Cold winds greeted us, thick clouds covered the sky, and it looked like rain could start at any moment. 
+        Thankfully, we had come prepared with our riding rain gear.After parking the bikes and settling in, we decided not to rush anywhere.
+        Instead, we spent the rest of the day relaxing, enjoying the peaceful surroundings, and letting our bodies recover from the morning ride. Sitting with a hot cup of coffee while watching the clouds drift over the hills was exactly the kind of break we had hoped for.
+        Sometimes, the best riding days end not with more kilometres but with complete silence.` },
     ],
     lessons: [
       "Carry rain gear June–September. Non-negotiable.",
