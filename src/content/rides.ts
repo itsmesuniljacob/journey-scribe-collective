@@ -7,6 +7,9 @@ import kla from "@/assets/kla.jpg";
 import pangog from "@/assets/lake-pang.jpg";
 import bridgeOne from "@/assets/bridge-one.jpg";
 import sceneryOne from "@/assets/scenery-one.jpg";
+import rideShettihalli01 from "@/assets/ride-shettihalli-01.jpg";
+import rideShettihalli02 from "@/assets/ride-shettihalli-02.jpg";
+import rideShettihalli03 from "@/assets/ride-shettihalli-03.jpg";
 
 export const rides: Ride[] = [
   {
@@ -182,6 +185,28 @@ export const rides: Ride[] = [
       { type: "p", text: `A good breakfast, cool mountain air, and motorcycles waiting outside—the perfect way to begin the second day.`},
       { type: "p", text: `Our first destination was the iconic Shettihalli Rosary Church. The abandoned church stood gracefully against the backdrop of the reservoir, its weathered stone walls telling stories from another era. Whether surrounded by water or standing on dry land, 
         Shettihalli has a charm that's impossible to ignore.`},
+      { type: "image", src: rideShettihalli01, caption: "Shettihalli Church" },
+      { type: "image", src: rideShettihalli02, caption: "Shettihalli Church" },
+      { type: "image", src: rideShettihalli03, caption: "Shettihalli Church" },
+      { type: "p", text: `After spending some time exploring and photographing the church, we geared up for the highlight of the ride.`},      
+      { type: "h2", text: "Climbing to Mullayanagiri" },
+      { type: "p", text: `The ride towards Mullayanagiri, Karnataka's highest peak, was everything a biker could ask for.The road winds its way up the Western Ghats, offering breathtaking views at every turn. The air grows cooler, the vegetation denser, and the sense of adventure stronger with each kilometre.`},
+      { type: "image", src: "https://i.pinimg.com/736x/7a/c3/15/7ac3151e3c68936507010306a3b635a3.jpg", caption: "Mullayanagiri" },
+      { type: "p", text: `Reaching the summit of Mullayanagiri was a moment of triumph. The panoramic views of the surrounding hills and valleys were worth every twist and turn of the climb. We took a moment to soak it all in, capturing photos and making memories that would last long after the ride was over.`},
+      { type: "p", text: `Clouds drifted across the road, cool winds rushed past our helmets, and every stop offered panoramic views stretching far into the horizon.`},
+      { type: "p", text: `For riders, reaching Mullayanagiri isn't just about ticking another destination off the list—it's about enjoying every curve, every climb, and every moment along the way.`},
+      { type: "h2", text: "The Descent and Return" },
+      { type: "p", text: `Descending from Mullayanagiri was just as thrilling as the climb. The curves demanded focus, but the scenery made it all worthwhile. As we made our way back to our SasyaKashi Homestay, we reflected on the journey—the roads we had conquered, the sights we had seen, and the camaraderie we had shared.`},
+      { type: "p", text: `By the time we returned to Bangalore, the weekend had flown by. The Sakleshpur loop had offered us a perfect escape from the city, a chance to reconnect with nature, and a reminder of why we ride.`},
+      { type: "h2", text: "One Last Stop – Manjarabad Fort" },
+      { type: "p", text: `Before heading back to Bangalore, we made a quick detour to Manjarabad Fort. This star-shaped fort, built by Tipu Sultan, offered a glimpse into history and a chance to stretch our legs before the final leg of the journey. The fort's architecture and the surrounding views provided a fitting end to our weekend adventure.`},
+      { type: "p", text: `Reaching the fort requires climbing a series of steps, which can feel like a bit of a workout—especially after spending hours riding a motorcycle.`},
+      { type: "image", src: "https://i.pinimg.com/1200x/e9/58/0b/e9580b262328f7acaca8eeffeea4739a.jpg", caption: "Manjarabad Fort" },
+      { type: "h2", text: "Final Thoughts" },
+      { type: "p", text: `This wasn't a ride about chasing speed or covering the most kilometres. It was about the journey itself—the roads, the views, the stops, and the stories we created along the way. For anyone looking for a weekend escape from Bangalore, the Sakleshpur loop is a ride that promises adventure, beauty, and memories that will last a lifetime.`},
+      { type: "p", text: `From the peaceful stay at SasyaKachi Homestay to the timeless beauty of Shettihalli Church and the breathtaking climb to Mullayanagiri, every part of this weekend reminded us why we ride.`},
+      { type: "p", text: `Sometimes, all it takes is two days, a full tank of fuel, and an open road to feel completely refreshed.`},
+      { type: "p",text:"Until the next ride, ride safe and keep exploring. 🏍️"}
     ],
     lessons: [
       "Carry rain gear June–September. Non-negotiable.",
