@@ -209,8 +209,12 @@ export const rides: Ride[] = [
     ],
     lessons: [
       "Carry rain gear June–September. Non-negotiable.",
-      "Mud-Terrain or dual-sport tyres are overkill. Good road rubber + sense is enough.",
+      "Keep your fuel tank topped up before heading into remote stretches.",
+      "Wear proper riding gear, including a helmet, jacket, gloves, and riding shoes.",
       "Don't ride the ghat after dark. Cattle, pedestrians, no streetlights.",
+      "Check your motorcycle before starting the trip, especially tyres and brakes.",
+      "Be cautious on mountain roads and around blind corners.",
+      "Avoid rushing between destinations—the roads are part of the experience."
     ],
   },
   {
