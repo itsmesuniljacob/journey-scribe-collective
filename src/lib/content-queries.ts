@@ -34,6 +34,7 @@ interface SanityPost {
   title: string;
   slug?: { current?: string };
   excerpt?: string;
+  category?: string;
   coverImage?: SanityImage;
   coverImageUrl?: string;
   publishedAt?: string;
