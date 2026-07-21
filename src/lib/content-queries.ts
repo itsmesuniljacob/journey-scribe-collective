@@ -34,6 +34,7 @@ interface SanityPost {
   title: string;
   slug?: { current?: string };
   excerpt?: string;
+  category?: string;
   coverImage?: SanityImage;
   coverImageUrl?: string;
   publishedAt?: string;
@@ -58,7 +59,7 @@ interface SanityDestination {
 }
 
 const POST_PROJECTION = `{
-  _id, title, slug, excerpt, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
+  _id, title, slug, excerpt, category, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
   "destination": destination->{name, region},
   body
 }`;
@@ -263,7 +264,7 @@ function mapPost(s: SanityPost): Post {
     title: s.title,
     subtitle: s.excerpt || "",
     excerpt: s.excerpt || "",
-    category: "Itineraries",
+    category: (s.category as Post["category"]) || "Itineraries",
     destination: s.destination?.name || "",
     region: s.destination?.region || "",
     readMinutes: s.readingMinutes || 6,
