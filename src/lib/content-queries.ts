@@ -59,7 +59,7 @@ interface SanityDestination {
 }
 
 const POST_PROJECTION = `{
-  _id, title, slug, excerpt, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
+  _id, title, slug, excerpt, category, coverImage, coverImageUrl, publishedAt, readingMinutes, tags,
   "destination": destination->{name, region},
   body
 }`;
