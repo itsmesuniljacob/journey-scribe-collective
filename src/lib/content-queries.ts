@@ -264,7 +264,7 @@ function mapPost(s: SanityPost): Post {
     title: s.title,
     subtitle: s.excerpt || "",
     excerpt: s.excerpt || "",
-    category: "Itineraries",
+    category: (s.category as Post["category"]) || "Itineraries",
     destination: s.destination?.name || "",
     region: s.destination?.region || "",
     readMinutes: s.readingMinutes || 6,
