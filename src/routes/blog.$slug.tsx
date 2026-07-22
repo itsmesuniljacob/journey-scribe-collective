@@ -108,35 +108,32 @@ function PostPage() {
     <PageShell overlay>
       <ReadingProgress />
       <article>
-        {/* Hero — image preserves natural aspect. Overlay text on sm+, stacked below on mobile. */}
-        <header className="relative w-full overflow-hidden bg-background sm:text-white">
-          <div
-            className="relative w-full bg-muted bg-cover bg-center"
-            style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
-          >
-            <img
-              src={heroSrcFor(post.image, 1600)}
-              srcSet={buildSrcSet(post.image)}
-              sizes="100vw"
-              alt={post.title}
-              fetchPriority="high"
-              decoding="async"
-              className="block w-full h-auto ken-burns"
-            />
-            {/* Gradient only where overlay renders (sm+) */}
-            <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/40 via-black/10 to-black/70 sm:block" />
-          </div>
-          <div className="relative z-10 flex flex-col items-center px-6 py-8 text-center text-foreground fade-up sm:absolute sm:inset-x-0 sm:bottom-0 sm:pb-16 sm:text-white lg:pb-20">
+        {/* Hero — full-bleed with overlay text, matching the Rides treatment */}
+        <header
+          className="relative h-[80vh] min-h-[520px] w-full overflow-hidden bg-muted text-white bg-cover bg-center"
+          style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+        >
+          <img
+            src={heroSrcFor(post.image, 1600)}
+            srcSet={buildSrcSet(post.image)}
+            sizes="100vw"
+            alt={post.title}
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover ken-burns"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+          <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 sm:pb-20 text-center fade-up">
             <p className="text-[11px] tracked-sm uppercase opacity-90">
               {post.category} · {post.destination}
             </p>
-            <h1 className="mt-4 sm:mt-6 font-serif italic text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.05] max-w-5xl">
+            <h1 className="mt-4 font-serif italic text-3xl sm:text-5xl md:text-7xl leading-[0.98] max-w-4xl">
               {post.title}
             </h1>
-            <p className="mx-auto mt-3 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed opacity-90">
+            <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base leading-relaxed opacity-90">
               {post.subtitle}
             </p>
-            <div className="mt-5 sm:mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
+            <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
               <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span aria-hidden>·</span>
               <span>{post.readMinutes} min read</span>
