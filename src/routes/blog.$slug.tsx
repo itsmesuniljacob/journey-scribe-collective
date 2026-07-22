@@ -63,26 +63,27 @@ function PostPage() {
   };
 
   return (
-    <PageShell overlay>
+    <PageShell>
       <ReadingProgress />
       <article>
         {/* Hero */}
-        <header className="relative h-screen w-full overflow-hidden bg-black text-white">
-          <img src={post.image} alt={post.title} width={1600} height={1067} className="absolute inset-0 h-full w-full object-cover ken-burns" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/40" />
-          <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-24 md:pb-32 text-center">
-            <p className="fade-up text-[11px] font-medium tracking-[0.3em] uppercase opacity-90">{post.category} · {post.destination}</p>
-            <h1 className="fade-up mt-5 font-serif italic text-5xl leading-[0.95] md:text-7xl lg:text-[6.5rem] max-w-5xl" style={{ animationDelay: "120ms" }}>
+        <header className="border-b hairline bg-background">
+          <div className="mx-auto flex max-w-4xl flex-col items-center px-6 pt-32 pb-16 text-center md:pt-40 md:pb-20">
+            <p className="fade-up text-[11px] font-medium tracking-[0.3em] uppercase text-muted-foreground">{post.category} · {post.destination}</p>
+            <h1 className="fade-up mt-5 font-serif italic text-5xl leading-[0.95] text-foreground md:text-7xl lg:text-[6rem]" style={{ animationDelay: "120ms" }}>
               {post.title}
             </h1>
-            <p className="fade-up mt-5 max-w-2xl text-lg font-light leading-relaxed opacity-90" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
-            <div className="fade-up mt-6 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase opacity-80" style={{ animationDelay: "360ms" }}>
+            <p className="fade-up mt-5 max-w-2xl text-lg font-light leading-relaxed text-foreground/80" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
+            <div className="fade-up mt-6 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground" style={{ animationDelay: "360ms" }}>
               <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span>·</span>
               <span>{post.readMinutes} min read</span>
               <span>·</span>
-              <BookmarkButton slug={post.slug} light />
+              <BookmarkButton slug={post.slug} />
             </div>
+          </div>
+          <div className="relative w-full overflow-hidden">
+            <img src={post.image} alt={post.title} width={1600} height={1067} className="h-[60vh] min-h-[420px] w-full object-cover ken-burns" />
           </div>
         </header>
 
