@@ -18,6 +18,8 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     const p = loaderData?.post;
     if (!p) return {};
+    const heroSrc = heroSrcFor(p.image, 1600);
+    const heroSrcSet = buildSrcSet(p.image);
     return {
       meta: [
         { title: `${p.title} — My Travel Blog` },
@@ -28,7 +30,17 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:image", content: p.image },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `/blog/${p.slug}` }],
+      links: [
+        { rel: "canonical", href: `/blog/${p.slug}` },
+        {
+          rel: "preload",
+          as: "image",
+          href: heroSrc,
+          imagesrcset: heroSrcSet,
+          imagesizes: "100vw",
+          fetchpriority: "high",
+        },
+      ],
     };
   },
   component: PostPage,
