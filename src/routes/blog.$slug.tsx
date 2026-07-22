@@ -100,8 +100,14 @@ function PostPage() {
         {/* Hero — full-bleed image with overlaid title */}
         <header className="relative w-full overflow-hidden bg-black text-white">
           <img
-            src={post.image}
+            src={heroSrcFor(post.image, 1600)}
+            srcSet={buildSrcSet(post.image)}
+            sizes="100vw"
             alt={post.title}
+            width={1600}
+            height={1067}
+            fetchPriority="high"
+            decoding="async"
             className="block w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] object-cover ken-burns"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/70" />
