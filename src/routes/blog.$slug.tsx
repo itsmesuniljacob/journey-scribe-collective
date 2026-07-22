@@ -108,11 +108,40 @@ function PostPage() {
     <PageShell overlay>
       <ReadingProgress />
       <article>
-        {/* Hero — preserves original image framing (no crop) on all devices.
-            Mobile: image then stacked text. Desktop: overlay text over image. */}
-        <header className="relative w-full text-white sm:text-white">
+        {/* Hero — mobile: Rides-style 80vh cover overlay. Desktop: original image framing (no crop) with overlay text. */}
+        <header className="relative w-full text-white">
+          {/* Mobile: full-bleed cover crop with overlay (matches Rides) */}
           <div
-            className="relative w-full overflow-hidden bg-muted bg-cover bg-center"
+            className="relative sm:hidden h-[80vh] min-h-[520px] w-full overflow-hidden bg-muted bg-cover bg-center"
+            style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+          >
+            <img
+              src={heroSrcFor(post.image, 1600)}
+              srcSet={buildSrcSet(post.image)}
+              sizes="100vw"
+              alt={post.title}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover ken-burns"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+            <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center fade-up">
+              <p className="text-[11px] tracked-sm uppercase opacity-90">
+                {post.category} · {post.destination}
+              </p>
+              <h1 className="mt-4 font-serif italic text-3xl leading-[0.98] max-w-4xl">{post.title}</h1>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed opacity-90">{post.subtitle}</p>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] tracked-sm uppercase opacity-90">
+                <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
+                <span aria-hidden>·</span>
+                <span>{post.readMinutes} min read</span>
+                <BookmarkButton slug={post.slug} />
+              </div>
+            </div>
+          </div>
+          {/* Desktop: original image framing (no crop) with overlay */}
+          <div
+            className="relative hidden sm:block w-full overflow-hidden bg-muted bg-cover bg-center"
             style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
           >
             <img
@@ -124,19 +153,14 @@ function PostPage() {
               decoding="async"
               className="block h-auto w-full"
             />
-            {/* Gradient + overlay text only on sm+ so mobile keeps the full uncropped image visible */}
-            <div className="pointer-events-none absolute inset-0 hidden sm:block bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-            <div className="absolute inset-0 z-10 hidden sm:flex flex-col items-center justify-end px-6 pb-16 sm:pb-20 text-center fade-up">
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-end px-6 pb-20 text-center fade-up">
               <p className="text-[11px] tracked-sm uppercase opacity-90">
                 {post.category} · {post.destination}
               </p>
-              <h1 className="mt-4 font-serif italic text-3xl sm:text-5xl md:text-7xl leading-[0.98] max-w-4xl">
-                {post.title}
-              </h1>
-              <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base leading-relaxed opacity-90">
-                {post.subtitle}
-              </p>
-              <div className="mt-5 sm:mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
+              <h1 className="mt-4 font-serif italic text-5xl md:text-7xl leading-[0.98] max-w-4xl">{post.title}</h1>
+              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed opacity-90">{post.subtitle}</p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
                 <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
                 <span aria-hidden>·</span>
                 <span>{post.readMinutes} min read</span>
@@ -144,20 +168,8 @@ function PostPage() {
               </div>
             </div>
           </div>
-          {/* Mobile-stacked text below the image */}
-          <div className="sm:hidden px-6 py-10 text-center text-foreground fade-up">
-            <p className="text-[11px] tracked-sm uppercase text-muted-foreground">
-              {post.category} · {post.destination}
-            </p>
-            <h1 className="mt-4 font-serif italic text-3xl leading-[1.05]">{post.title}</h1>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">{post.subtitle}</p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] tracked-sm uppercase text-muted-foreground">
-              <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
-              <span aria-hidden>·</span>
-              <span>{post.readMinutes} min read</span>
-              <BookmarkButton slug={post.slug} />
-            </div>
-          </div>
+        </header>
+
         </header>
 
 
