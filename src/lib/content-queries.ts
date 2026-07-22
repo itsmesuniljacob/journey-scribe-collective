@@ -73,40 +73,21 @@ const DEST_PROJECTION = `{
 type SanityImageSource = Parameters<typeof urlFor>[0];
 // Hotspot-aware crop. fit("crop") respects the hotspot set in Sanity Studio
 // so the focal subject (e.g. Notre-Dame's facade) survives the crop.
-function imgUrl(src?: SanityImage, w = 1600, h = 1067, q = 75): string | null {
+function imgUrl(src?: SanityImage, w = 1600, h = 1067): string | null {
   if (!src?.asset?._ref) return null;
   try {
     return urlFor(src as SanityImageSource)
-      .width(w).height(h).fit("crop").auto("format").quality(q).url();
+      .width(w).height(h).fit("crop").auto("format").quality(85).url();
   } catch { return null; }
 }
 // Uncropped variant — preserves natural ratio. Use for in-body images.
-function imgUrlMax(src?: SanityImage, w = 1600, q = 78): string | null {
+function imgUrlMax(src?: SanityImage, w = 1600): string | null {
   if (!src?.asset?._ref) return null;
   try {
     return urlFor(src as SanityImageSource)
-      .width(w).fit("max").auto("format").quality(q).url();
+      .width(w).fit("max").auto("format").quality(85).url();
   } catch { return null; }
 }
-
-// Build a responsive srcset for any URL. For Sanity CDN URLs, we swap the
-// `w` query param across widths so the CDN returns pre-scaled variants.
-// For other URLs, returns undefined so callers fall back to plain `src`.
-export function sanitySrcSet(url?: string, widths: number[] = [480, 768, 1024, 1440, 1920]): string | undefined {
-  if (!url || !/cdn\.sanity\.io/.test(url)) return undefined;
-  try {
-    return widths
-      .map((w) => {
-        const u = new URL(url);
-        u.searchParams.set("w", String(w));
-        u.searchParams.set("q", u.searchParams.get("q") || "72");
-        u.searchParams.set("auto", "format");
-        return `${u.toString()} ${w}w`;
-      })
-      .join(", ");
-  } catch { return undefined; }
-}
-
 
 // h3 titles that should turn the following paragraph into a callout box
 const CALLOUT_TITLES = /^(insider tip|tip|pro tip|note|heads? up|warning|watch out|important|good to know)\b/i;

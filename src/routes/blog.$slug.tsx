@@ -7,7 +7,7 @@ import { Bookmark, BookmarkCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import { contentKeys, fetchPostBySlug, fetchPosts, sanitySrcSet } from "@/lib/content-queries";
+import { contentKeys, fetchPostBySlug, fetchPosts } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -70,13 +70,7 @@ function PostPage() {
         <header className="relative w-full overflow-hidden bg-black text-white">
           <img
             src={post.image}
-            srcSet={sanitySrcSet(post.image)}
-            sizes="100vw"
             alt={post.title}
-            width={1600}
-            height={900}
-            fetchPriority="high"
-            decoding="async"
             className="block w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] object-cover ken-burns"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/70" />
@@ -126,7 +120,7 @@ function PostPage() {
                 {related.map((p) => (
                   <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group block">
                     <div className="overflow-hidden border hairline">
-                      <img src={p.image} srcSet={sanitySrcSet(p.image, [400, 600, 900])} sizes="(min-width: 768px) 33vw, 100vw" alt={p.title} loading="lazy" width={1200} height={800}
+                      <img src={p.image} alt={p.title} loading="lazy" width={1200} height={800}
                         className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                     </div>
                     <h3 className="mt-4 font-serif text-xl leading-snug group-hover:text-rust transition-colors">{p.title}</h3>
