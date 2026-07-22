@@ -73,17 +73,20 @@ function PostPage() {
             <h1 className="fade-up mt-5 font-serif italic text-5xl leading-[0.95] text-foreground md:text-7xl lg:text-[6rem]" style={{ animationDelay: "120ms" }}>
               {post.title}
             </h1>
-            <p className="fade-up mt-5 max-w-2xl text-lg font-light leading-relaxed text-foreground/80" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
-            <div className="fade-up mt-6 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground" style={{ animationDelay: "360ms" }}>
-              <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
-              <span>·</span>
-              <span>{post.readMinutes} min read</span>
-              <span>·</span>
-              <BookmarkButton slug={post.slug} />
-            </div>
           </div>
           <div className="relative w-full overflow-hidden">
             <img src={post.image} alt={post.title} width={1600} height={1067} className="h-[60vh] min-h-[420px] w-full object-cover ken-burns" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/50" />
+            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-12 text-center text-white md:pb-16">
+              <p className="fade-up max-w-2xl text-lg font-light leading-relaxed opacity-95" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
+              <div className="fade-up mt-4 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase opacity-90" style={{ animationDelay: "360ms" }}>
+                <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
+                <span>·</span>
+                <span>{post.readMinutes} min read</span>
+                <span>·</span>
+                <BookmarkButton slug={post.slug} light />
+              </div>
+            </div>
           </div>
         </header>
 
