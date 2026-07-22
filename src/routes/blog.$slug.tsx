@@ -7,7 +7,7 @@ import { Bookmark, BookmarkCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
-import { contentKeys, fetchPostBySlug, fetchPosts } from "@/lib/content-queries";
+import { contentKeys, fetchPostBySlug, fetchPosts, sanitySrcSet } from "@/lib/content-queries";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
