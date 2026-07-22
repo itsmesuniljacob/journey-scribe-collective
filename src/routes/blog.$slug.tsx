@@ -109,7 +109,10 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero — full-bleed image with overlaid title */}
-        <header className="relative w-full overflow-hidden bg-black text-white">
+        <header
+          className="relative w-full overflow-hidden bg-muted text-white bg-cover bg-center"
+          style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+        >
           <img
             src={heroSrcFor(post.image, 1600)}
             srcSet={buildSrcSet(post.image)}
