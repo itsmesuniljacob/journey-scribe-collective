@@ -67,30 +67,23 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero */}
-        <header className="relative border-b hairline overflow-hidden">
-          <img
-            src={post.image}
-            alt={post.title}
-            width={1600}
-            height={1067}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="relative mx-auto max-w-4xl px-6 py-32 text-center text-white lg:py-48">
-            <p className="text-[11px] tracked-sm uppercase text-white/80">{post.category} · {post.destination}</p>
-            <h1 className="mt-6 font-serif italic text-4xl md:text-6xl lg:text-7xl leading-[1.02] text-white">
+        <header className="border-b hairline">
+          <div className="mx-auto max-w-4xl px-6 py-16 text-center lg:py-24">
+            <p className="text-[11px] tracked-sm uppercase text-rust">{post.category} · {post.destination}</p>
+            <h1 className="mt-6 font-serif italic text-4xl md:text-6xl lg:text-7xl leading-[1.02]">
               {post.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/85 leading-relaxed">{post.subtitle}</p>
-            <div className="mt-8 flex items-center justify-center gap-6 text-[11px] tracked-sm uppercase text-white/80">
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">{post.subtitle}</p>
+            <div className="mt-8 flex items-center justify-center gap-6 text-[11px] tracked-sm uppercase text-muted-foreground">
               <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span>·</span>
               <span>{post.readMinutes} min read</span>
               <BookmarkButton slug={post.slug} />
             </div>
           </div>
+          <img src={post.image} alt={post.title} width={1600} height={1067}
+            className="aspect-[3/2] w-full object-cover border-y hairline" />
         </header>
-
 
         {/* Body */}
         <div className="mx-auto max-w-2xl px-6 py-16 lg:py-24">
