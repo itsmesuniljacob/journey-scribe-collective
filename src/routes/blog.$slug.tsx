@@ -129,7 +129,7 @@ function PostPage() {
   );
 }
 
-function BookmarkButton({ slug }: { slug: string }) {
+function BookmarkButton({ slug, light = false }: { slug: string; light?: boolean }) {
   const [saved, setSaved] = useState(false);
   useEffect(() => {
     const list: string[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
@@ -143,7 +143,7 @@ function BookmarkButton({ slug }: { slug: string }) {
     toast.success(saved ? "Removed from bookmarks" : "Saved to bookmarks");
   };
   return (
-    <button onClick={toggle} className="ml-2 inline-flex items-center gap-1 hover:text-rust">
+    <button onClick={toggle} className={["inline-flex items-center gap-1 transition-colors", light ? "hover:text-white/70" : "hover:text-rust"].join(" ")}>
       {saved ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}
       <span>{saved ? "Saved" : "Save"}</span>
     </button>
