@@ -63,26 +63,28 @@ function PostPage() {
   };
 
   return (
-    <PageShell>
+    <PageShell overlay>
       <ReadingProgress />
       <article>
         {/* Hero */}
-        <header className="border-b hairline">
-          <div className="mx-auto max-w-4xl px-6 py-16 text-center lg:py-24">
-            <p className="text-[11px] tracked-sm uppercase text-rust">{post.category} · {post.destination}</p>
-            <h1 className="mt-6 font-serif italic text-4xl md:text-6xl lg:text-7xl leading-[1.02]">
+        <header className="relative h-screen w-full overflow-hidden bg-black text-white">
+          <img src={post.image} alt={post.title} width={1600} height={1067} className="absolute inset-0 h-full w-full object-cover ken-burns" />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
+          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+            <p className="fade-up text-[11px] font-medium tracking-[0.3em] uppercase opacity-90">{post.category} · {post.destination}</p>
+            <h1 className="fade-up mt-6 font-serif italic text-5xl leading-[0.95] md:text-7xl lg:text-[6.5rem] max-w-5xl" style={{ animationDelay: "120ms" }}>
               {post.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">{post.subtitle}</p>
-            <div className="mt-8 flex items-center justify-center gap-6 text-[11px] tracked-sm uppercase text-muted-foreground">
+            <p className="fade-up mt-6 max-w-2xl text-lg font-light leading-relaxed opacity-90" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
+            <div className="fade-up mt-8 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase opacity-80" style={{ animationDelay: "360ms" }}>
               <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span>·</span>
               <span>{post.readMinutes} min read</span>
-              <BookmarkButton slug={post.slug} />
+              <span>·</span>
+              <BookmarkButton slug={post.slug} light />
             </div>
           </div>
-          <img src={post.image} alt={post.title} width={1600} height={1067}
-            className="aspect-[3/2] w-full object-cover border-y hairline" />
         </header>
 
         {/* Body */}
