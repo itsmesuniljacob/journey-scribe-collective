@@ -27,6 +27,17 @@ function buildSrcSet(url: string): string | undefined {
     .map((w) => `${heroSrcFor(url, w)} ${w}w`)
     .join(", ");
 }
+// Tiny blurred placeholder — avoids the black flash before the hero paints.
+function lqipFor(url: string): string | undefined {
+  if (!isSanityUrl(url)) return undefined;
+  const u = new URL(url, "https://cdn.sanity.io");
+  u.searchParams.set("w", "40");
+  u.searchParams.set("q", "40");
+  u.searchParams.set("blur", "50");
+  u.searchParams.set("auto", "format");
+  u.searchParams.set("fit", "max");
+  return u.toString();
+}
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -98,7 +109,10 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero — full-bleed image with overlaid title */}
-        <header className="relative w-full overflow-hidden bg-black text-white">
+        <header
+          className="relative w-full overflow-hidden bg-muted text-white bg-cover bg-center"
+          style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+        >
           <img
             src={heroSrcFor(post.image, 1600)}
             srcSet={buildSrcSet(post.image)}
