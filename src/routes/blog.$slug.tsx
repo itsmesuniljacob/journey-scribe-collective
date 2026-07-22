@@ -67,24 +67,24 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero — full-bleed image with overlaid title */}
-        <header className="relative h-[85vh] min-h-[560px] w-full overflow-hidden bg-black text-white">
+        <header className="relative w-full overflow-hidden bg-black text-white">
           <img
             src={post.image}
             alt={post.title}
-            className="absolute inset-0 h-full w-full object-cover ken-burns"
+            className="block h-auto w-full ken-burns"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
-          <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-20 text-center fade-up">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/70" />
+          <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-10 sm:pb-16 lg:pb-20 text-center fade-up">
             <p className="text-[11px] tracked-sm uppercase opacity-90">
               {post.category} · {post.destination}
             </p>
-            <h1 className="mt-6 font-serif italic text-4xl md:text-6xl lg:text-7xl leading-[1.02] max-w-5xl">
+            <h1 className="mt-4 sm:mt-6 font-serif italic text-2xl sm:text-4xl md:text-6xl lg:text-7xl leading-[1.02] max-w-5xl">
               {post.title}
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed opacity-90">
+            <p className="mx-auto mt-3 sm:mt-6 max-w-2xl text-sm sm:text-lg leading-relaxed opacity-90">
               {post.subtitle}
             </p>
-            <div className="mt-8 flex items-center justify-center gap-6 text-[11px] tracked-sm uppercase opacity-90">
+            <div className="mt-4 sm:mt-8 flex items-center justify-center gap-4 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
               <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
               <span>·</span>
               <span>{post.readMinutes} min read</span>
@@ -92,6 +92,7 @@ function PostPage() {
             </div>
           </div>
         </header>
+
 
 
         {/* Body */}
