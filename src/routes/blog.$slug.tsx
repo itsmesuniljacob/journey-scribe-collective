@@ -71,7 +71,7 @@ function PostPage() {
           <img
             src={post.image}
             alt={post.title}
-            className="block h-auto w-full ken-burns"
+            className="block w-full h-[50vh] sm:h-[60vh] lg:h-[70vh] object-cover ken-burns"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/70" />
           <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-10 sm:pb-16 lg:pb-20 text-center fade-up">
