@@ -126,7 +126,7 @@ function PostPage() {
                 {related.map((p) => (
                   <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }} className="group block">
                     <div className="overflow-hidden border hairline">
-                      <img src={p.image} alt={p.title} loading="lazy" width={1200} height={800}
+                      <img src={p.image} srcSet={sanitySrcSet(p.image, [400, 600, 900])} sizes="(min-width: 768px) 33vw, 100vw" alt={p.title} loading="lazy" width={1200} height={800}
                         className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                     </div>
                     <h3 className="mt-4 font-serif text-xl leading-snug group-hover:text-rust transition-colors">{p.title}</h3>
