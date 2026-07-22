@@ -9,7 +9,7 @@ import bridgeOne from "@/assets/bridge-one.jpg";
 import sceneryOne from "@/assets/scenery-one.jpg";
 import rideShettihalli01 from "@/assets/ride-shettihalli-01.jpg";
 import rideShettihalli02 from "@/assets/ride-shettihalli-02.jpg";
-
+import rideShettihalli03 from "@/assets/ride-shettihalli-03.jpg";
 
 export const rides: Ride[] = [
   {

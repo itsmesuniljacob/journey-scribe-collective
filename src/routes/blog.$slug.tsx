@@ -67,27 +67,22 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero */}
-        <header className="border-b hairline bg-background">
-          <div className="mx-auto flex max-w-4xl flex-col items-center px-6 pt-32 pb-16 text-center md:pt-40 md:pb-20">
-            <p className="fade-up text-[11px] font-medium tracking-[0.3em] uppercase text-muted-foreground">{post.category} · {post.destination}</p>
-            <h1 className="fade-up mt-5 font-serif italic text-5xl leading-[0.95] text-foreground md:text-7xl lg:text-[6rem]" style={{ animationDelay: "120ms" }}>
+        <header className="border-b hairline">
+          <div className="mx-auto max-w-4xl px-6 py-16 text-center lg:py-24">
+            <p className="text-[11px] tracked-sm uppercase text-rust">{post.category} · {post.destination}</p>
+            <h1 className="mt-6 font-serif italic text-4xl md:text-6xl lg:text-7xl leading-[1.02]">
               {post.title}
             </h1>
-          </div>
-          <div className="relative w-full overflow-hidden">
-            <img src={post.image} alt={post.title} width={1600} height={1067} className="h-[60vh] min-h-[420px] w-full object-cover ken-burns" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/50" />
-            <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-12 text-center text-white md:pb-16">
-              <p className="fade-up max-w-2xl text-lg font-light leading-relaxed opacity-95" style={{ animationDelay: "240ms" }}>{post.subtitle}</p>
-              <div className="fade-up mt-4 flex items-center justify-center gap-4 text-[11px] font-medium tracking-[0.2em] uppercase opacity-90" style={{ animationDelay: "360ms" }}>
-                <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
-                <span>·</span>
-                <span>{post.readMinutes} min read</span>
-                <span>·</span>
-                <BookmarkButton slug={post.slug} light />
-              </div>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">{post.subtitle}</p>
+            <div className="mt-8 flex items-center justify-center gap-6 text-[11px] tracked-sm uppercase text-muted-foreground">
+              <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
+              <span>·</span>
+              <span>{post.readMinutes} min read</span>
+              <BookmarkButton slug={post.slug} />
             </div>
           </div>
+          <img src={post.image} alt={post.title} width={1600} height={1067}
+            className="aspect-[3/2] w-full object-cover border-y hairline" />
         </header>
 
         {/* Body */}
@@ -132,7 +127,7 @@ function PostPage() {
   );
 }
 
-function BookmarkButton({ slug, light = false }: { slug: string; light?: boolean }) {
+function BookmarkButton({ slug }: { slug: string }) {
   const [saved, setSaved] = useState(false);
   useEffect(() => {
     const list: string[] = JSON.parse(localStorage.getItem("bookmarks") || "[]");
@@ -146,7 +141,7 @@ function BookmarkButton({ slug, light = false }: { slug: string; light?: boolean
     toast.success(saved ? "Removed from bookmarks" : "Saved to bookmarks");
   };
   return (
-    <button onClick={toggle} className={["inline-flex items-center gap-1 transition-colors", light ? "hover:text-white/70" : "hover:text-rust"].join(" ")}>
+    <button onClick={toggle} className="ml-2 inline-flex items-center gap-1 hover:text-rust">
       {saved ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}
       <span>{saved ? "Saved" : "Save"}</span>
     </button>
