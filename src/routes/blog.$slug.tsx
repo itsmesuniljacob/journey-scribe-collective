@@ -9,6 +9,25 @@ import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchPostBySlug, fetchPosts } from "@/lib/content-queries";
 
+// Detect Sanity CDN URLs so we can build responsive variants by swapping
+// the width param. Non-Sanity/local images fall back to a single src.
+const isSanityUrl = (u: string) => /(^https?:)?\/\/cdn\.sanity\.io\//.test(u);
+function heroSrcFor(url: string, w: number): string {
+  if (!isSanityUrl(url)) return url;
+  const u = new URL(url, "https://cdn.sanity.io");
+  u.searchParams.set("w", String(w));
+  u.searchParams.set("q", "80");
+  u.searchParams.set("auto", "format");
+  u.searchParams.set("fit", "max");
+  return u.toString();
+}
+function buildSrcSet(url: string): string | undefined {
+  if (!isSanityUrl(url)) return undefined;
+  return [640, 960, 1280, 1600, 1920, 2400]
+    .map((w) => `${heroSrcFor(url, w)} ${w}w`)
+    .join(", ");
+}
+
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
     const post = getPostBySlug(params.slug);
