@@ -109,21 +109,23 @@ function PostPage() {
       <ReadingProgress />
       <article>
         {/* Hero — image preserves natural aspect. Overlay text on sm+, stacked below on mobile. */}
-        <header
-          className="relative w-full overflow-hidden bg-muted bg-cover bg-center sm:text-white"
-          style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
-        >
-          <img
-            src={heroSrcFor(post.image, 1600)}
-            srcSet={buildSrcSet(post.image)}
-            sizes="100vw"
-            alt={post.title}
-            fetchPriority="high"
-            decoding="async"
-            className="block w-full h-auto ken-burns"
-          />
-          {/* Gradient only where overlay renders (sm+) */}
-          <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/40 via-black/10 to-black/70 sm:block" />
+        <header className="relative w-full overflow-hidden bg-background sm:text-white">
+          <div
+            className="relative w-full bg-muted bg-cover bg-center"
+            style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+          >
+            <img
+              src={heroSrcFor(post.image, 1600)}
+              srcSet={buildSrcSet(post.image)}
+              sizes="100vw"
+              alt={post.title}
+              fetchPriority="high"
+              decoding="async"
+              className="block w-full h-auto ken-burns"
+            />
+            {/* Gradient only where overlay renders (sm+) */}
+            <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/40 via-black/10 to-black/70 sm:block" />
+          </div>
           <div className="relative z-10 flex flex-col items-center px-6 py-8 text-center text-foreground fade-up sm:absolute sm:inset-x-0 sm:bottom-0 sm:pb-16 sm:text-white lg:pb-20">
             <p className="text-[11px] tracked-sm uppercase opacity-90">
               {post.category} · {post.destination}
