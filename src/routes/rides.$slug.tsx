@@ -92,12 +92,11 @@ function RidePage() {
     <PageShell overlay>
       <section className="relative h-screen w-full overflow-hidden bg-black text-white">
         <img src={r.image} alt={r.title} className="absolute inset-0 h-full w-full object-cover ken-burns" />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/40" />
+        <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-24 md:pb-32 text-center">
           <p className="fade-up text-[11px] font-medium tracking-[0.3em] uppercase opacity-90">{r.category} · {r.region}</p>
-          <h1 className="fade-up mt-6 font-serif italic text-6xl leading-[0.95] md:text-8xl lg:text-[7.5rem] max-w-5xl" style={{ animationDelay: "120ms" }}>{r.title}</h1>
-          <p className="fade-up mt-6 max-w-2xl text-lg font-light leading-relaxed opacity-90" style={{ animationDelay: "240ms" }}>{r.tagline}</p>
+          <h1 className="fade-up mt-5 font-serif italic text-6xl leading-[0.95] md:text-8xl lg:text-[7.5rem] max-w-5xl" style={{ animationDelay: "120ms" }}>{r.title}</h1>
+          <p className="fade-up mt-5 max-w-2xl text-lg font-light leading-relaxed opacity-90" style={{ animationDelay: "240ms" }}>{r.tagline}</p>
         </div>
       </section>
 
