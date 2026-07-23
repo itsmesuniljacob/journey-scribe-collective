@@ -135,6 +135,7 @@ function PostPage() {
               <span>{post.readMinutes} min read</span>
               <BookmarkButton slug={post.slug} />
             </div>
+            <ShareRow title={post.title} excerpt={post.excerpt} slug={post.slug} />
           </div>
         </header>
 
