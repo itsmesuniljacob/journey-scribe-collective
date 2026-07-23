@@ -3,7 +3,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import { getPostBySlug, posts as localPosts } from "@/content/posts";
 import type { PostBlock } from "@/content/types";
-import { Bookmark, BookmarkCheck } from "lucide-react";
+import { Bookmark, BookmarkCheck, Twitter, Facebook, Linkedin, Link2, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
