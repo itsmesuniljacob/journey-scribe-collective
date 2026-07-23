@@ -208,6 +208,73 @@ function BookmarkButton({ slug }: { slug: string }) {
   );
 }
 
+function ShareRow({ title, excerpt, slug }: { title: string; excerpt: string; slug: string }) {
+  const url = typeof window !== "undefined"
+    ? `${window.location.origin}/blog/${slug}`
+    : `https://wanderinglens.in/blog/${slug}`;
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title);
+  const encodedText = encodeURIComponent(`${title} — ${excerpt}`);
+
+  const links = [
+    { name: "Share on X", icon: Twitter, href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}` },
+    { name: "Share on Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
+    { name: "Share on LinkedIn", icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}` },
+    { name: "Share on WhatsApp", icon: Share2, href: `https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}` },
+  ];
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("Link copied");
+    } catch {
+      toast.error("Couldn't copy link");
+    }
+  };
+
+  const nativeShare = async () => {
+    if (typeof navigator !== "undefined" && (navigator as any).share) {
+      try {
+        await (navigator as any).share({ title, text: excerpt, url });
+      } catch {}
+    } else {
+      copy();
+    }
+  };
+
+  return (
+    <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+      <span className="mr-1 text-[10px] tracked-sm uppercase opacity-75">Share</span>
+      {links.map((l) => (
+        <a
+          key={l.name}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={l.name}
+          className="inline-flex h-9 w-9 items-center justify-center border border-white/40 rounded-full hover:bg-white hover:text-black transition-colors"
+        >
+          <l.icon size={14} />
+        </a>
+      ))}
+      <button
+        onClick={copy}
+        aria-label="Copy link"
+        className="inline-flex h-9 w-9 items-center justify-center border border-white/40 rounded-full hover:bg-white hover:text-black transition-colors"
+      >
+        <Link2 size={14} />
+      </button>
+      <button
+        onClick={nativeShare}
+        aria-label="Share via device"
+        className="sm:hidden inline-flex h-9 w-9 items-center justify-center border border-white/40 rounded-full hover:bg-white hover:text-black transition-colors"
+      >
+        <Share2 size={14} />
+      </button>
+    </div>
+  );
+}
+
 function RenderBlock({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "p":
