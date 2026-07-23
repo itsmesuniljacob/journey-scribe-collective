@@ -217,9 +217,7 @@ function ShareRow({ title, excerpt, slug }: { title: string; excerpt: string; sl
   const encodedText = encodeURIComponent(`${title} — ${excerpt}`);
 
   const links = [
-    { name: "Share on X", icon: Twitter, href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}` },
     { name: "Share on Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
-    { name: "Share on LinkedIn", icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}` },
     { name: "Share on WhatsApp", icon: Share2, href: `https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}` },
   ];
 
