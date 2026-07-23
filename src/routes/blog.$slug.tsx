@@ -3,7 +3,7 @@ import { PageShell } from "@/components/layout/PageShell";
 import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import { getPostBySlug, posts as localPosts } from "@/content/posts";
 import type { PostBlock } from "@/content/types";
-import { Bookmark, BookmarkCheck, Twitter, Facebook, Linkedin, Link2, Share2 } from "lucide-react";
+import { Bookmark, BookmarkCheck, Facebook, Link2, Share2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
@@ -217,9 +217,7 @@ function ShareRow({ title, excerpt, slug }: { title: string; excerpt: string; sl
   const encodedText = encodeURIComponent(`${title} — ${excerpt}`);
 
   const links = [
-    { name: "Share on X", icon: Twitter, href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}` },
     { name: "Share on Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
-    { name: "Share on LinkedIn", icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}` },
     { name: "Share on WhatsApp", icon: Share2, href: `https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}` },
   ];
 
