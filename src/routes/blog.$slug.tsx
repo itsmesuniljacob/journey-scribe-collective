@@ -108,67 +108,36 @@ function PostPage() {
     <PageShell overlay>
       <ReadingProgress />
       <article>
-        {/* Hero — mobile: Rides-style 80vh cover overlay. Desktop: original image framing (no crop) with overlay text. */}
-        <header className="relative w-full text-white">
-          {/* Mobile: full-bleed cover crop with overlay (matches Rides) */}
-          <div
-            className="relative sm:hidden h-[80vh] min-h-[520px] w-full overflow-hidden bg-muted bg-cover bg-center"
-            style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
-          >
-            <img
-              src={heroSrcFor(post.image, 1600)}
-              srcSet={buildSrcSet(post.image)}
-              sizes="100vw"
-              alt={post.title}
-              fetchPriority="high"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover ken-burns"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-            <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-16 text-center fade-up">
-              <p className="text-[11px] tracked-sm uppercase opacity-90">
-                {post.category} · {post.destination}
-              </p>
-              <h1 className="mt-4 font-serif italic text-3xl leading-[0.98] max-w-4xl">{post.title}</h1>
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed opacity-90">{post.subtitle}</p>
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] tracked-sm uppercase opacity-90">
-                <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
-                <span aria-hidden>·</span>
-                <span>{post.readMinutes} min read</span>
-                <BookmarkButton slug={post.slug} />
-              </div>
-            </div>
-          </div>
-          {/* Desktop: original image framing (no crop) with overlay */}
-          <div
-            className="relative hidden sm:block w-full overflow-hidden bg-muted bg-cover bg-center"
-            style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
-          >
-            <img
-              src={heroSrcFor(post.image, 1600)}
-              srcSet={buildSrcSet(post.image)}
-              sizes="100vw"
-              alt={post.title}
-              fetchPriority="high"
-              decoding="async"
-              className="block h-auto w-full"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-end px-6 pb-20 text-center fade-up">
-              <p className="text-[11px] tracked-sm uppercase opacity-90">
-                {post.category} · {post.destination}
-              </p>
-              <h1 className="mt-4 font-serif italic text-5xl md:text-7xl leading-[0.98] max-w-4xl">{post.title}</h1>
-              <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed opacity-90">{post.subtitle}</p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
-                <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
-                <span aria-hidden>·</span>
-                <span>{post.readMinutes} min read</span>
-                <BookmarkButton slug={post.slug} />
-              </div>
+        {/* Hero — matches destination hero: 80vh cover with centered bottom overlay */}
+        <header
+          className="relative h-[80vh] min-h-[520px] w-full overflow-hidden bg-black text-white bg-cover bg-center"
+          style={lqipFor(post.image) ? { backgroundImage: `url(${lqipFor(post.image)})` } : undefined}
+        >
+          <img
+            src={heroSrcFor(post.image, 1600)}
+            srcSet={buildSrcSet(post.image)}
+            sizes="100vw"
+            alt={post.title}
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover ken-burns"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+          <div className="relative z-10 flex h-full flex-col items-center justify-end px-6 pb-20 text-center fade-up">
+            <p className="text-[11px] tracked-sm uppercase opacity-90">
+              {post.category} · {post.destination}
+            </p>
+            <h1 className="mt-4 font-serif italic text-6xl md:text-8xl leading-[0.9] max-w-4xl">{post.title}</h1>
+            <p className="mt-4 max-w-xl text-base opacity-90">{post.subtitle}</p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-6 text-[11px] tracked-sm uppercase opacity-90">
+              <span>{new Date(post.publishedAt).toLocaleDateString("en", { month: "long", day: "numeric", year: "numeric" })}</span>
+              <span aria-hidden>·</span>
+              <span>{post.readMinutes} min read</span>
+              <BookmarkButton slug={post.slug} />
             </div>
           </div>
         </header>
+
 
 
 
