@@ -1,0 +1,12 @@
+.lovable/
+.tanstack/
+node_modules/
+public/
+sanity/
+supabase/
+package-lock.json
+package.json
+vite.config.ts
+.env
+src/assets/
+src/content/

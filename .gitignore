@@ -32,3 +32,5 @@ dist-ssr
 *.s
 sanity/schemas/destination.ts
 sanity
+.claude/
+graphify-out/
