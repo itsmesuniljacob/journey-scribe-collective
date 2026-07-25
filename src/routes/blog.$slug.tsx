@@ -226,7 +226,7 @@ function ShareRow({ title, excerpt, slug }: { title: string; excerpt: string; sl
 
   const links = [
     { name: "Share on Facebook", icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}` },
-    { name: "Share on WhatsApp", icon: WhatsAppIcon, href: `https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}` },
+    { name: "Share on WhatsApp", icon: WhatsAppIcon, href: `https://wa.me/?text=${encodedText}%20${encodedUrl}` },
   ];
 
   const copy = async () => {
