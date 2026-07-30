@@ -21,6 +21,8 @@ function DestinationsIndex() {
     initialData: localDestinations,
   });
   const regions = Array.from(new Set(destinations.map((d) => d.region)));
+  const visitedCount = destinations.filter((d) => d.visited).length;
+  const wishlistCount = destinations.length - visitedCount;
   return (
     <PageShell>
       <section className="border-b hairline">
@@ -31,6 +33,9 @@ function DestinationsIndex() {
           </h1>
           <p className="mt-6 max-w-2xl text-base text-muted-foreground">
             The map keeps growing, but I'd rather know one neighbourhood deeply than five capitals shallowly.
+          </p>
+          <p className="mt-3 text-[11px] tracked-sm uppercase text-muted-foreground">
+            {visitedCount} visited{wishlistCount > 0 && <> · {wishlistCount} on the list</>}
           </p>
         </div>
       </section>
@@ -46,7 +51,14 @@ function DestinationsIndex() {
                     <img src={d.image} alt={d.name} loading="lazy" width={600} height={750}
                       className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                   </div>
-                  <h3 className="mt-4 font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
+                  <p className="mt-4 text-[10px] tracked-sm uppercase">
+                    {d.visited ? (
+                      <span className="text-rust">Visited</span>
+                    ) : (
+                      <span className="text-muted-foreground">On the list</span>
+                    )}
+                  </p>
+                  <h3 className="font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
                 </Link>
               ))}
