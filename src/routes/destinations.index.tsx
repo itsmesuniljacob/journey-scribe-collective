@@ -1,11 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
 import { destinations as localDestinations } from "@/content/destinations";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchDestinations } from "@/lib/content-queries";
-
-const STORAGE_KEY = "wl:visited-overrides";
 
 export const Route = createFileRoute("/destinations/")({
   component: DestinationsIndex,
@@ -23,21 +20,9 @@ function DestinationsIndex() {
     queryFn: fetchDestinations,
     initialData: localDestinations,
   });
-  const [overrides, setOverrides] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setOverrides(JSON.parse(raw));
-    } catch { /* ignore */ }
-  }, []);
-
-  const isVisited = (slug: string, fallback: boolean) =>
-    overrides[slug] ?? fallback;
-
 
   const regions = Array.from(new Set(destinations.map((d) => d.region)));
-  const visitedCount = destinations.filter((d) => isVisited(d.slug, d.visited)).length;
+  const visitedCount = destinations.filter((d) => d.visited).length;
   const wishlistCount = destinations.length - visitedCount;
   return (
     <PageShell>
