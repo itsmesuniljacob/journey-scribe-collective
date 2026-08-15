@@ -1,12 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Check, Bookmark } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { destinations as localDestinations } from "@/content/destinations";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchDestinations } from "@/lib/content-queries";
-
-const STORAGE_KEY = "wl:visited-overrides";
 
 export const Route = createFileRoute("/destinations/")({
   component: DestinationsIndex,
@@ -24,28 +20,9 @@ function DestinationsIndex() {
     queryFn: fetchDestinations,
     initialData: localDestinations,
   });
-  const [overrides, setOverrides] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) setOverrides(JSON.parse(raw));
-    } catch { /* ignore */ }
-  }, []);
-
-  const isVisited = (slug: string, fallback: boolean) =>
-    overrides[slug] ?? fallback;
-
-  const toggleVisited = (slug: string, current: boolean) => {
-    setOverrides((prev) => {
-      const next = { ...prev, [slug]: !current };
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch { /* ignore */ }
-      return next;
-    });
-  };
 
   const regions = Array.from(new Set(destinations.map((d) => d.region)));
-  const visitedCount = destinations.filter((d) => isVisited(d.slug, d.visited)).length;
+  const visitedCount = destinations.filter((d) => d.visited).length;
   const wishlistCount = destinations.length - visitedCount;
   return (
     <PageShell>
@@ -70,7 +47,7 @@ function DestinationsIndex() {
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">{region}</p>
             <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
               {destinations.filter((d) => d.region === region).map((d) => {
-                const visited = isVisited(d.slug, d.visited);
+                const visited = d.visited;
                 return (
                 <div key={d.slug} className="group block">
                   <Link to="/destinations/$slug" params={{ slug: d.slug }} className="block">
@@ -88,20 +65,6 @@ function DestinationsIndex() {
                     <h3 className="font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => toggleVisited(d.slug, visited)}
-                    aria-pressed={visited}
-                    aria-label={visited ? `Move ${d.name} back to the list` : `Mark ${d.name} as visited`}
-                    className={`mt-3 inline-flex items-center gap-2 border hairline px-3 py-1.5 text-[10px] tracked-sm uppercase transition-colors ${
-                      visited
-                        ? "text-rust hover:bg-rust hover:text-background"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {visited ? <Check className="h-3 w-3" /> : <Bookmark className="h-3 w-3" />}
-                    {visited ? "Move to list" : "Mark visited"}
-                  </button>
                 </div>
                 );
               })}
