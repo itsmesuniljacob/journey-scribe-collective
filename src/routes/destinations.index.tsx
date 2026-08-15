@@ -80,20 +80,6 @@ function DestinationsIndex() {
                     <h3 className="font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => toggleVisited(d.slug, visited)}
-                    aria-pressed={visited}
-                    aria-label={visited ? `Move ${d.name} back to the list` : `Mark ${d.name} as visited`}
-                    className={`mt-3 inline-flex items-center gap-2 border hairline px-3 py-1.5 text-[10px] tracked-sm uppercase transition-colors ${
-                      visited
-                        ? "text-rust hover:bg-rust hover:text-background"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {visited ? <Check className="h-3 w-3" /> : <Bookmark className="h-3 w-3" />}
-                    {visited ? "Move to list" : "Mark visited"}
-                  </button>
                 </div>
                 );
               })}
