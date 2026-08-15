@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Check, Bookmark } from "lucide-react";
 import { PageShell } from "@/components/layout/PageShell";
 import { destinations as localDestinations } from "@/content/destinations";
 import { useQuery } from "@tanstack/react-query";
