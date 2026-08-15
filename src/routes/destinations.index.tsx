@@ -47,7 +47,7 @@ function DestinationsIndex() {
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">{region}</p>
             <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
               {destinations.filter((d) => d.region === region).map((d) => {
-                const visited = isVisited(d.slug, d.visited);
+                const visited = d.visited;
                 return (
                 <div key={d.slug} className="group block">
                   <Link to="/destinations/$slug" params={{ slug: d.slug }} className="block">
