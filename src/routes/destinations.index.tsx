@@ -69,23 +69,42 @@ function DestinationsIndex() {
           <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10">
             <p className="text-[11px] tracked-sm uppercase text-muted-foreground">{region}</p>
             <div className="mt-8 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-              {destinations.filter((d) => d.region === region).map((d) => (
-                <Link key={d.slug} to="/destinations/$slug" params={{ slug: d.slug }} className="group block">
-                  <div className="overflow-hidden border hairline">
-                    <img src={d.image} alt={d.name} loading="lazy" width={600} height={750}
-                      className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                  </div>
-                  <p className="mt-4 text-[10px] tracked-sm uppercase">
-                    {d.visited ? (
-                      <span className="text-rust">Visited</span>
-                    ) : (
-                      <span className="text-muted-foreground">On the list</span>
-                    )}
-                  </p>
-                  <h3 className="font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
-                </Link>
-              ))}
+              {destinations.filter((d) => d.region === region).map((d) => {
+                const visited = isVisited(d.slug, d.visited);
+                return (
+                <div key={d.slug} className="group block">
+                  <Link to="/destinations/$slug" params={{ slug: d.slug }} className="block">
+                    <div className="overflow-hidden border hairline">
+                      <img src={d.image} alt={d.name} loading="lazy" width={600} height={750}
+                        className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                    </div>
+                    <p className="mt-4 text-[10px] tracked-sm uppercase">
+                      {visited ? (
+                        <span className="text-rust">Visited</span>
+                      ) : (
+                        <span className="text-muted-foreground">On the list</span>
+                      )}
+                    </p>
+                    <h3 className="font-serif italic text-2xl group-hover:text-rust transition-colors">{d.name}</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">{d.tagline}</p>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => toggleVisited(d.slug, visited)}
+                    aria-pressed={visited}
+                    aria-label={visited ? `Move ${d.name} back to the list` : `Mark ${d.name} as visited`}
+                    className={`mt-3 inline-flex items-center gap-2 border hairline px-3 py-1.5 text-[10px] tracked-sm uppercase transition-colors ${
+                      visited
+                        ? "text-rust hover:bg-rust hover:text-background"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {visited ? <Check className="h-3 w-3" /> : <Bookmark className="h-3 w-3" />}
+                    {visited ? "Move to list" : "Mark visited"}
+                  </button>
+                </div>
+                );
+              })}
             </div>
           </div>
         </section>
