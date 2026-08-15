@@ -1,10 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useSearch } from "@tanstack/react-router";
+import { zodValidator, fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import { PageShell } from "@/components/layout/PageShell";
 import { destinations as localDestinations } from "@/content/destinations";
 import { useQuery } from "@tanstack/react-query";
 import { contentKeys, fetchDestinations } from "@/lib/content-queries";
 
+const destinationsSearchSchema = z.object({
+  filter: fallback(z.string(), "all").default("all"),
+});
+
 export const Route = createFileRoute("/destinations/")({
+  validateSearch: zodValidator(destinationsSearchSchema),
   component: DestinationsIndex,
   head: () => ({
     meta: [
