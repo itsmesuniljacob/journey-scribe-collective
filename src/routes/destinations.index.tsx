@@ -35,13 +35,6 @@ function DestinationsIndex() {
   const isVisited = (slug: string, fallback: boolean) =>
     overrides[slug] ?? fallback;
 
-  const toggleVisited = (slug: string, current: boolean) => {
-    setOverrides((prev) => {
-      const next = { ...prev, [slug]: !current };
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(next)); } catch { /* ignore */ }
-      return next;
-    });
-  };
 
   const regions = Array.from(new Set(destinations.map((d) => d.region)));
   const visitedCount = destinations.filter((d) => isVisited(d.slug, d.visited)).length;
