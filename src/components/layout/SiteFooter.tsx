@@ -42,7 +42,9 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-3 border-t hairline pt-6 text-[11px] tracked-sm uppercase text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} My Travel Blog</p>
+          <VisitorCount />
           <p>Made slowly, from different time zones.</p>
+
         </div>
       </div>
     </footer>
