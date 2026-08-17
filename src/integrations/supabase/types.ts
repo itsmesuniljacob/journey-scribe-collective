@@ -32,11 +32,30 @@ export type Database = {
         }
         Relationships: []
       }
+      site_visits: {
+        Row: {
+          id: boolean
+          updated_at: string
+          visits: number
+        }
+        Insert: {
+          id?: boolean
+          updated_at?: string
+          visits?: number
+        }
+        Update: {
+          id?: boolean
+          updated_at?: string
+          visits?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      record_site_visit: { Args: { p_increment?: boolean }; Returns: number }
       subscribe_newsletter: { Args: { p_email: string }; Returns: Json }
     }
     Enums: {
