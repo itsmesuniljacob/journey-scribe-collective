@@ -1,5 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Mail, Twitter } from "lucide-react";
+import { VisitorCount } from "@/components/VisitorCount";
+
 
 export function SiteFooter() {
   return (
