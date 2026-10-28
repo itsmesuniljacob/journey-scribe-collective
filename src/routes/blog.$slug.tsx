@@ -388,6 +388,32 @@ function RenderBlock({ block }: { block: PostBlock }) {
           </div>
         </div>
       );
+    case "table":
+      return (
+        <div className="my-10 border hairline overflow-x-auto">
+          <table className="w-full text-sm">
+            {block.header && (
+              <thead>
+                <tr className="border-b hairline bg-muted/40">
+                  {block.header.map((h, k) => (
+                    <th key={k} className="p-4 text-left text-[11px] tracked-sm uppercase">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {block.rows.map((row, k) => (
+                <tr key={k} className="border-b hairline last:border-b-0">
+                  {row.map((c, j) => <td key={j} className="p-4 align-top leading-relaxed">{c}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {block.caption && (
+            <p className="border-t hairline p-4 text-center text-[11px] tracked-sm uppercase text-muted-foreground">{block.caption}</p>
+          )}
+        </div>
+      );
     case "faq":
       return (
         <div className="my-10 border-t hairline">
