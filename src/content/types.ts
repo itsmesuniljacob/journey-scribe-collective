@@ -31,6 +31,7 @@ export type PostBlock =
   | { type: "itinerary"; day: number; title: string; items: string[] }
   | { type: "budget"; rows: { label: string; amount: string }[]; total?: string }
   | { type: "proscons"; pros: string[]; cons: string[] }
+  | { type: "table"; caption?: string; header?: string[]; rows: string[][] }
   | { type: "faq"; items: { q: string; a: string }[] };
 
 export interface Destination {
