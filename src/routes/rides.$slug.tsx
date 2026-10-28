@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { getRideBySlug, rides } from "@/content/rides";
+import { RichText } from "@/components/RichText";
 import type { PostBlock } from "@/content/types";
 
 const SITE_URL = "https://wanderinglens.in";
@@ -174,7 +175,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 function Block({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "p":
-      return <p className="text-base leading-relaxed text-foreground/90">{block.text}</p>;
+      return <p className="text-base leading-relaxed text-foreground/90"><RichText spans={block.rich} text={block.text} /></p>;
     case "h2":
       return <h2 className="mt-10 font-serif italic text-3xl">{block.text}</h2>;
     case "h3":
@@ -182,7 +183,7 @@ function Block({ block }: { block: PostBlock }) {
     case "list":
       return (
         <ul className="space-y-2 text-base text-foreground/90">
-          {block.items.map((it, i) => <li key={i}>· {it}</li>)}
+          {block.items.map((it, i) => <li key={i}>· <RichText spans={block.richItems?.[i]} text={it} /></li>)}
         </ul>
       );
     case "callout":
@@ -192,7 +193,7 @@ function Block({ block }: { block: PostBlock }) {
           block.tone === "warn" ? "border-rust" : block.tone === "tip" ? "border-foreground" : "border-muted-foreground",
         ].join(" ")}>
           {block.title && <p className="text-[11px] tracked-sm uppercase text-rust">{block.title}</p>}
-          <p className="mt-1 text-base text-foreground/90">{block.text}</p>
+          <p className="mt-1 text-base text-foreground/90"><RichText spans={block.rich} text={block.text} /></p>
         </aside>
       );
     case "itinerary":
@@ -207,7 +208,7 @@ function Block({ block }: { block: PostBlock }) {
     case "quote":
       return (
         <blockquote className="border-l-2 border-rust pl-5 font-serif italic text-2xl">
-          "{block.text}"
+          "<RichText spans={block.rich} text={block.text} />"
           {block.cite && <footer className="mt-2 text-[11px] tracked-sm uppercase not-italic text-muted-foreground">— {block.cite}</footer>}
         </blockquote>
       );

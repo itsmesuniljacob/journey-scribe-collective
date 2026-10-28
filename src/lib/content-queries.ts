@@ -1,5 +1,5 @@
 import { sanityClient, urlFor } from "./sanity";
-import type { Post, Destination, PostBlock } from "@/content/types";
+import type { Post, Destination, PostBlock, RichSpan } from "@/content/types";
 import { posts as localPosts } from "@/content/posts";
 import { destinations as localDestinations } from "@/content/destinations";
 
@@ -165,8 +165,8 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       if (!text.trim()) { i++; continue; }
       // bullet list run
       if (nb.listItem === "bullet") {
-        const { items, next } = readBullets(pt, i);
-        flushList(items);
+        const { items, richItems, next } = readBullets(pt, i);
+        flushList(items, richItems);
         i = next;
         continue;
       }
@@ -176,7 +176,7 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
         if (next && next._type === "block" && (!next.style || next.style === "normal") && !next.listItem) {
           const body = (next.children || []).map((c) => c.text || "").join("");
           if (body.trim()) {
-            out.push({ type: "callout", title: text.trim(), text: body });
+            out.push({ type: "callout", title: text.trim(), text: body, rich: toRich(next) });
             i += 2;
             continue;
           }
@@ -256,8 +256,8 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
       }
       if (nb.style === "h2") out.push({ type: "h2", text });
       else if (nb.style === "h3") out.push({ type: "h3", text });
-      else if (nb.style === "blockquote") out.push({ type: "quote", text });
-      else out.push({ type: "p", text });
+      else if (nb.style === "blockquote") out.push({ type: "quote", text, rich: toRich(nb) });
+      else out.push({ type: "p", text, rich: toRich(nb) });
       i++;
     } else if (b._type === "image") {
       const src = imgUrlMax(b as unknown as SanityImage, 1600);

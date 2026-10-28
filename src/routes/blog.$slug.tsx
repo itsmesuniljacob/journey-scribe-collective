@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageShell } from "@/components/layout/PageShell";
 import { ReadingProgress } from "@/components/layout/ReadingProgress";
 import { getPostBySlug, posts as localPosts } from "@/content/posts";
+import { RichText } from "@/components/RichText";
 import type { PostBlock } from "@/content/types";
 import { Bookmark, BookmarkCheck, Facebook, Link2, Share2 } from "lucide-react";
 
@@ -309,7 +310,7 @@ function ShareRow({ title, excerpt, slug }: { title: string; excerpt: string; sl
 function RenderBlock({ block }: { block: PostBlock }) {
   switch (block.type) {
     case "p":
-      return <p className="mb-6 text-lg leading-[1.8] text-foreground">{block.text}</p>;
+      return <p className="mb-6 text-lg leading-[1.8] text-foreground"><RichText spans={block.rich} text={block.text} /></p>;
     case "h2":
       return <h2 className="mt-12 mb-4 font-serif italic text-3xl md:text-4xl">{block.text}</h2>;
     case "h3":
@@ -317,7 +318,7 @@ function RenderBlock({ block }: { block: PostBlock }) {
     case "quote":
       return (
         <blockquote className="my-10 border-l-2 border-rust pl-6">
-          <p className="font-serif italic text-2xl leading-snug">"{block.text}"</p>
+          <p className="font-serif italic text-2xl leading-snug">"<RichText spans={block.rich} text={block.text} />"</p>
           {block.cite && <cite className="mt-3 block text-[11px] tracked-sm uppercase text-muted-foreground not-italic">— {block.cite}</cite>}
         </blockquote>
       );
@@ -325,13 +326,13 @@ function RenderBlock({ block }: { block: PostBlock }) {
       return (
         <aside className="my-10 border hairline bg-muted/40 p-6">
           {block.title && <p className="text-[11px] tracked-sm uppercase text-rust">{block.title}</p>}
-          <p className="mt-2 text-base leading-relaxed">{block.text}</p>
+          <p className="mt-2 text-base leading-relaxed"><RichText spans={block.rich} text={block.text} /></p>
         </aside>
       );
     case "list":
       return (
         <ul className="my-6 list-disc space-y-2 pl-6 text-lg leading-relaxed">
-          {block.items.map((i, k) => <li key={k}>{i}</li>)}
+          {block.items.map((i, k) => <li key={k}><RichText spans={block.richItems?.[k]} text={i} /></li>)}
         </ul>
       );
     case "image":
