@@ -98,16 +98,49 @@ const BUDGET_TITLES = /^(budget|cost breakdown|costs?|what it cost|spend(ing)?)\
 const BUDGET_ROW = /^(.+?)\s*[—–\-:]\s*([^\s].*)$/;
 const FAQ_TITLES = /^(faq|frequently asked|questions?|q\s*&\s*a)\b/i;
 
-interface NormalBlock { _type: "block"; style?: string; listItem?: string; children?: { text?: string }[] }
+interface NormalBlock {
+  _type: "block";
+  style?: string;
+  listItem?: string;
+  children?: { text?: string; marks?: string[] }[];
+  markDefs?: { _key: string; _type: string; href?: string }[];
+}
 
-function readBullets(pt: SanityPortableBlock[], start: number): { items: string[]; next: number } {
+/** Convert a block's children into styled spans; undefined when there is no formatting at all. */
+function toRich(block: NormalBlock | undefined): RichSpan[] | undefined {
+  if (!block) return undefined;
+  const defs = block.markDefs || [];
+  let formatted = false;
+  const spans = (block.children || []).map((c) => {
+    const marks = c.marks || [];
+    const span: RichSpan = { text: c.text || "" };
+    for (const m of marks) {
+      if (m === "strong") span.bold = true;
+      else if (m === "em") span.italic = true;
+      else if (m === "underline") span.underline = true;
+      else if (m === "strike-through") span.strike = true;
+      else if (m === "code") span.code = true;
+      else {
+        const def = defs.find((d) => d._key === m);
+        if (def?.href) span.href = def.href;
+      }
+    }
+    if (marks.length) formatted = true;
+    return span;
+  });
+  return formatted ? spans : undefined;
+}
+
+function readBullets(pt: SanityPortableBlock[], start: number): { items: string[]; richItems: (RichSpan[] | undefined)[]; next: number } {
   const items: string[] = [];
+  const richItems: (RichSpan[] | undefined)[] = [];
   let j = start;
   while (j < pt.length && (pt[j] as NormalBlock).listItem === "bullet") {
     items.push(((pt[j] as NormalBlock).children || []).map((c) => c.text || "").join(""));
+    richItems.push(toRich(pt[j] as NormalBlock));
     j++;
   }
-  return { items, next: j };
+  return { items, richItems, next: j };
 }
 
 function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
@@ -115,7 +148,15 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
   const out: PostBlock[] = [];
   let i = 0;
   // collect adjacent bullet items into a single list
-  const flushList = (items: string[]) => { if (items.length) out.push({ type: "list", items }); };
+  const flushList = (items: string[], richItems: (RichSpan[] | undefined)[]) => {
+    if (!items.length) return;
+    const anyRich = richItems.some(Boolean);
+    out.push({
+      type: "list",
+      items,
+      richItems: anyRich ? richItems.map((r, k) => r ?? [{ text: items[k] }]) : undefined,
+    });
+  };
   while (i < pt.length) {
     const b = pt[i];
     if (b._type === "block") {
