@@ -27,6 +27,9 @@ interface SanityPortableBlock {
   items?: (string | { q?: string; a?: string })[];
   rows?: { label?: string; amount?: string }[];
   total?: string;
+  // custom table object fields
+  header?: string[];
+  tableRows?: { cells?: string[] }[];
 }
 
 interface SanityPost {
