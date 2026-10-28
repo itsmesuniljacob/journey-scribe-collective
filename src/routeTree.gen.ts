@@ -9,27 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TrustRouteImport } from './routes/trust'
-import { Route as SearchRouteImport } from './routes/search'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RidesIndexRouteImport } from './routes/rides.index'
-import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as TrustRouteImport } from './routes/trust'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
-import { Route as ToolsTripCalculatorRouteImport } from './routes/tools.trip-calculator'
-import { Route as ToolsItineraryBuilderRouteImport } from './routes/tools.itinerary-builder'
-import { Route as RidesSlugRouteImport } from './routes/rides.$slug'
-import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
+import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
+import { Route as RidesIndexRouteImport } from './routes/rides.index'
+import { Route as RidesSlugRouteImport } from './routes/rides.$slug'
+import { Route as ToolsItineraryBuilderRouteImport } from './routes/tools.itinerary-builder'
+import { Route as ToolsTripCalculatorRouteImport } from './routes/tools.trip-calculator'
 
-const TrustRoute = TrustRouteImport.update({
-  id: '/trust',
-  path: '/trust',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SearchRoute = SearchRouteImport.update({
-  id: '/search',
-  path: '/search',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -37,19 +32,14 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RidesIndexRoute = RidesIndexRouteImport.update({
-  id: '/rides/',
-  path: '/rides/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
-  id: '/destinations/',
-  path: '/destinations/',
+const TrustRoute = TrustRouteImport.update({
+  id: '/trust',
+  path: '/trust',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -57,19 +47,14 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsTripCalculatorRoute = ToolsTripCalculatorRouteImport.update({
-  id: '/tools/trip-calculator',
-  path: '/tools/trip-calculator',
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolsItineraryBuilderRoute = ToolsItineraryBuilderRouteImport.update({
-  id: '/tools/itinerary-builder',
-  path: '/tools/itinerary-builder',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RidesSlugRoute = RidesSlugRouteImport.update({
-  id: '/rides/$slug',
-  path: '/rides/$slug',
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/destinations/',
+  path: '/destinations/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
@@ -77,9 +62,24 @@ const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
   path: '/destinations/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
+const RidesIndexRoute = RidesIndexRouteImport.update({
+  id: '/rides/',
+  path: '/rides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RidesSlugRoute = RidesSlugRouteImport.update({
+  id: '/rides/$slug',
+  path: '/rides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsItineraryBuilderRoute = ToolsItineraryBuilderRouteImport.update({
+  id: '/tools/itinerary-builder',
+  path: '/tools/itinerary-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsTripCalculatorRoute = ToolsTripCalculatorRouteImport.update({
+  id: '/tools/trip-calculator',
+  path: '/tools/trip-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -188,18 +188,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/trust': {
-      id: '/trust'
-      path: '/trust'
-      fullPath: '/trust'
-      preLoaderRoute: typeof TrustRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/search': {
-      id: '/search'
-      path: '/search'
-      fullPath: '/search'
-      preLoaderRoute: typeof SearchRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -209,25 +202,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/rides/': {
-      id: '/rides/'
-      path: '/rides'
-      fullPath: '/rides/'
-      preLoaderRoute: typeof RidesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/destinations/': {
-      id: '/destinations/'
-      path: '/destinations'
-      fullPath: '/destinations/'
-      preLoaderRoute: typeof DestinationsIndexRouteImport
+    '/trust': {
+      id: '/trust'
+      path: '/trust'
+      fullPath: '/trust'
+      preLoaderRoute: typeof TrustRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -237,25 +223,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools/trip-calculator': {
-      id: '/tools/trip-calculator'
-      path: '/tools/trip-calculator'
-      fullPath: '/tools/trip-calculator'
-      preLoaderRoute: typeof ToolsTripCalculatorRouteImport
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/tools/itinerary-builder': {
-      id: '/tools/itinerary-builder'
-      path: '/tools/itinerary-builder'
-      fullPath: '/tools/itinerary-builder'
-      preLoaderRoute: typeof ToolsItineraryBuilderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/rides/$slug': {
-      id: '/rides/$slug'
-      path: '/rides/$slug'
-      fullPath: '/rides/$slug'
-      preLoaderRoute: typeof RidesSlugRouteImport
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/destinations'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/destinations/$slug': {
@@ -265,11 +244,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DestinationsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/$slug': {
-      id: '/blog/$slug'
-      path: '/blog/$slug'
-      fullPath: '/blog/$slug'
-      preLoaderRoute: typeof BlogSlugRouteImport
+    '/rides/': {
+      id: '/rides/'
+      path: '/rides'
+      fullPath: '/rides/'
+      preLoaderRoute: typeof RidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rides/$slug': {
+      id: '/rides/$slug'
+      path: '/rides/$slug'
+      fullPath: '/rides/$slug'
+      preLoaderRoute: typeof RidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/itinerary-builder': {
+      id: '/tools/itinerary-builder'
+      path: '/tools/itinerary-builder'
+      fullPath: '/tools/itinerary-builder'
+      preLoaderRoute: typeof ToolsItineraryBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/trip-calculator': {
+      id: '/tools/trip-calculator'
+      path: '/tools/trip-calculator'
+      fullPath: '/tools/trip-calculator'
+      preLoaderRoute: typeof ToolsTripCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
