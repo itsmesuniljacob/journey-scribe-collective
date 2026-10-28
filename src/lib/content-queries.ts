@@ -27,9 +27,6 @@ interface SanityPortableBlock {
   items?: (string | { q?: string; a?: string })[];
   rows?: { label?: string; amount?: string }[];
   total?: string;
-  // custom table object fields
-  header?: string[];
-  tableRows?: { cells?: string[] }[];
 }
 
 interface SanityPost {
@@ -251,6 +248,14 @@ function portableToBlocks(pt?: SanityPortableBlock[]): PostBlock[] {
     } else if (b._type === "faq") {
       const items = ((b.items as { q?: string; a?: string }[]) || []).map((it) => ({ q: it.q || "", a: it.a || "" }));
       out.push({ type: "faq", items });
+      i++;
+    } else if (b._type === "table") {
+      const t = b as unknown as { caption?: string; header?: string[]; rows?: { cells?: string[] }[] };
+      const header = (t.header || []).map(String).map((s) => s.trim()).filter(Boolean);
+      const rows = (t.rows || []).map((r) => (r.cells || []).map(String));
+      if (header.length || rows.length) {
+        out.push({ type: "table", caption: t.caption, header: header.length ? header : undefined, rows });
+      }
       i++;
     } else {
       i++;

@@ -218,6 +218,32 @@ function Block({ block }: { block: PostBlock }) {
           {block.caption && <figcaption className="mt-2 text-[11px] tracked-sm uppercase text-muted-foreground">{block.caption}</figcaption>}
         </figure>
       );
+    case "table":
+      return (
+        <div className="my-6 border hairline overflow-x-auto">
+          <table className="w-full text-sm">
+            {block.header && (
+              <thead>
+                <tr className="border-b hairline bg-muted/40">
+                  {block.header.map((h, k) => (
+                    <th key={k} className="p-3 text-left text-[11px] tracked-sm uppercase">{h}</th>
+                  ))}
+                </tr>
+              </thead>
+            )}
+            <tbody>
+              {block.rows.map((row, k) => (
+                <tr key={k} className="border-b hairline last:border-b-0">
+                  {row.map((c, j) => <td key={j} className="p-3 align-top text-foreground/90">{c}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {block.caption && (
+            <p className="border-t hairline p-3 text-center text-[11px] tracked-sm uppercase text-muted-foreground">{block.caption}</p>
+          )}
+        </div>
+      );
     default:
       return null;
   }
