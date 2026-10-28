@@ -20,13 +20,23 @@ export interface Post {
   tags: string[];
 }
 
+export interface RichSpan {
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
+  code?: boolean;
+  href?: string;
+}
+
 export type PostBlock =
-  | { type: "p"; text: string }
+  | { type: "p"; text: string; rich?: RichSpan[] }
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
-  | { type: "quote"; text: string; cite?: string }
-  | { type: "callout"; tone?: "tip" | "warn" | "note"; title?: string; text: string }
-  | { type: "list"; items: string[] }
+  | { type: "quote"; text: string; cite?: string; rich?: RichSpan[] }
+  | { type: "callout"; tone?: "tip" | "warn" | "note"; title?: string; text: string; rich?: RichSpan[] }
+  | { type: "list"; items: string[]; richItems?: RichSpan[][] }
   | { type: "image"; src: string; caption?: string }
   | { type: "itinerary"; day: number; title: string; items: string[] }
   | { type: "budget"; rows: { label: string; amount: string }[]; total?: string }
