@@ -18,7 +18,7 @@ export function RichText({ spans, text }: { spans?: RichSpan[]; text: string }) 
           node = (
             <a
               href={s.href}
-              className="underline decoration-rust underline-offset-4 hover:text-rust"
+              className="font-medium text-rust underline decoration-rust/60 decoration-2 underline-offset-4 transition-colors hover:decoration-rust"
               {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {node}
