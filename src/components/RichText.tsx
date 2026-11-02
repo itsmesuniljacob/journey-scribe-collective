@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ExternalLink } from "lucide-react";
 import type { RichSpan } from "@/content/types";
 
 /** Renders inline text with bold / italic / underline / strike / code / links. Falls back to plain text. */
@@ -14,7 +15,13 @@ export function RichText({ spans, text }: { spans?: RichSpan[]; text: string }) 
         if (s.underline) node = <u>{node}</u>;
         if (s.strike) node = <s>{node}</s>;
         if (s.href) {
-          const external = /^https?:\/\//.test(s.href);
+          let external = /^https?:\/\//.test(s.href);
+          if (external) {
+            try {
+              const host = new URL(s.href).hostname.replace(/^www\./, "");
+              if (host === "wanderinglens.in") external = false;
+            } catch {}
+          }
           node = (
             <a
               href={s.href}
@@ -22,6 +29,12 @@ export function RichText({ spans, text }: { spans?: RichSpan[]; text: string }) 
               {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {node}
+              {external && (
+                <>
+                  <ExternalLink aria-hidden="true" className="ml-0.5 inline-block h-[0.8em] w-[0.8em] align-baseline" />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </>
+              )}
             </a>
           );
         }
