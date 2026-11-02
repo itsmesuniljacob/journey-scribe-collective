@@ -40,5 +40,15 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
       throw new Error(parsed.error || "Subscription failed");
     }
 
+    // Welcome email — failure must never block the subscription itself.
+    try {
+      const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
+      await sendTemplateEmail("newsletter-welcome", data.email, {
+        idempotencyKey: `newsletter-welcome-${data.email.toLowerCase()}`,
+      });
+    } catch (e) {
+      console.error("Welcome email failed", e);
+    }
+
     return { success: true, message: parsed.message || "Subscribed successfully" };
   });
