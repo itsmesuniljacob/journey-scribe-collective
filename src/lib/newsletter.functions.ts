@@ -45,6 +45,7 @@ export const subscribeNewsletter = createServerFn({ method: "POST" })
       const { sendTemplateEmail } = await import("@/lib/email-templates/send-email");
       await sendTemplateEmail("newsletter-welcome", data.email, {
         idempotencyKey: `newsletter-welcome-${data.email.toLowerCase()}`,
+        replyTo: "notify@wanderinglens.in",
       });
     } catch (e) {
       console.error("Welcome email failed", e);
