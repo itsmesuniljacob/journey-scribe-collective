@@ -267,7 +267,7 @@ function AboutBlock() {
             >
               Read my story →
             </Link>
-            <span className="text-[11px] tracked-sm uppercase text-muted-foreground">10 countries · 4 years</span>
+            <span className="text-[11px] tracked-sm uppercase text-muted-foreground">{visited} countries · 4 years</span>
           </div>
         </div>
       </div>
