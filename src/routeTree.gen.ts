@@ -21,6 +21,7 @@ import { Route as RidesIndexRouteImport } from './routes/rides.index'
 import { Route as RidesSlugRouteImport } from './routes/rides.$slug'
 import { Route as ToolsItineraryBuilderRouteImport } from './routes/tools.itinerary-builder'
 import { Route as ToolsTripCalculatorRouteImport } from './routes/tools.trip-calculator'
+import { Route as ToolsTripMatcherRouteImport } from './routes/tools.trip-matcher'
 import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 
 const IndexRoute = IndexRouteImport.update({
@@ -83,6 +84,11 @@ const ToolsTripCalculatorRoute = ToolsTripCalculatorRouteImport.update({
   path: '/tools/trip-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ToolsTripMatcherRoute = ToolsTripMatcherRouteImport.update({
+  id: '/tools/trip-matcher',
+  path: '/tools/trip-matcher',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailTransactionalPreviewRoute =
   LovableEmailTransactionalPreviewRouteImport.update({
     id: '/lovable/email/transactional/preview',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
+  '/tools/trip-matcher': typeof ToolsTripMatcherRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/rides/': typeof RidesIndexRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
+  '/tools/trip-matcher': typeof ToolsTripMatcherRoute
   '/blog': typeof BlogIndexRoute
   '/destinations': typeof DestinationsIndexRoute
   '/rides': typeof RidesIndexRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/rides/$slug': typeof RidesSlugRoute
   '/tools/itinerary-builder': typeof ToolsItineraryBuilderRoute
   '/tools/trip-calculator': typeof ToolsTripCalculatorRoute
+  '/tools/trip-matcher': typeof ToolsTripMatcherRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
   '/rides/': typeof RidesIndexRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
+    | '/tools/trip-matcher'
     | '/blog/'
     | '/destinations/'
     | '/rides/'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
+    | '/tools/trip-matcher'
     | '/blog'
     | '/destinations'
     | '/rides'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/rides/$slug'
     | '/tools/itinerary-builder'
     | '/tools/trip-calculator'
+    | '/tools/trip-matcher'
     | '/blog/'
     | '/destinations/'
     | '/rides/'
@@ -194,6 +206,7 @@ export interface RootRouteChildren {
   RidesSlugRoute: typeof RidesSlugRoute
   ToolsItineraryBuilderRoute: typeof ToolsItineraryBuilderRoute
   ToolsTripCalculatorRoute: typeof ToolsTripCalculatorRoute
+  ToolsTripMatcherRoute: typeof ToolsTripMatcherRoute
   BlogIndexRoute: typeof BlogIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
   RidesIndexRoute: typeof RidesIndexRoute
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ToolsTripCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tools/trip-matcher': {
+      id: '/tools/trip-matcher'
+      path: '/tools/trip-matcher'
+      fullPath: '/tools/trip-matcher'
+      preLoaderRoute: typeof ToolsTripMatcherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/transactional/preview': {
       id: '/lovable/email/transactional/preview'
       path: '/lovable/email/transactional/preview'
@@ -306,6 +326,7 @@ const rootRouteChildren: RootRouteChildren = {
   RidesSlugRoute: RidesSlugRoute,
   ToolsItineraryBuilderRoute: ToolsItineraryBuilderRoute,
   ToolsTripCalculatorRoute: ToolsTripCalculatorRoute,
+  ToolsTripMatcherRoute: ToolsTripMatcherRoute,
   BlogIndexRoute: BlogIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
   RidesIndexRoute: RidesIndexRoute,
