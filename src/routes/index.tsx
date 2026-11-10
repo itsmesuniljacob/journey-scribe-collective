@@ -243,6 +243,11 @@ function DestinationsStrip() {
 }
 
 function AboutBlock() {
+  const { data: destinations = [] } = useQuery({
+    queryKey: contentKeys.destinations,
+    queryFn: fetchDestinations,
+  });
+  const visited = destinations.filter((d) => d.visited).length;
   return (
     <section className="border-t hairline bg-background">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
