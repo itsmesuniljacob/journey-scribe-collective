@@ -36,6 +36,7 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm">
               <li><Link to="/tools/trip-calculator" className="hover:text-rust">Trip cost calculator</Link></li>
               <li><Link to="/tools/itinerary-builder" className="hover:text-rust">Itinerary builder</Link></li>
+              <li><Link to="/tools/trip-matcher" className="hover:text-rust">Trip matcher</Link></li>
             </ul>
           </div>
         </div>
