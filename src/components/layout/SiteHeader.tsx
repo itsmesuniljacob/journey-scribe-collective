@@ -1,8 +1,14 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Instagram, Search, Moon, Sun, Menu, X } from "lucide-react";
+import { Instagram, Search, Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface Props {
   /** When true the header sits over a dark hero image — start as transparent white text. */
@@ -12,7 +18,11 @@ interface Props {
 export function SiteHeader({ overlay = false }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const { theme, toggle } = useTheme();
+
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const toolsActive = pathname === "/tools" || pathname.startsWith("/tools/");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -50,6 +60,43 @@ export function SiteHeader({ overlay = false }: Props) {
               {item.label}
             </Link>
           ))}
+
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              className={cn(
+                "group flex items-center gap-1.5 text-[11px] tracked-sm uppercase font-medium transition-colors hover:text-rust outline-none",
+                toolsActive && "text-rust"
+              )}
+            >
+              Tools
+              <ChevronDown
+                size={12}
+                className="transition-transform duration-200 group-data-[state=open]:rotate-180"
+              />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              sideOffset={12}
+              className="min-w-[15rem] rounded-none border hairline bg-popover p-1.5 text-popover-foreground shadow-lg"
+            >
+              {TOOLS.map((tool) => (
+                <DropdownMenuItem
+                  key={tool.to}
+                  asChild
+                  className="rounded-none px-3 py-2.5 focus:bg-accent/60"
+                >
+                  <Link to={tool.to} className="flex flex-col gap-0.5">
+                    <span className="text-[11px] tracked-sm uppercase font-medium">
+                      {tool.label}
+                    </span>
+                    <span className="text-xs normal-case tracking-normal text-muted-foreground">
+                      {tool.hint}
+                    </span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="hidden items-center gap-5 md:flex">
@@ -86,6 +133,35 @@ export function SiteHeader({ overlay = false }: Props) {
                 {item.label}
               </Link>
             ))}
+
+            <div className="border-b hairline">
+              <button
+                onClick={() => setToolsOpen((o) => !o)}
+                aria-expanded={toolsOpen}
+                className="flex w-full items-center justify-between py-3 text-[11px] tracked-sm uppercase font-medium"
+              >
+                Tools
+                <ChevronDown
+                  size={14}
+                  className={cn("transition-transform duration-200", toolsOpen && "rotate-180")}
+                />
+              </button>
+              {toolsOpen && (
+                <div className="pb-3 pl-3">
+                  {TOOLS.map((tool) => (
+                    <Link
+                      key={tool.to}
+                      to={tool.to}
+                      onClick={() => setOpen(false)}
+                      className="block py-2 text-sm text-muted-foreground hover:text-rust"
+                    >
+                      {tool.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div className="flex items-center gap-5 pt-5">
               <a href="https://instagram.com/wanderinglens314" aria-label="Instagram"><Instagram size={18} /></a>
               <Link to="/search" aria-label="Search"><Search size={18} /></Link>
@@ -105,5 +181,22 @@ const NAV = [
   { to: "/destinations", label: "Destinations" },
   { to: "/rides", label: "Rides" },
   { to: "/blog", label: "Guides" },
-  { to: "/tools/trip-calculator", label: "Tools" },
+] as const;
+
+const TOOLS = [
+  {
+    to: "/tools/trip-calculator",
+    label: "Trip cost calculator",
+    hint: "Estimate what a trip really costs",
+  },
+  {
+    to: "/tools/itinerary-builder",
+    label: "Itinerary builder",
+    hint: "Shape a day-by-day plan",
+  },
+  {
+    to: "/tools/trip-matcher",
+    label: "Trip matcher",
+    hint: "Get a destination picked for you",
+  },
 ] as const;
