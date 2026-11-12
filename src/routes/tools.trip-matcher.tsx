@@ -3,6 +3,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { PageShell } from "@/components/layout/PageShell";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { recommendTrips } from "@/lib/trip-planner.functions";
 import { fetchDestinations, fetchPosts } from "@/lib/content-queries";
 
@@ -59,17 +61,27 @@ function TripMatcher() {
       </section>
 
       <section className="mx-auto max-w-5xl px-6 py-16 lg:px-10">
-        <form onSubmit={submit} className="grid gap-6 md:grid-cols-2">
-          <label className="block"><span className="text-[11px] tracked-sm uppercase text-muted-foreground">From</span>
-            <input type="date" value={form.startDate} onChange={set("startDate")} className="input mt-2" /></label>
-          <label className="block"><span className="text-[11px] tracked-sm uppercase text-muted-foreground">To</span>
-            <input type="date" value={form.endDate} onChange={set("endDate")} className="input mt-2" /></label>
-          <label className="block md:col-span-2"><span className="text-[11px] tracked-sm uppercase text-muted-foreground">Budget</span>
-            <input required maxLength={80} placeholder="e.g. ₹1.5 lakh for two, mid-range" value={form.budget} onChange={set("budget")} className="input mt-2" /></label>
-          <label className="block md:col-span-2"><span className="text-[11px] tracked-sm uppercase text-muted-foreground">Interests</span>
-            <textarea required minLength={2} maxLength={500} rows={3} placeholder="Mountains, street food, slow cafés, a bit of hiking…" value={form.interests} onChange={set("interests")} className="input mt-2" /></label>
-          <div className="md:col-span-2">
-            <button disabled={loading} className="rounded-full bg-primary px-6 py-3 text-sm text-primary-foreground disabled:opacity-60">
+        <form onSubmit={submit} className="rounded-2xl border hairline bg-card p-6 shadow-sm md:p-10">
+          <div className="grid gap-x-6 gap-y-7 md:grid-cols-2">
+            <label className="block">
+              <span className="text-[11px] tracked-sm uppercase text-muted-foreground">From</span>
+              <Input type="date" value={form.startDate} onChange={set("startDate")} className="mt-2 h-11" />
+            </label>
+            <label className="block">
+              <span className="text-[11px] tracked-sm uppercase text-muted-foreground">To</span>
+              <Input type="date" value={form.endDate} onChange={set("endDate")} className="mt-2 h-11" />
+            </label>
+            <label className="block md:col-span-2">
+              <span className="text-[11px] tracked-sm uppercase text-muted-foreground">Budget</span>
+              <Input required maxLength={80} placeholder="e.g. ₹1.5 lakh for two, mid-range" value={form.budget} onChange={set("budget")} className="mt-2 h-11" />
+            </label>
+            <label className="block md:col-span-2">
+              <span className="text-[11px] tracked-sm uppercase text-muted-foreground">Interests</span>
+              <Textarea required minLength={2} maxLength={500} rows={4} placeholder="Mountains, street food, slow cafés, a bit of hiking…" value={form.interests} onChange={set("interests")} className="mt-2 resize-none" />
+            </label>
+          </div>
+          <div className="mt-8 flex justify-center md:justify-start">
+            <button disabled={loading} className="w-full rounded-full bg-primary px-8 py-3 text-sm text-primary-foreground transition-opacity disabled:opacity-60 md:w-auto">
               {loading ? "Finding your places…" : "Recommend destinations"}
             </button>
           </div>
