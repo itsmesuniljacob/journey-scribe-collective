@@ -92,9 +92,9 @@ function TrustPage() {
 
           <Section title="Cookies & analytics">
             <p>
-              The site uses only the cookies strictly required for it to function (for
-              example, remembering your light/dark theme preference). We do not run
-              third-party advertising trackers.
+              We count visits without cookies. Google Analytics cookies and click
+              measurement only run after you accept them in the cookie notice. Details
+              are in our <Link to="/privacy" className="text-rust underline">privacy policy</Link>.
             </p>
           </Section>
 

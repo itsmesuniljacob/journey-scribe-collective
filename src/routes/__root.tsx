@@ -11,6 +11,8 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
 import appCss from "../styles.css?url";
+import consentDefaults from "../lib/consent-defaults.js?raw";
+import { CookieBanner } from "@/components/CookieBanner";
 
 function NotFoundComponent() {
   return (
@@ -86,6 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap",
       },
     ],
+    scripts: [{ children: consentDefaults }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -117,6 +120,7 @@ function RootComponent() {
       <ThemeProvider>
         <Outlet />
         <Toaster position="bottom-center" />
+        <CookieBanner />
       </ThemeProvider>
     </QueryClientProvider>
   );

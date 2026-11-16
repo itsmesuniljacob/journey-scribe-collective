@@ -28,6 +28,8 @@ export function SiteFooter() {
               <li><Link to="/about" className="hover:text-rust">About</Link></li>
               <li><Link to="/search" className="hover:text-rust">Search</Link></li>
               <li><Link to="/trust" className="hover:text-rust">Trust & privacy</Link></li>
+              <li><Link to="/privacy" className="hover:text-rust">Privacy policy</Link></li>
+              <li><button type="button" onClick={() => window.dispatchEvent(new Event("open-cookie-settings"))} className="hover:text-rust">Cookie settings</button></li>
             </ul>
           </div>
 
