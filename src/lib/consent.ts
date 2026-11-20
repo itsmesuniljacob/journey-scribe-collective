@@ -129,8 +129,7 @@ export function saveChoices(choices: Partial<Record<Purpose, Choice>>) {
 }
 
 export async function needsAnswer(purposes: Purpose[]): Promise<boolean> {
-  const required = await isConsentRequiredRegion();
-  return required && !globalPrivacyControl() && purposes.some((purpose) => storedAnswer(purpose)?.stale ?? true);
+  return !globalPrivacyControl() && purposes.some((purpose) => storedAnswer(purpose)?.stale ?? true);
 }
 
 /** Fires on changes from this tab and from other tabs. */

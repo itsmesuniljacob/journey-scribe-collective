@@ -48,24 +48,24 @@ export function CookieBanner() {
       tabIndex={-1}
       role="region"
       aria-label="Cookie preferences"
-      className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-xl border hairline bg-background p-5 text-sm shadow-lg outline-none md:inset-x-auto md:right-6 md:bottom-6"
+      className="fixed inset-x-0 bottom-0 z-50 border-t hairline bg-background/95 text-sm shadow-lg outline-none backdrop-blur"
     >
-      <p className="font-serif text-xl italic">Your privacy</p>
-      {!settings ? (
-        <>
-          <p className="mt-2 leading-relaxed text-muted-foreground">
-            We count visits without cookies. If you accept, we also measure clicks and use analytics cookies to
-            understand which stories people read. See our{" "}
-            <Link to="/privacy" className="text-rust underline">privacy policy</Link>.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <button onClick={() => all("granted")} className={`${btn} border-foreground hover:text-rust`}>Accept all</button>
-            <button onClick={() => all("denied")} className={`${btn} border-foreground hover:text-rust`}>Reject all</button>
-            <button onClick={() => { setAnalytics(readChoice("analytics") === "granted"); setSettings(true); }} className={`${btn} border-transparent underline hover:text-rust`}>Cookie settings</button>
+      <div className="mx-auto max-w-7xl px-6 py-5 lg:px-10">
+        {!settings ? (
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-10">
+            <p className="leading-relaxed text-muted-foreground">
+              We would like to use Google Analytics to understand how this site is used. That sets a cookie in your
+              browser. Nothing else, no advertising and no sharing with anyone. You can change your mind at any time.{" "}
+              <Link to="/privacy" className="text-foreground underline underline-offset-4 hover:text-rust">Privacy policy</Link>
+            </p>
+            <div className="flex shrink-0 items-center gap-3">
+              <button onClick={() => all("denied")} className="rounded-full border hairline px-6 py-2.5 text-sm transition-colors hover:border-foreground">Reject</button>
+              <button onClick={() => all("granted")} className="rounded-full border border-rust/50 bg-rust/15 px-6 py-2.5 text-sm text-rust transition-colors hover:bg-rust/25">Accept</button>
+            </div>
           </div>
-        </>
-      ) : (
-        <>
+        ) : (
+          <div className="mx-auto max-w-xl">
+            <p className="font-serif text-xl italic">Cookie settings</p>
           {gpc && (
             <p className="mt-2 text-muted-foreground">Your browser's privacy signal (Global Privacy Control) is on, so analytics stays off.</p>
           )}
@@ -86,8 +86,9 @@ export function CookieBanner() {
             <button onClick={() => { saveChoices({ analytics: analytics ? "granted" : "denied" }); close(); }} className={`${btn} border-foreground hover:text-rust`}>Save choices</button>
             <button onClick={close} className={`${btn} border-transparent underline hover:text-rust`}>Cancel</button>
           </div>
-        </>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
