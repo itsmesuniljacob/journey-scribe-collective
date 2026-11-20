@@ -4,8 +4,11 @@ import { needsAnswer, onConsentChange, readChoice, saveChoices } from "@/lib/con
 
 const btn = "border px-4 py-2 text-[11px] tracked-sm uppercase transition-colors";
 
+const SHOW_DELAY_MS = 2500;
+
 export function CookieBanner() {
   const [open, setOpen] = useState(false);
+  const [shown, setShown] = useState(false);
   const [settings, setSettings] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [gpc, setGpc] = useState(false);
@@ -13,7 +16,10 @@ export function CookieBanner() {
 
   useEffect(() => {
     setGpc((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true);
-    void needsAnswer(["analytics"]).then((n) => n && setOpen(true));
+    // Let the page settle before asking, so the bar doesn't flash on load.
+    const timer = window.setTimeout(() => {
+      void needsAnswer(["analytics"]).then((n) => n && setOpen(true));
+    }, SHOW_DELAY_MS);
     const openSettings = () => {
       setAnalytics(readChoice("analytics") === "granted");
       setSettings(true);
@@ -22,13 +28,20 @@ export function CookieBanner() {
     window.addEventListener("open-cookie-settings", openSettings);
     const off = onConsentChange(() => setAnalytics(readChoice("analytics") === "granted"));
     return () => {
+      window.clearTimeout(timer);
       window.removeEventListener("open-cookie-settings", openSettings);
       off();
     };
   }, []);
 
   useEffect(() => {
-    if (open) ref.current?.focus();
+    if (!open) {
+      setShown(false);
+      return;
+    }
+    const raf = requestAnimationFrame(() => setShown(true));
+    ref.current?.focus();
+    return () => cancelAnimationFrame(raf);
   }, [open, settings]);
 
   if (!open) return null;
@@ -48,7 +61,9 @@ export function CookieBanner() {
       tabIndex={-1}
       role="region"
       aria-label="Cookie preferences"
-      className="fixed inset-x-0 bottom-0 z-50 border-t hairline bg-background/95 text-sm shadow-lg outline-none backdrop-blur"
+      className={`fixed inset-x-0 bottom-0 z-50 border-t hairline bg-background/95 text-sm shadow-lg outline-none backdrop-blur transition-transform duration-500 ease-out ${
+        shown ? "translate-y-0" : "translate-y-full"
+      }`}
     >
       <div className="mx-auto max-w-7xl px-6 py-5 lg:px-10">
         {!settings ? (
